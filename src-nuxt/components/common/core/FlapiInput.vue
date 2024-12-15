@@ -34,7 +34,7 @@
         :value="props.value"
         :min="props.min"
         :step="props.step"
-        class="relative flex h-12 w-full items-center justify-center rounded-md border-2 bg-zinc-900 pl-3 text-white outline-none placeholder:text-zinc-600 focus:border-amber-400"
+        class="relative flex h-12 w-full items-center justify-center rounded-md border-2 bg-zinc-900 pl-3 text-white outline-none placeholder:text-light-100 focus:border-amber-400"
         :placeholder="props.placeholder"
         :class="[
           meta.validated && !meta.valid ? 'border-red-500' : 'border-zinc-500 hover:border-zinc-400',

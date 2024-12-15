@@ -1,26 +1,41 @@
 <template>
   <Form v-slot="{ meta }" class="flex flex-col gap-6" @submit="login">
+    <!-- connect with google -->
+    <FlapiButton type="button" variant="light" font="semi-bold" class="flex items-center justify-center gap-2">
+      <FlapiIcon name="google" mode="fill" color="#DB4437" class="mr-2" />
+      Continuer avec Google
+    </FlapiButton>
+
+    <!-- ou  -->
+    <div class="flex items-center justify-center gap-2">
+      <div class="h-[1px] w-2/4 bg-grey-200"></div>
+      <h6 class="font-regular text-sm text-light-100">ou</h6>
+      <div class="h-[1px] w-2/4 bg-grey-200"></div>
+    </div>
+
     <FlapiInput
       v-model:value="values.email"
       type="email"
       id="email"
       label="Email"
-      rules="required|email"
+      rules="email"
       placeholder="email@crzgames.com"
     />
 
-    <FlapiInput v-model:value="values.password" type="password" id="password" label="Password" rules="required" />
+    <FlapiInput v-model:value="values.password" type="password" id="password" label="Mot de passe" />
 
     <slot />
 
     <FlapiButton :disabled="!meta.valid" :load="buttonLoading" type="submit">
-      {{ buttonLoading ? 'Loading...' : 'Login' }}
+      <p class="font-semibold text-light-100">
+        {{ buttonLoading ? 'Connexion...' : 'Se connecter' }}
+      </p>
     </FlapiButton>
 
     <FlapiConfirmModal
       :show="showModal"
-      :title="'Your account is not activated'"
-      :message="'Please check your email for the verification code or click the Confirm button to resend an activation code by email.'"
+      :title="'Votre compte n\'est pas activé'"
+      :message="'Veuillez vérifier votre boîte de réception pour activer votre compte.'"
       @update:show="showModal = $event"
       @ok="resendMailCodeActivationAccount"
       @cancel="showModal = false"
@@ -34,6 +49,7 @@ import { ref } from 'vue'
 import FlapiInput from '~/components/common/core/FlapiInput.vue'
 import FlapiButton from '~/components/common/core/FlapiButton.vue'
 import FlapiConfirmModal from '~/components/common/core/FlapiConfirmModal.vue'
+import FlapiIcon from '~/components/common/ui/FlapiIcon.vue'
 import type { Ref } from 'vue'
 
 /* REFS */

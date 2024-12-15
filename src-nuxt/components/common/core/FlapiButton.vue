@@ -7,6 +7,7 @@
     :target="externalLink ? '_blank' : null"
     :class="[
       isDisabled ? 'cursor-not-allowed brightness-75' : `${hoverBgClass} active:translate-y-1`,
+      textFontClass ? textFontClass : '',
       load ? 'cursor-wait' : '',
       sizeClasses,
       bgClass,
@@ -30,6 +31,7 @@ const props: {
   externalLink: string
   size: string
   variant: string
+  font: string
 } = defineProps({
   outlined: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
@@ -38,6 +40,7 @@ const props: {
   externalLink: { type: String, default: null },
   size: { type: String, default: null },
   variant: { type: String, default: 'primary' }, // primary, red, green, blue
+  font: { type: String, default: null }, // serif, sans, mono, semi-bold
 })
 
 /* COMPUTED */
@@ -74,28 +77,41 @@ const sizeClasses: ComputedRef<string> = computed(() => {
 const hoverBgClass: ComputedRef<string> = computed(() => {
   switch (props.variant) {
     case 'primary':
-      return 'hover:bg-amber-500'
+      return 'hover:bg-primary-600'
     case 'red':
       return 'hover:bg-red-600'
     case 'green':
       return 'hover:bg-green-500'
-    case 'blue':
-      return 'hover:bg-blue-500'
     default:
       return 'hover:bg-amber-500'
+  }
+})
+
+const textFontClass: ComputedRef<string> = computed(() => {
+  switch (props.font) {
+    case 'serif':
+      return 'font-serif'
+    case 'sans':
+      return 'font-sans'
+    case 'mono':
+      return 'font-mono'
+    case 'semi-bold':
+      return 'font-semibold'
+    default:
+      return ''
   }
 })
 
 const bgClass: ComputedRef<string> = computed(() => {
   switch (props.variant) {
     case 'primary':
-      return 'bg-amber-400'
+      return 'bg-primary'
     case 'red':
-      return 'bg-red-500'
+      return 'bg-red'
     case 'green':
-      return 'bg-green-400'
-    case 'blue':
-      return 'bg-blue-400'
+      return 'bg-green'
+    case 'light':
+      return 'bg-light-100'
     default:
       return 'bg-amber-400'
   }
