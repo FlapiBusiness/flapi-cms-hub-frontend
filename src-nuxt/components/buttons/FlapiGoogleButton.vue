@@ -1,6 +1,6 @@
 <template>
   <button
-    class="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-lg font-semibold text-black shadow-md transition-transform hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus:ring-2 active:translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-md"
+    class="text-lg inline-flex items-center justify-center rounded-md bg-white px-6 py-3 font-semibold text-black shadow-md transition-transform hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus:ring-2 active:translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-md"
     :disabled="props.disabled"
     aria-label="Continue with Google"
   >
