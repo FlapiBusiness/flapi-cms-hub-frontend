@@ -14,7 +14,7 @@
       :type="typeRef"
       :value="props.value"
       @input="emit('update:value', $event.target.value, $event)"
-      :placeholder="props.placeholder"
+      :placeholder="props.placeholder || undefined"
     >
       <textarea
         v-if="rows"
@@ -22,9 +22,14 @@
         v-bind="field"
         :id="props.id"
         :value="props.value"
-        class="relative flex w-full items-center justify-center rounded-md border-2 bg-zinc-900 pl-3 pt-3 text-white outline-none placeholder:text-zinc-600 focus:border-amber-400"
-        :placeholder="props.placeholder"
-        :class="meta.validated && !meta.valid ? 'border-red-500' : 'border-zinc-500 hover:border-zinc-400'"
+        class="relative flex w-full items-center justify-center rounded border-2 bg-gray-400 pl-3 pt-3 text-white outline-none placeholder:text-base placeholder:text-light-300 focus:border-primary-400 focus:bg-gray-500"
+        :placeholder="props.placeholder || undefined"
+        :class="{
+          'pr-3': typeRef === 'number',
+          'border-[#EC364B]': meta.validated && !meta.valid,
+          'border-transparent': !meta.validated || meta.valid,
+          'hover:border-light-300': !meta.validated || meta.valid,
+        }"
       />
       <input
         v-else
@@ -32,71 +37,105 @@
         :type="typeRef"
         :id="props.id"
         :value="props.value"
-        :min="props.min"
-        :step="props.step"
-        class="relative flex h-12 w-full items-center justify-center rounded-md border-2 bg-zinc-900 pl-3 text-white outline-none placeholder:text-light-100 focus:border-amber-400"
-        :placeholder="props.placeholder"
-        :class="[
-          meta.validated && !meta.valid ? 'border-red-500' : 'border-zinc-500 hover:border-zinc-400',
-          typeRef === 'number' ? 'pr-3' : null,
-        ]"
+        :min="props.min ? props.min.toString() : undefined"
+        :step="props.step ? props.step.toString() : undefined"
+        class="relative flex h-12 w-full items-center justify-center rounded border-2 bg-gray-400 pl-3 text-white outline-none placeholder:text-base placeholder:text-light-300 focus:border-primary-400 focus:bg-gray-500"
+        :placeholder="props.placeholder || undefined"
+        :class="{
+          'pr-3': typeRef === 'number',
+          'border-[#EC364B]': meta.validated && !meta.valid,
+          'border-transparent': !meta.validated || meta.valid,
+          'hover:border-light-300': !meta.validated || meta.valid,
+        }"
       />
     </Field>
 
     <div
-      :class="props.label ? 'top-11' : 'top-3'"
+      :class="props.label ? 'top-10' : 'top-2'"
       class="absolute right-4 cursor-pointer"
       v-if="type === 'password'"
       @click.prevent="handleTogglePassword"
     >
-      <FlapiIcon v-if="!togglePassword" title="Afficher le mot de passe" name="eye" mode="stroke" color="#908e97" />
-      <FlapiIcon v-if="togglePassword" title="Masquer le mot de passe" name="eye-off" mode="stroke" color="#908e97" />
+      <FlapiIcon v-if="!togglePassword" title="Afficher le mot de passe" name="Eye" mode="stroke" color="#908e97" />
+      <FlapiIcon v-if="togglePassword" title="Masquer le mot de passe" name="EyeOff" mode="stroke" color="#908e97" />
     </div>
     <ErrorMessage class="slide-from-left text-red-500 text-sm" :name="props.id" />
   </div>
 </template>
 
-<script lang="ts" setup>
-import FlapiIcon from '~/components/common/ui/FlapiIcon.vue'
-import { Field, ErrorMessage } from 'vee-validate'
-import { ref } from 'vue'
-
-/* PROPS */
-const props: {
-  placeholder: string
+<script lang="ts">
+/**
+ * Type definitions for the flapi input component props
+ * @type {FlapiInputProps}
+ * @property {string | null} placeholder - The input placeholder
+ * @property {string | number} value - The input value
+ * @property {number | null} rows - The input rows
+ * @property {string} id - The input id
+ * @property {string} type - The input type
+ * @property {string | null} rules - The input rules
+ * @property {string | null} label - The input label
+ * @property {number | null} min - The input min value
+ * @property {string | null} step - The input step value
+ */
+export type FlapiInputProps = {
+  placeholder: string | null
   value: string | number
-  rows: number
+  rows: number | null
   id: string
   type: string
-  rules: string
-  label: string
-  min: string
-  step: string
-} = defineProps({
+  rules: string | null
+  label: string | null
+  min: number | null
+  step: number | null
+}
+</script>
+
+<script lang="ts" setup>
+import FlapiIcon from '@/components/ui/FlapiIcon.vue'
+import { Field, ErrorMessage } from 'vee-validate'
+import { ref } from 'vue'
+import type { Ref } from 'vue'
+import type { InputTypeHTMLAttribute } from 'vue'
+
+/* PROPS */
+/**
+ * Type definitions for the flapi input component props
+ * @type {FlapiInputProps}
+ * @property {string | null} placeholder - The input placeholder
+ * @property {string | number} value - The input value
+ * @property {number | null} rows - The input rows
+ * @property {string} id - The input id
+ * @property {string} type - The input type
+ * @property {string | null} rules - The input rules
+ * @property {string | null} label - The input label
+ * @property {number | null} min - The input min value
+ * @property {number | null} step - The input step value
+ */
+const props: FlapiInputProps = defineProps({
   placeholder: { type: String, default: null },
   value: { type: [String, Number], default: '' },
   rows: { type: Number, default: null },
   id: { type: String, default: 'field' },
-  type: { type: String, default: 'text' },
+  type: { type: String as PropType<InputTypeHTMLAttribute>, default: 'text' },
   rules: { type: String, default: null },
   label: { type: String, default: null },
-  min: { type: String, default: null },
-  step: { type: String, default: null },
+  min: { type: Number, default: null },
+  step: { type: Number, default: null },
 })
 
 /*EMIT*/
-const emit: {
-  (evt: 'update:value', value: boolean, event: Event): void
-} = defineEmits(['update:value'])
+const emit: (event: 'update:value', value: string | number, inputEvent: InputEvent) => void = defineEmits<{
+  (event: 'update:value', value: string | number, inputEvent: InputEvent): void
+}>()
 
 /*REFS*/
 const togglePassword: Ref<boolean> = ref(false)
-const typeRef: Ref<string> = ref(props.type)
+const typeRef: Ref<InputTypeHTMLAttribute> = ref(props.type)
 
 /*METHODS*/
 /**
- * Toggles the password visibility.
- * @returns {void}
+ * Toggle the password visibility state and update the input type accordingly.
+ * @returns {void} This function does not return a value.
  */
 const handleTogglePassword: () => void = (): void => {
   togglePassword.value = !togglePassword.value
@@ -107,10 +146,6 @@ const handleTogglePassword: () => void = (): void => {
 <style scoped>
 :focus-visible {
   outline: none;
-}
-
-input:hover:not(:focus) {
-  box-shadow: rgba(0, 0, 0, 0.3) 0 0 30px 0;
 }
 
 .slide-from-left {

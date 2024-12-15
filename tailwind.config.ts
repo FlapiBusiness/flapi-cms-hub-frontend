@@ -20,11 +20,20 @@ export default <Partial<Config>>{
       serif: 'Poppins, Rubik',
     },
     extend: {
+      keyframes: {
+        spin: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+      },
+      animation: {
+        spin: 'spin 1000ms linear infinite',
+      },
       colors: {
         dark: '#131A20',
         'dark-red': '#C0172A',
         disabled: '#303A4B',
-        grey: {
+        gray: {
           200: '#222B39',
           300: '#454D5E',
           400: '#35424D',
@@ -33,13 +42,15 @@ export default <Partial<Config>>{
           700: '#101623',
         },
         light: {
-          100: '#F5F4FB',
-          300: '#FFFFFF',
-          700: '#FFFFFF',
+          300: 'rgba(255, 255, 255, 0.3)',
+          400: '#F5F4FB',
+          700: 'rgba(255, 255, 255, 0.7)',
         },
-        primary: '#8472F3',
-        'primary-dark': '#6B59D9',
-        'primary-light': '#BDB3FF',
+        primary: {
+          300: '#BDB3FF',
+          400: '#8472F3',
+          500: '#6B59D9',
+        },
         red: '#EC364B',
         success: '#00F593',
         warn: '#FFD37A',

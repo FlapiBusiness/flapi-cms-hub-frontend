@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import FlapiModal from '../ui/FlapiModal.vue'
+import FlapiModal from '@/components/ui/FlapiModal.vue'
 
 /* PROPS */
 const props: {

@@ -1,119 +1,142 @@
 <template>
   <component
-    :is="tag"
-    :to="to"
-    :disabled="isDisabled"
-    :href="externalLink || to"
-    :target="externalLink ? '_blank' : null"
-    :class="[
-      isDisabled ? 'cursor-not-allowed brightness-75' : `${hoverBgClass} active:translate-y-1`,
-      textFontClass ? textFontClass : '',
-      load ? 'cursor-wait' : '',
-      sizeClasses,
-      bgClass,
-    ]"
-    class="flex translate-y-0 transform items-center justify-center rounded-md font-serif font-medium text-gray-900 duration-100"
+    class="flapi-button"
+    :is="isLink ? 'RouterLink' : 'button'"
+    role="button"
+    :to="isLink ? props.to : undefined"
+    :disabled="props.disabled"
+    :class="computedClass"
+    :style="{
+      '--background-color': backgroundColor,
+      '--background-hover-color': backgroundHoverColor,
+    }"
   >
-    <slot v-if="!load" />
-    <FlapiSpinner v-else variant="dark" :size="28" />
+    <span class="flex items-center justify-center">
+      <span v-if="props.icon && props.iconPosition === 'left' && !isIconOnly" class="mr-2">
+        <FlapiIcon :name="props.icon" class="button-icon" mode="stroke" />
+      </span>
+      <slot v-if="!isIconOnly" />
+      <span v-if="props.icon && props.iconPosition === 'right' && !isIconOnly" class="ml-2">
+        <FlapiIcon :name="props.icon" class="button-icon" mode="stroke" />
+      </span>
+      <FlapiIcon v-if="isIconOnly && props.icon" class="button-icon" :name="props.icon" mode="stroke" />
+    </span>
   </component>
 </template>
+
+<script lang="ts">
+export const flapiButtonSizes: string[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const
+
+/**
+ * Type definitions for the flapi button component size
+ * @type {FlapiButtonSize}
+ */
+type FlapiButtonSize = (typeof flapiButtonSizes)[number]
+
+/**
+ * Type definitions for the flapi button component props
+ * @type {FlapiButtonProps}
+ * @property {string | null} to - The route to navigate to
+ * @property {string} backgroundColor - The button background color
+ * @property {string} backgroundHoverColor - The button background hover color
+ * @property {boolean} disabled - Whether the button is disabled
+ * @property {string | null} icon - The icon to display
+ * @property {'left' | 'right' | null} iconPosition - The icon position
+ * @property {FlapiButtonSize} size - The button size
+ */
+export type FlapiButtonProps = {
+  to: string | null
+  backgroundColor: string
+  backgroundHoverColor: string
+  disabled: boolean
+  icon: string | null
+  iconPosition: 'left' | 'right' | null
+  size: FlapiButtonSize
+}
+</script>
+
 <script lang="ts" setup>
 import { computed } from 'vue'
-import FlapiSpinner from '../ui/flapiSpinner.vue'
+import type { ComputedRef } from 'vue'
+import type { SetupContext } from '@vue/runtime-core'
+import { defineProps, useSlots } from '@vue/runtime-core'
+import FlapiIcon from '@/components/ui/FlapiIcon.vue'
 
-/* PROPS */
-const props: {
-  outlined: boolean
-  disabled: boolean
-  load: boolean
-  to: string | object
-  externalLink: string
-  size: string
-  variant: string
-  font: string
-} = defineProps({
-  outlined: { type: Boolean, default: false },
-  disabled: { type: Boolean, default: false },
-  load: { type: Boolean, default: false },
-  to: { type: [String, Object], default: null },
-  externalLink: { type: String, default: null },
-  size: { type: String, default: null },
-  variant: { type: String, default: 'primary' }, // primary, red, green, blue
-  font: { type: String, default: null }, // serif, sans, mono, semi-bold
+const props: FlapiButtonProps = defineProps({
+  to: {
+    type: String,
+    default: null,
+  },
+  backgroundColor: {
+    type: String,
+    default: '#8472F3',
+  },
+  backgroundHoverColor: {
+    type: String,
+    default: '#6B59D9',
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  icon: {
+    type: String,
+    default: null,
+  },
+  iconPosition: {
+    type: String as PropType<'left' | 'right' | null>,
+    default: 'left',
+  },
+  size: {
+    type: String as PropType<FlapiButtonSize>,
+    default: 'md',
+  },
 })
 
-/* COMPUTED */
-const tag: ComputedRef<string> = computed(() => {
-  if (props.to) {
-    return 'RouterLink'
-  } else if (props.externalLink) {
-    return 'a'
-  }
-  return 'button'
-})
+const isLink: ComputedRef<boolean> = computed(() => props.to !== null && props.to !== '')
 
-const isDisabled: ComputedRef<boolean> = computed(() => {
-  return props.disabled || props.load
-})
+const buttonSizes: Record<FlapiButtonSize, string> = {
+  xs: 'px-2 py-1 text-xs',
+  sm: 'px-3 py-2 text-sm',
+  md: 'px-4 py-3',
+  lg: 'px-6 py-4 text-lg',
+  xl: 'px-8 py-5 text-xl',
+  '2xl': 'px-10 py-6 text-2xl',
+}
 
-const sizeClasses: ComputedRef<string> = computed(() => {
-  switch (props.size) {
-    case 'sm':
-      return 'py-1.5 px-4 text-xs'
-    case 'md':
-      return 'py-2.5 px-6 text-sm'
-    case 'lg':
-      return 'py-3 px-8 text-base'
-    case 'xl':
-      return 'py-4 px-16 text-lg'
-    case '2xl':
-      return 'py-3 px-8 text-base md:py-5 md:px-16 md:text-xl'
-    default:
-      return 'py-2.5 px-6 text-sm'
-  }
-})
+const slots: SetupContext['slots'] = useSlots()
+const isIconOnly: ComputedRef<boolean> = computed(() => props.icon !== null && !slots.default?.().length)
 
-const hoverBgClass: ComputedRef<string> = computed(() => {
-  switch (props.variant) {
-    case 'primary':
-      return 'hover:bg-primary-600'
-    case 'red':
-      return 'hover:bg-red-600'
-    case 'green':
-      return 'hover:bg-green-500'
-    default:
-      return 'hover:bg-amber-500'
-  }
-})
-
-const textFontClass: ComputedRef<string> = computed(() => {
-  switch (props.font) {
-    case 'serif':
-      return 'font-serif'
-    case 'sans':
-      return 'font-sans'
-    case 'mono':
-      return 'font-mono'
-    case 'semi-bold':
-      return 'font-semibold'
-    default:
-      return ''
-  }
-})
-
-const bgClass: ComputedRef<string> = computed(() => {
-  switch (props.variant) {
-    case 'primary':
-      return 'bg-primary'
-    case 'red':
-      return 'bg-red'
-    case 'green':
-      return 'bg-green'
-    case 'light':
-      return 'bg-light-100'
-    default:
-      return 'bg-amber-400'
-  }
-})
+const computedClass: ComputedRef<string> = computed(
+  () => `
+  inline-flex items-center justify-center
+  font-medium text-white select-none
+  border border-transparent leading-6 rounded-md
+  focus:outline-none focus:shadow-outline transition duration-150 ease-in-out
+  ${props.disabled ? 'opacity-70 cursor-not-allowed' : ''}
+  ${isIconOnly.value ? 'p-2 w-fit' : buttonSizes[props.size]}
+`,
+)
 </script>
+
+<style>
+.button-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+:root {
+  --background-color: #8472f3;
+  --background-hover-color: #6b59d9;
+}
+
+.flapi-button,
+.flapi-button:active,
+.flapi-button:hover:active {
+  background-color: var(--background-color);
+}
+
+.flapi-button:hover {
+  background-color: var(--background-hover-color);
+}
+</style>

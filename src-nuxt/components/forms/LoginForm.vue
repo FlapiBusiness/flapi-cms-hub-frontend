@@ -1,17 +1,10 @@
 <template>
   <Form v-slot="{ meta }" class="flex flex-col gap-6" @submit="login">
     <!-- connect with google -->
-    <FlapiButton type="button" variant="light" font="semi-bold" class="flex items-center justify-center gap-2">
-      <FlapiIcon name="google" mode="fill" color="#DB4437" class="mr-2" />
-      Continuer avec Google
-    </FlapiButton>
+    <FlapiGoogleButton :disabled="false" />
 
     <!-- ou  -->
-    <div class="flex items-center justify-center gap-2">
-      <div class="h-[1px] w-2/4 bg-grey-200"></div>
-      <h6 class="font-regular text-sm text-light-100">ou</h6>
-      <div class="h-[1px] w-2/4 bg-grey-200"></div>
-    </div>
+    <FlapiDivider text="or" />
 
     <FlapiInput
       v-model:value="values.email"
@@ -27,7 +20,7 @@
     <slot />
 
     <FlapiButton :disabled="!meta.valid" :load="buttonLoading" type="submit">
-      <p class="font-semibold text-light-100">
+      <p class="font-semibold text-light-400">
         {{ buttonLoading ? 'Connexion...' : 'Se connecter' }}
       </p>
     </FlapiButton>
@@ -46,10 +39,11 @@
 <script lang="ts" setup>
 import { Form } from 'vee-validate'
 import { ref } from 'vue'
-import FlapiInput from '~/components/common/core/FlapiInput.vue'
-import FlapiButton from '~/components/common/core/FlapiButton.vue'
-import FlapiConfirmModal from '~/components/common/core/FlapiConfirmModal.vue'
-import FlapiIcon from '~/components/common/ui/FlapiIcon.vue'
+import FlapiInput from '@/components/common/core/FlapiInput.vue'
+import FlapiButton from '@/components/common/core/FlapiButton.vue'
+import FlapiConfirmModal from '@/components/common/core/FlapiConfirmModal.vue'
+import FlapiGoogleButton from '@/components/buttons/FlapiGoogleButton.vue'
+import FlapiDivider from '../decorators/FlapiDivider.vue'
 import type { Ref } from 'vue'
 
 /* REFS */
