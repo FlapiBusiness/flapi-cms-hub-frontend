@@ -50,7 +50,7 @@
 
 <script lang="ts" setup>
 import FlapiIcon from './FlapiIcon.vue'
-import FlapiButton from '@/components/common/core/FlapiButton.vue'
+import FlapiButton from '@/components/core/FlapiButton.vue'
 
 /* PROPS */
 const props: Readonly<{

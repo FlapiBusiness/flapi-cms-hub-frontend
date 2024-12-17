@@ -49,12 +49,12 @@
 <script lang="ts" setup>
 import { Form } from 'vee-validate'
 import { ref } from 'vue'
-import FlapiInput from '@/components/common/core/FlapiInput.vue'
-import FlapiButton from '@/components/common/core/FlapiButton.vue'
-import FlapiConfirmModal from '@/components/common/core/FlapiConfirmModal.vue'
+import FlapiInput from '@/components/core/FlapiInput.vue'
+import FlapiButton from '@/components/core/FlapiButton.vue'
+import FlapiConfirmModal from '@/components/core/FlapiConfirmModal.vue'
 import FlapiGoogleButton from '@/components/buttons/FlapiGoogleButton.vue'
-import FlapiDivider from '../decorators/FlapiDivider.vue'
-import FlapiLink from '../common/core/FlapiLink.vue'
+import FlapiDivider from '@/components/decorators/FlapiDivider.vue'
+import FlapiLink from '@/components/core/FlapiLink.vue'
 import type { Ref } from 'vue'
 
 /* REFS */
