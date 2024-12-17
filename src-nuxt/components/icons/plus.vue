@@ -1,4 +1,6 @@
 <template>
-  <line x1="12" y1="5" x2="12" y2="19" />
-  <line x1="5" y1="12" x2="19" y2="12" />
+  <svg xmlns="http://www.w3.org/2000/svg">
+    <path d="M12.5 5.5V19.5" stroke="#F5F4FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M5.5 12.5H19.5" stroke="#F5F4FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
 </template>
