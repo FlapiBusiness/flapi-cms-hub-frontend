@@ -70,9 +70,12 @@
     "@tauri-apps/api": "^2.1.1",
     "@tauri-apps/plugin-shell": "^2.0.1",
     "@tauri-apps/plugin-updater": "^2.0.0",
+    "@vee-validate/i18n": "^4.14.7",
+    "@vee-validate/rules": "^4.14.7",
     "axios": "^1.7.7",
     "luxon": "^3.5.0",
     "pinia": "^2.2.6",
+    "vee-validate": "^4.14.7",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5"
   },

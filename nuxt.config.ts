@@ -14,6 +14,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   telemetry: false,
   components: true,
+
   modules: [
     '@pinia/nuxt',
     '@nuxt/test-utils/module',
@@ -23,6 +24,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/seo',
   ],
+
   vite: {
     // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
     // prevent vite from obscuring rust errors
@@ -54,6 +56,7 @@ export default defineNuxtConfig({
       },
     } as any,
   },
+
   /*nitro: {
     preset: 'node-cluster',
 
@@ -66,21 +69,25 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ['./src-nuxt/stores/**'],
   },
+
   tailwindcss: {
     exposeConfig: true,
     viewer: true,
   },
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
+
   googleFonts: {
     families: {
       Poppins: true,
     },
   },
+
   image: {
     // Options
   },
