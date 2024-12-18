@@ -13,6 +13,6 @@
 
 <script lang="ts" setup>
 import LoginForm from '@/components/forms/LoginForm.vue'
-import flapiLink from '@/components/common/core/FlapiLink.vue'
+import flapiLink from '@/components/core/FlapiLink.vue'
 import FlapiLogo from '@/components/flapi/FlapiLogo.vue'
 </script>

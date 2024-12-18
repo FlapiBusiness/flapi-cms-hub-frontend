@@ -31,7 +31,7 @@ export type FlapiVerifyAccountProps = {
 <script lang="ts" setup>
 import FlapiLogo from '@/components/flapi/FlapiLogo.vue'
 import FlapiPinCode from '@/components/inputs/FlapiPinCode.vue'
-import FlapiLink from '@/components/common/core/FlapiLink.vue'
+import FlapiLink from '@/components/core/FlapiLink.vue'
 import { defineProps } from '@vue/runtime-core'
 
 /**
