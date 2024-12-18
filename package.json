@@ -72,7 +72,7 @@
     "@tauri-apps/plugin-updater": "^2.0.0",
     "@vee-validate/i18n": "^4.14.7",
     "@vee-validate/rules": "^4.14.7",
-    "axios": "^1.7.7",
+    "axios": "^1.7.9",
     "luxon": "^3.5.0",
     "pinia": "^2.2.6",
     "vee-validate": "^4.14.7",
