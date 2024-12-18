@@ -182,6 +182,8 @@ const ignoreConfig = {
     '.cache/**',
     'src-tauri/target/**',
     'src-tauri/gen/**',
+    'android/**',
+    'ios/**',
   ],
 }
 

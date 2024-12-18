@@ -9,13 +9,8 @@ export default defineNuxtConfig({
       noscript: [],
     },
   },
-
-  // Directory of your source files
-  srcDir: 'src-nuxt',
-
-  // Mettre a false pour : desktop (tauri)
-  ssr: false,
-
+  srcDir: 'src-nuxt', // Directory of your source files
+  ssr: true, // Mettre a false pour : desktop (tauri)
   devtools: { enabled: true },
   telemetry: false,
   components: true,
@@ -27,6 +22,7 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@nuxtjs/tailwindcss',
     '@nuxt/image',
+    '@nuxtjs/seo',
   ],
 
   vite: {
@@ -95,6 +91,4 @@ export default defineNuxtConfig({
   image: {
     // Options
   },
-
-  compatibilityDate: '2024-12-13',
 })
