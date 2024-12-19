@@ -4,5 +4,5 @@
   </div>
 </template>
 <script lang="ts" setup>
-import FlapiSpinner from '@/components/ui/FlapiSpinner.vue'
+import FlapiSpinner from '~/components/ui/FlapiSpinner.vue'
 </script>
