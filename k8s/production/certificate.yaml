@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: prod-seatyrants-frontend-crzcommon-cert
-  namespace: prod-seatyrants-website-frontend
+  name: prod-hub-flapi-crzcommon-cert
+  namespace: prod-hub-flapi-frontend
 spec:
-  secretName: prod-seatyrants-frontend-crzcommon-tls
+  secretName: prod-hub-flapi-frontend-crzcommon-tls
   dnsNames:
-    - seatyrants.crzcommon.com
+    - hub.flapi.org
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer

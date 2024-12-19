@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: staging-seatyrants-website-frontend-deployment
-  namespace: staging-seatyrants-website-frontend
+  name: staging-hub-flapi-frontend-deployment
+  namespace: staging-hub-flapi-frontend
   labels:
-    app: staging-seatyrants-website-frontend
+    app: staging-hub-flapi-frontend
 spec:
   replicas: 1
   strategy:
@@ -14,15 +14,15 @@ spec:
       maxSurge: 1
   selector:
     matchLabels:
-      app: staging-seatyrants-website-frontend
+      app: staging-hub-flapi-frontend
   template:
     metadata:
       labels:
-        app: staging-seatyrants-website-frontend
+        app: staging-hub-flapi-frontend
     spec:
       containers:
-        - name: staging-seatyrants-website-frontend
-          image: corentin35/seatyrants-website-frontend:staging-${TAG_VERSION}
+        - name: staging-hub-flapi-frontend
+          image: corentin35/hub-flapi-frontend:staging-${TAG_VERSION}
           imagePullPolicy: Always
           ports:
             - containerPort: 80

@@ -1,13 +1,13 @@
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: prod-seatyrants-website-frontend-hpa
-  namespace: prod-seatyrants-website-frontend
+  name: prod-hub-flapi-frontend-hpa
+  namespace: prod-hub-flapi-frontend
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: prod-seatyrants-website-frontend-deployment
+    name: prod-hub-flapi-frontend-deployment
   minReplicas: 5
   maxReplicas: 15
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 70

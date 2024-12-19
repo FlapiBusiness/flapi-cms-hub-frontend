@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prod-seatyrants-website-frontend-deployment
-  namespace: prod-seatyrants-website-frontend
+  name: prod-hub-flapi-frontend-deployment
+  namespace: prod-hub-flapi-frontend
   labels:
-    app: prod-seatyrants-website-frontend
+    app: prod-hub-flapi-frontend
 spec:
   replicas: 5
   strategy:
@@ -14,15 +14,15 @@ spec:
       maxSurge: 1
   selector:
     matchLabels:
-      app: prod-seatyrants-website-frontend
+      app: prod-hub-flapi-frontend
   template:
     metadata:
       labels:
-        app: prod-seatyrants-website-frontend
+        app: prod-hub-flapi-frontend
     spec:
       containers:
-        - name: prod-seatyrants-website-frontend
-          image: corentin35/seatyrants-website-frontend:${TAG_VERSION}
+        - name: prod-hub-flapi-frontend
+          image: corentin35/hub-flapi-frontend:${TAG_VERSION}
           imagePullPolicy: Always
           ports:
             - containerPort: 80
