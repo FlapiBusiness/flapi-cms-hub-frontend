@@ -4,7 +4,9 @@
       <p class="text-2xl font-semibold text-light-400">Photo de l'applications</p>
       <FlapiCardDownloadPicture picture="https://picsum.photos/136/136" />
       <p class="text-2xl font-semibold text-light-400">Personnalisation de l'application</p>
-      <FlapiFormCard> <div class="h-96"></div> </FlapiFormCard>
+      <FlapiFormCard>
+        <CreateApplicationForm />
+      </FlapiFormCard>
     </div>
   </div>
 </template>
@@ -12,4 +14,5 @@
 <script lang="ts" setup>
 import FlapiFormCard from '@/components/cards/FlapiFormCard.vue'
 import FlapiCardDownloadPicture from '@/components/cards/FlapiCardDownloadPicture.vue'
+import CreateApplicationForm from '@/components/forms/CreateApplicationForm.vue'
 </script>
