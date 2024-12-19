@@ -10,7 +10,7 @@ spec:
   tls:
     - hosts:
         - staging.hub.flapi.org
-      secretName: staging-hub-flapi-frontend-crzcommon-tls
+      secretName: staging-hub-flapi-frontend-tls
   rules:
     - host: staging.hub.flapi.org
       http:

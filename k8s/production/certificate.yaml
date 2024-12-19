@@ -1,10 +1,10 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: prod-hub-flapi-crzcommon-cert
+  name: prod-hub-flapi-frontend-cert
   namespace: prod-hub-flapi-frontend
 spec:
-  secretName: prod-hub-flapi-frontend-crzcommon-tls
+  secretName: prod-hub-flapi-frontend-tls
   dnsNames:
     - hub.flapi.org
   issuerRef:

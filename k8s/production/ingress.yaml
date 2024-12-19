@@ -10,7 +10,7 @@ spec:
   tls:
     - hosts:
         - hub.flapi.org
-      secretName: prod-hub-flapi-crzcommon-tls
+      secretName: prod-hub-flapi-frontend-tls
   rules:
     - host: hub.flapi.org
       http:
