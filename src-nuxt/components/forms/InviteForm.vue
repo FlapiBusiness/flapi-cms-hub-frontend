@@ -68,8 +68,8 @@
 <script lang="ts">
 /**
  * InviteForm component
- * @prop {string[]} emails - The list of emails to invite
- * @prop {boolean} load - The loading state of the form
+ * @property {string[]} emails - The list of emails to invite
+ * @property {boolean} load - The loading state of the form
  */
 export type InviteFormProps = {
   emails: string[]
@@ -127,8 +127,8 @@ const hasCompletedEmail: ComputedRef<string | undefined> = computed(() =>
 /*METHODS*/
 
 /**
- * @param index
- * @param newEmail
+ * @param {number} index - The index of the email to update
+ * @param {string} newEmail - The new email value
  */
 const updateEmail: (index: number, newEmail: string | number | null) => void = (
   index: number,
@@ -156,7 +156,7 @@ const addEmail: () => void = () => {
 
 /**
  * Remove an email from the list
- * @param index - The index of the email to remove
+ * @param {number} index - The index of the email to remove
  */
 const removeEmail: (index: number) => void = (index: number) => {
   emit('update:emails', [...props.emails.slice(0, index), ...props.emails.slice(index + 1)])

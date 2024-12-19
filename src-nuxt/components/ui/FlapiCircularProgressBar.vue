@@ -40,6 +40,7 @@ export type FlapiCircularProgressBarProps = {
 
 <script lang="ts" setup>
 import { defineProps } from 'vue'
+import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 
 const props: FlapiCircularProgressBarProps = defineProps({
