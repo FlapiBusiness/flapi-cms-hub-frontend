@@ -9,8 +9,13 @@ export default defineNuxtConfig({
       noscript: [],
     },
   },
-  srcDir: 'src-nuxt', // Directory of your source files
-  ssr: true, // Mettre a false pour : desktop (tauri)
+
+  // Directory of your source files
+  srcDir: 'src-nuxt',
+
+  // Mettre a false pour : desktop (tauri)
+  ssr: true,
+
   devtools: { enabled: true },
   telemetry: false,
   components: true,
@@ -24,6 +29,8 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/seo',
   ],
+
+  plugins: [{ src: '~/plugins/vee-validate.ts', mode: 'client' }],
 
   vite: {
     // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
@@ -91,4 +98,6 @@ export default defineNuxtConfig({
   image: {
     // Options
   },
+
+  compatibilityDate: '2025-01-10',
 })

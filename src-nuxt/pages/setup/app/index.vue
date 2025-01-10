@@ -6,7 +6,6 @@
       <p class="text-2xl font-semibold text-light-400">Personnalisation de l'application</p>
       <FlapiFormCard @confirm="createApp">
         <CreateApplicationForm :payload="payload" @update:payload="payload = $event" />
-        payload: {{ payload }}
       </FlapiFormCard>
     </div>
   </div>

@@ -4,7 +4,7 @@
     <FlapiGoogleButton :disabled="false" />
 
     <!-- ou  -->
-    <FlapiDivider text="or" />
+    <FlapiDivider text="ou" />
 
     <FlapiInput
       v-model:value="values.email"

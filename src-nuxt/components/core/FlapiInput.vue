@@ -1,9 +1,9 @@
 <template>
   <div class="relative flex flex-col gap-2">
-    <label v-if="props.label" class="font-medium text-white" :for="id">
+    <FlapiLabel :id="props.id">
       {{ props.label }}
       <span v-if="rules && rules.includes('required')" class="text-red-400 ml-1"> * </span>
-    </label>
+    </FlapiLabel>
 
     <Field
       :rows="rows"
@@ -56,8 +56,22 @@
       v-if="type === 'password'"
       @click.prevent="handleTogglePassword"
     >
-      <FlapiIcon v-if="!togglePassword" title="Afficher le mot de passe" name="Eye" mode="stroke" color="#908e97" />
-      <FlapiIcon v-if="togglePassword" title="Masquer le mot de passe" name="EyeOff" mode="stroke" color="#908e97" />
+      <FlapiIcon
+        v-show="!togglePassword"
+        class="-bottom-1"
+        title="Afficher le mot de passe"
+        name="Eye"
+        mode="stroke"
+        color="#908e97"
+      />
+      <FlapiIcon
+        v-show="togglePassword"
+        class="-bottom-1"
+        title="Masquer le mot de passe"
+        name="EyeOff"
+        mode="stroke"
+        color="#908e97"
+      />
     </div>
     <ErrorMessage class="slide-from-left text-red-500 text-sm" :name="props.id" />
   </div>
@@ -92,6 +106,7 @@ export type FlapiInputProps = {
 
 <script lang="ts" setup>
 import FlapiIcon from '@/components/ui/FlapiIcon.vue'
+import FlapiLabel from '@/components/core/FlapiLabel.vue'
 import { Field, ErrorMessage } from 'vee-validate'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
