@@ -1,6 +1,6 @@
 <template>
-  <div class="flex min-h-screen items-center justify-center bg-gray-700">
-    <div class="flex flex-col gap-4">
+  <div class="flex items-center justify-center">
+    <div class="flex flex-col gap-4 px-3">
       <FlapiLogo size="40" :large="true" class="mb-[60px] items-center justify-center" />
       <SignUpForm />
     </div>

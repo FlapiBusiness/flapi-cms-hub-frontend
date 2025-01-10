@@ -1,8 +1,11 @@
 <template>
-  <div class="flex w-full max-w-60 flex-col items-start justify-center rounded-lg bg-gray-300 p-4">
+  <div
+    class="flex w-full cursor-pointer flex-col items-start justify-center rounded-lg border-[3px] border-transparent bg-gray-300 p-4 hover:border-primary-300"
+  >
     <div class="flex flex-col">
-      <img :src="props.picture" alt="Card picture" class="h-30 w-30 rounded-lg" />
-      <p class="mt-4 text-base font-semibold text-light-400">{{ props.title }}</p>
+      <FlapiAvatar :name="props.title" :photo="props.picture" :size="120" />
+
+      <p class="mt-6 text-base font-semibold text-light-400">{{ props.title }}</p>
     </div>
   </div>
 </template>
@@ -22,6 +25,7 @@ export type CardProps = {
 
 <script lang="ts" setup>
 import { defineProps } from '@vue/runtime-core'
+import FlapiAvatar from '~/components/ui/FlapiAvatar.vue'
 
 /**
  * Props
@@ -35,7 +39,7 @@ const props: CardProps = defineProps({
   },
   picture: {
     type: String,
-    required: true,
+    default: null,
   },
 })
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-full bg-gray-700 px-8 py-8">
+  <div class="px-8 py-8">
     <div class="grid gap-3">
       <FlapiLink v-for="(link, i) in links" :key="`link-${i}-${link.to}`" :link="link.to">
         {{ link.text }}

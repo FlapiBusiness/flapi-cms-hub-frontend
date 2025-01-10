@@ -5,13 +5,13 @@ import { defineStore } from 'pinia'
  * @interface
  * @property {number} id - The application id.
  * @property {string} title - The application title.
- * @property {string} picture - The application image.
+ * @property {string} picture - The application picture.
  * @property {string} link - The application link.
  */
 export interface Application {
   id: number
   title: string
-  picture: string
+  picture?: string
   link: string
 }
 
@@ -69,79 +69,13 @@ export const useApplicationStore: ReturnType<
         {
           id: 3,
           title: 'Application 3',
-          picture: 'https://via.placeholder.com/120',
+          picture:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/TheNorthFace_logo.svg/1200px-TheNorthFace_logo.svg.png',
           link: 'https://example.com',
         },
         {
           id: 4,
-          title: 'Application 4',
-          picture: 'https://via.placeholder.com/120',
-          link: 'https://example.com',
-        },
-        {
-          id: 5,
-          title: 'Application 5',
-          picture: 'https://via.placeholder.com/120',
-          link: 'https://example.com',
-        },
-        {
-          id: 6,
-          title: 'Application 6',
-          picture: 'https://via.placeholder.com/120',
-          link: 'https://example.com',
-        },
-        {
-          id: 7,
-          title: 'Application 7',
-          picture: 'https://via.placeholder.com/120',
-          link: 'https://example.com',
-        },
-        {
-          id: 8,
-          title: 'Application 8',
-          picture: 'https://via.placeholder.com/120',
-          link: 'https://example.com',
-        },
-        {
-          id: 9,
-          title: 'Application 9',
-          picture: 'https://via.placeholder.com/120',
-          link: 'https://example.com',
-        },
-        {
-          id: 10,
-          title: 'Application 10',
-          picture: 'https://via.placeholder.com/120',
-          link: 'https://example.com',
-        },
-        {
-          id: 11,
-          title: 'Application 11',
-          picture: 'https://via.placeholder.com/120',
-          link: 'https://example.com',
-        },
-        {
-          id: 12,
-          title: 'Application 12',
-          picture: 'https://via.placeholder.com/120',
-          link: 'https://example.com',
-        },
-        {
-          id: 13,
-          title: 'Application 13',
-          picture: 'https://via.placeholder.com/120',
-          link: 'https://example.com',
-        },
-        {
-          id: 14,
-          title: 'Application 14',
-          picture: 'https://via.placeholder.com/120',
-          link: 'https://example.com',
-        },
-        {
-          id: 15,
-          title: 'Application 15',
-          picture: 'https://via.placeholder.com/120',
+          title: 'Name',
           link: 'https://example.com',
         },
       ]
