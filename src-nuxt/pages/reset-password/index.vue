@@ -1,10 +1,10 @@
 <template>
-  <div class="flex min-h-screen flex-col items-center justify-center bg-gray-700">
+  <div class="flex flex-col items-center justify-center">
     <FlapiLogo size="50" :large="true" class="mb-16 items-center justify-center" />
-    <p class="mb-6 flex h-full flex-wrap items-center justify-center gap-2 text-3xl font-semibold text-light-400">
+    <p class="mb-6 flex h-fit flex-wrap items-center justify-center gap-2 text-3xl font-semibold text-light-400">
       Mattre à jour votre mot de passe
     </p>
-    <p class="text-lg mb-6 text-center text-light-400">
+    <p class="text-lg mb-10 text-center font-medium text-light-400">
       Entrez le code de vérification envoyé à <span class="font-semibold">{{ props.email }}</span>
     </p>
     <div class="flex flex-col items-center justify-center">

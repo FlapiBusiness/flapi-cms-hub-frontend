@@ -1,8 +1,16 @@
 <template>
-  <div class="flex max-w-32 flex-col items-center justify-center">
-    <img :src="props.picture" alt="Card picture" class="h-30 w-30 max-w-30 max-h-30 rounded-lg" />
-    <p class="mt-2 text-base font-semibold text-light-400">{{ props.lastNames }} {{ props.firstName }}</p>
-    <p class="mt-2 text-sm font-semibold text-light-700">{{ props.email }}</p>
+  <div class="flex max-w-32 flex-col items-center justify-center gap-2">
+    <img
+      v-if="props.picture"
+      :src="props.picture"
+      alt="Card picture"
+      class="h-[120px] w-[120px] rounded-lg bg-gray-400"
+    />
+    <div v-else class="flex h-[120px] w-[120px] items-center justify-center rounded-lg bg-gray-400">
+      <FlapiIcon name="account" class="inline-block align-middle" :width="80" :height="80" />
+    </div>
+    <p class="text-base font-medium text-light-400">{{ props.lastNames }} {{ props.firstName }}</p>
+    <p class="text-sm font-medium text-light-700">{{ props.email }}</p>
   </div>
 </template>
 
@@ -15,7 +23,7 @@
  */
 export type CardProps = {
   id: number
-  picture: string
+  picture?: string
   lastNames: string
   firstName: string
   email: string
@@ -24,6 +32,7 @@ export type CardProps = {
 
 <script lang="ts" setup>
 import { defineProps } from '@vue/runtime-core'
+import FlapiIcon from '~/components/ui/FlapiIcon.vue'
 
 /**
  * Props
@@ -40,7 +49,7 @@ const props: CardProps = defineProps({
   },
   picture: {
     type: String,
-    required: true,
+    default: null,
   },
   lastNames: {
     type: String,

@@ -11,7 +11,7 @@ import { defineStore } from 'pinia'
  */
 export interface User {
   id: number
-  picture: string
+  picture?: string
   lastName: string
   firstName: string
   email: string
@@ -89,14 +89,13 @@ export const useUserStore: ReturnType<typeof defineStore<'userStore', UserState,
         },
         {
           id: 5,
-          picture: 'https://via.placeholder.com/120',
           lastName: 'Doe',
           firstName: 'John',
           email: 'john.doe@email.com',
         },
         {
           id: 6,
-          picture: 'https://via.placeholder.com/120',
+          picture: '/avatar-placeholder.png',
           lastName: 'Doe',
           firstName: 'John',
           email: 'john.doe@email.com',

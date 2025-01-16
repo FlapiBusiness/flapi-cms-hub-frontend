@@ -28,7 +28,6 @@
             { label: 'Admin', value: 'admin' },
             { label: 'User', value: 'user' },
             { label: 'Viewer', value: 'viewer' },
-            { label: 'Bouche trou', value: 'bouche-trou' },
           ] as SelectOption[]
         "
         class="flex-1"
@@ -39,18 +38,18 @@
       />
 
       <button v-if="showDeleteFlapiButtons" @click.prevent="removeEmail(index)">
-        <div class="flex items-center justify-center gap-2 rounded-md bg-red p-2">
+        <span class="flex items-center justify-center gap-2 rounded-md bg-red p-2">
           <FlapiIcon name="trash" class="inline-block align-middle" width="12" height="12" />
-        </div>
+        </span>
       </button>
     </div>
 
     <!-- <FlapiButton class="gap-2" @click.prevent="addEmail" startIcon="plus" variant="dashed"> Ajouter Plus </FlapiButton> -->
     <button @click.prevent="addEmail">
-      <div class="flex items-center justify-center gap-2 rounded-md border border-dashed border-light-400 p-2">
+      <span class="flex items-center justify-center gap-2 rounded-md border border-dashed border-light-400 p-2">
         <FlapiIcon name="plus" class="inline-block align-middle" />
-        <p class="inline-block align-middle text-light-400">Ajouter Plus</p>
-      </div>
+        <span class="inline-block align-middle text-light-400">Ajouter Plus</span>
+      </span>
     </button>
 
     <FlapiButton

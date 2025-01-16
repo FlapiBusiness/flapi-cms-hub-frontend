@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center">
+  <div class="flex h-full items-center justify-center">
     <div class="flex w-full max-w-sm flex-col gap-4 px-3">
       <FlapiLogo size="40" :large="true" class="mb-[44px] items-center justify-center" />
 

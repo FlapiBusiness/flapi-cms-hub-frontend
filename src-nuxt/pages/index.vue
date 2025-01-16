@@ -13,7 +13,7 @@ import FlapiLink from '@/components/core/FlapiLink.vue'
 const links: { text: string; to: string }[] = [
   { text: 'Applications', to: '/apps' },
   { text: 'Loading Screen', to: '/loading-screen' },
-  { text: 'Login', to: '/login' },
+  { text: 'Login', to: '/signin' },
   { text: 'Reset password', to: '/reset-password' },
   { text: 'Settings App', to: '/settings/app' },
   { text: 'Settings User', to: '/settings/user' },
