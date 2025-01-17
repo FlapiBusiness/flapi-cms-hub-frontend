@@ -18,7 +18,7 @@
     class="inline-flex flex-shrink-0 items-center justify-center bg-gray-500"
     :style="{ width: `${props.size}px`, height: `${props.size}px`, borderRadius }"
   >
-    <span class="font-semibold leading-none text-light-400" :style="{ fontSize: `${props.size / fontSizeRatio}px` }">
+    <span class="font-medium leading-none text-light-400" :style="{ fontSize: `${props.size / fontSizeRatio}px` }">
       {{ initials }}
     </span>
   </span>
@@ -66,7 +66,7 @@ const props: FlapiAvatarProps = defineProps({
   },
 })
 
-const fontSizeRatio: number = 1.5
+const fontSizeRatio: number = 2
 const borderRadiusRatio: number = 7.5
 const borderRadiusMin: number = 4
 

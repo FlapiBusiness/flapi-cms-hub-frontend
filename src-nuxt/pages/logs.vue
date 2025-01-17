@@ -101,7 +101,7 @@ const items: Array<any> = [
         <div class="flex items-center gap-4">
           <!-- Section Historique -->
           <div class="flex items-center gap-2">
-            <FlapiIcon color="white" :height="24" mode="stroke" name="home" viewBox="0 0 24 24" :width="24" />
+            <FlapiIcon color="white" :height="24" mode="stroke" name="Home" viewBox="0 0 24 24" :width="24" />
             <h3 class="text-xl font-semibold text-white">Historique</h3>
           </div>
 
@@ -110,7 +110,7 @@ const items: Array<any> = [
 
           <!-- Section Mon activité -->
           <div class="flex items-center gap-2">
-            <FlapiIcon color="#BDB3FF" :height="24" mode="stroke" name="users" viewBox="0 0 24 24" :width="24" />
+            <FlapiIcon color="#BDB3FF" :height="24" mode="stroke" name="Users" viewBox="0 0 24 24" :width="24" />
             <h3 class="text-xl font-semibold text-primary-300">Mon activité</h3>
           </div>
         </div>
