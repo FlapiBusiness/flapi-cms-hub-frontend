@@ -1,4 +1,13 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["tests/**/*", "src-core/**/*"]
+  "include": ["tests/**/*", "src-core/**/*",
+    "tuyau-adonisjs/**/*"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "#adonisjs/api": ["tuyau-adonisjs/api.ts"],
+      "#adonisjs/index": ["tuyau-adonisjs/index.ts"]
+    }
+  }
 }

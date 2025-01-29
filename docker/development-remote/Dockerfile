@@ -11,7 +11,7 @@ RUN npm install
 COPY . .
 
 # Build the application
-RUN npm run web:build:server:staging:ssr
+RUN npm run web:build:server:dev-remote:ssr
 
 
 # Second Stage: Setup the runtime
