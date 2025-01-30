@@ -94,7 +94,7 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/seo": "^2.1.1",
     "@nuxtjs/tailwindcss": "^6.13.1",
-    "@stylistic/eslint-plugin": "^3.0.0",
+    "@stylistic/eslint-plugin": "^3.0.1",
     "@types/jsdom": "^21.1.7",
     "@types/luxon": "^3.4.2",
     "@types/mochawesome": "^6.2.4",
