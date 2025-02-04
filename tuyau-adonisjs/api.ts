@@ -9,11 +9,17 @@ import type { InferInput } from '@vinejs/vine/types'
 
 type AwsDomainCheckGetHead = {
   request: unknown
-  response: MakeTuyauResponse<import('../app/controllers/aws_domain_controller.ts').default['checkDomainAvailability'], false>
+  response: MakeTuyauResponse<
+    import('../app/controllers/aws_domain_controller.ts').default['checkDomainAvailability'],
+    false
+  >
 }
 type AwsSubdomainCheckGetHead = {
   request: unknown
-  response: MakeTuyauResponse<import('../app/controllers/aws_domain_controller.ts').default['checkSubDomainAvailability'], false>
+  response: MakeTuyauResponse<
+    import('../app/controllers/aws_domain_controller.ts').default['checkSubDomainAvailability'],
+    false
+  >
 }
 type ClientAppCreatePost = {
   request: unknown
@@ -37,159 +43,153 @@ type VerifycodePost = {
 }
 type ResendCodePost = {
   request: unknown
-  response: MakeTuyauResponse<import('../app/controllers/auth_controller.ts').default['resendNewCodeVerificationAccount'], false>
+  response: MakeTuyauResponse<
+    import('../app/controllers/auth_controller.ts').default['resendNewCodeVerificationAccount'],
+    false
+  >
 }
 type HealthGetHead = {
   request: unknown
   response: MakeTuyauResponse<import('../app/controllers/health_controller.ts').default['handle'], false>
 }
 export interface ApiDefinition {
-  'aws': {
-    'domain': {
-      'check': {
-        '$url': {
-        };
-        '$get': AwsDomainCheckGetHead;
-        '$head': AwsDomainCheckGetHead;
-      };
-    };
-    'subdomain': {
-      'check': {
-        '$url': {
-        };
-        '$get': AwsSubdomainCheckGetHead;
-        '$head': AwsSubdomainCheckGetHead;
-      };
-    };
-  };
-  'client': {
-    'app': {
-      'create': {
-        '$url': {
-        };
-        '$post': ClientAppCreatePost;
-      };
-    };
-  };
-  'signup': {
-    '$url': {
-    };
-    '$post': SignupPost;
-  };
-  'signin': {
-    '$url': {
-    };
-    '$post': SigninPost;
-  };
-  'signout': {
-    '$url': {
-    };
-    '$post': SignoutPost;
-  };
-  'verifycode': {
-    '$url': {
-    };
-    '$post': VerifycodePost;
-  };
+  aws: {
+    domain: {
+      check: {
+        $url: {}
+        $get: AwsDomainCheckGetHead
+        $head: AwsDomainCheckGetHead
+      }
+    }
+    subdomain: {
+      check: {
+        $url: {}
+        $get: AwsSubdomainCheckGetHead
+        $head: AwsSubdomainCheckGetHead
+      }
+    }
+  }
+  client: {
+    app: {
+      create: {
+        $url: {}
+        $post: ClientAppCreatePost
+      }
+    }
+  }
+  signup: {
+    $url: {}
+    $post: SignupPost
+  }
+  signin: {
+    $url: {}
+    $post: SigninPost
+  }
+  signout: {
+    $url: {}
+    $post: SignoutPost
+  }
+  verifycode: {
+    $url: {}
+    $post: VerifycodePost
+  }
   'resend-code': {
-    '$url': {
-    };
-    '$post': ResendCodePost;
-  };
-  'health': {
-    '$url': {
-    };
-    '$get': HealthGetHead;
-    '$head': HealthGetHead;
-  };
+    $url: {}
+    $post: ResendCodePost
+  }
+  health: {
+    $url: {}
+    $get: HealthGetHead
+    $head: HealthGetHead
+  }
 }
 const routes = [
   {
     params: [],
     name: 'checkDomainAvailability',
     path: '/aws/domain/check',
-    method: ["GET","HEAD"],
+    method: ['GET', 'HEAD'],
     types: {} as AwsDomainCheckGetHead,
   },
   {
     params: [],
     name: 'checkSubDomainAvailability',
     path: '/aws/subdomain/check',
-    method: ["GET","HEAD"],
+    method: ['GET', 'HEAD'],
     types: {} as AwsSubdomainCheckGetHead,
   },
   {
     params: [],
     name: 'swagger',
     path: '/swagger',
-    method: ["GET","HEAD"],
+    method: ['GET', 'HEAD'],
     types: {} as unknown,
   },
   {
     params: [],
     name: 'docs',
     path: '/docs',
-    method: ["GET","HEAD"],
+    method: ['GET', 'HEAD'],
     types: {} as unknown,
   },
   {
     params: [],
     name: 'createNewApplication',
     path: '/client/app/create',
-    method: ["POST"],
+    method: ['POST'],
     types: {} as ClientAppCreatePost,
   },
   {
     params: [],
     name: 'signup',
     path: '/signup',
-    method: ["POST"],
+    method: ['POST'],
     types: {} as SignupPost,
   },
   {
     params: [],
     name: 'signin',
     path: '/signin',
-    method: ["POST"],
+    method: ['POST'],
     types: {} as SigninPost,
   },
   {
     params: [],
     name: 'signout',
     path: '/signout',
-    method: ["POST"],
+    method: ['POST'],
     types: {} as SignoutPost,
   },
   {
     params: [],
     name: 'verifycode',
     path: '/verifycode',
-    method: ["POST"],
+    method: ['POST'],
     types: {} as VerifycodePost,
   },
   {
     params: [],
     name: 'resendNewCodeVerificationAccount',
     path: '/resend-code',
-    method: ["POST"],
+    method: ['POST'],
     types: {} as ResendCodePost,
   },
   {
     params: [],
     name: 'health',
     path: '/health',
-    method: ["GET","HEAD"],
+    method: ['GET', 'HEAD'],
     types: {} as HealthGetHead,
   },
   {
     params: [],
     name: 'root',
     path: '/',
-    method: ["GET","HEAD"],
+    method: ['GET', 'HEAD'],
     types: {} as unknown,
   },
-] as const;
+] as const
 export const api = {
   routes,
-  definition: {} as ApiDefinition
+  definition: {} as ApiDefinition,
 }

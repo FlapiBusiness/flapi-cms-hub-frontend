@@ -10,16 +10,16 @@ services:
       - ENV_MODE=dev
     command: /bin/sh -c "\
       if [ $$ENV_MODE = 'dev' ]; then \
-        npx cross-env NUXT_HOST=0.0.0.0 nuxi dev --dotenv .env.development --no-clear --port=1460; \
+      npx cross-env NUXT_HOST=0.0.0.0 nuxi dev --dotenv .env.development --no-clear --port=1460; \
       elif [ $$ENV_MODE = 'dev-remote' ]; then \
-        npx cross-env NUXT_HOST=0.0.0.0 nuxi dev --dotenv .env.development-remote --no-clear --port=1460; \
+      npx cross-env NUXT_HOST=0.0.0.0 nuxi dev --dotenv .env.development-remote --no-clear --port=1460; \
       elif [ $$ENV_MODE = 'staging' ]; then \
-        npx cross-env NUXT_HOST=0.0.0.0 nuxi dev --dotenv .env.staging --no-clear --port=1460; \
+      npx cross-env NUXT_HOST=0.0.0.0 nuxi dev --dotenv .env.staging --no-clear --port=1460; \
       elif [ $$ENV_MODE = 'prod' ]; then \
-        npx cross-env NUXT_HOST=0.0.0.0 nuxi dev --dotenv .env.production --no-clear --port=1460; \
+      npx cross-env NUXT_HOST=0.0.0.0 nuxi dev --dotenv .env.production --no-clear --port=1460; \
       else \
-        echo 'ENV_MODE non reconnu, utilisation de .env.development par défaut'; \
-        npx cross-env NUXT_HOST=0.0.0.0 nuxi dev --dotenv .env.development --no-clear --port=1460; \
+      echo 'ENV_MODE non reconnu, utilisation de .env.development par défaut'; \
+      npx cross-env NUXT_HOST=0.0.0.0 nuxi dev --dotenv .env.development --no-clear --port=1460; \
       fi"
     volumes:
       - .:/app
