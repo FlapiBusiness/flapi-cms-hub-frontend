@@ -12,5 +12,9 @@
     "nuxt.config.ts",
     "cypress.config.ts",
     "app.config.ts"
-  ]
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+  ],
 }
