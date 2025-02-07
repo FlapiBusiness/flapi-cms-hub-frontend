@@ -23,7 +23,6 @@ type userInfos = {
 }
 </script>
 <script lang="ts" setup>
-import FlapiFormCard from '@/components/cards/FlapiFormCard.vue'
 import FlapiCardDownloadPicture from '@/components/cards/FlapiCardDownloadPicture.vue'
 
 /**

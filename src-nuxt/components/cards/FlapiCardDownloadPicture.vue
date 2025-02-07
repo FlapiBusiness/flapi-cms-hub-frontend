@@ -22,7 +22,6 @@ export type CardProps = {
 
 <script lang="ts" setup>
 import { defineProps } from '@vue/runtime-core'
-import FlapiButton from '@/components/core/FlapiButton.vue'
 
 /**
  * Props

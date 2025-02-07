@@ -32,7 +32,6 @@ export type CardProps = {
 
 <script lang="ts" setup>
 import { defineProps } from '@vue/runtime-core'
-import FlapiIcon from '~/components/ui/FlapiIcon.vue'
 
 /**
  * Props

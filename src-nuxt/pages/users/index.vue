@@ -42,10 +42,6 @@ export type SelectOption = {
 </script>
 
 <script lang="ts" setup>
-import FlapiSearchBar from '@/components/inputs/FlapiSearchBar.vue'
-import FlapiUserCard from '@/components/cards/FlapiUserCard.vue'
-import FlapiInput from '@/components/core/FlapiInput.vue'
-import FlapiSelect from '@/components/core/FlapiSelect.vue'
 import { useUserStore } from '~/stores/userStore'
 import type { User } from '~/stores/userStore'
 import { ref } from 'vue'

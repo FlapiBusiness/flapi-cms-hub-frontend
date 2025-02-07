@@ -12,7 +12,6 @@
 </template>
 <script lang="ts"></script>
 <script lang="ts" setup>
-import FlapiFormCard from '@/components/cards/FlapiFormCard.vue'
 import FlapiCardDownloadPicture from '@/components/cards/FlapiCardDownloadPicture.vue'
 import CreateApplicationForm from '@/components/forms/CreateApplicationForm.vue'
 
