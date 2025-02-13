@@ -19,7 +19,9 @@
   </svg>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import { defineAsyncComponent } from 'vue'
+
 // Dynamically import all icons using import.meta.glob
 const icons: Record<string, () => Promise<unknown>> = import.meta.glob('@/components/icons/*.vue', { eager: false })
 export const iconsList: string[] = Object.keys(icons).map(
@@ -56,10 +58,6 @@ export type FlapiIconProps = {
   mode: FlapiIconMode
   color: string
 }
-</script>
-
-<script lang="ts" setup>
-import { defineAsyncComponent } from 'vue'
 
 const props: FlapiIconProps = defineProps({
   name: {

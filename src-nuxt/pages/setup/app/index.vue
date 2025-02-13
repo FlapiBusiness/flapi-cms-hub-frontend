@@ -10,7 +10,6 @@
     </div>
   </div>
 </template>
-<script lang="ts"></script>
 <script lang="ts" setup>
 import FlapiCardDownloadPicture from '@/components/cards/FlapiCardDownloadPicture.vue'
 import CreateApplicationForm from '@/components/forms/CreateApplicationForm.vue'

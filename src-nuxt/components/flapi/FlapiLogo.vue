@@ -21,7 +21,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 /**
  * Type definitions for the FlapiLogo component props.
  * @type {FlapiLogoProps}
@@ -32,9 +32,7 @@ export type FlapiLogoProps = {
   size: number | string
   large: boolean
 }
-</script>
 
-<script lang="ts" setup>
 /**
  * Define the FlapiLogo props.
  */

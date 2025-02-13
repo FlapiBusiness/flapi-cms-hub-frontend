@@ -24,7 +24,11 @@
   </span>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import { computed } from 'vue'
+import type { ComputedRef } from 'vue'
+import { defineProps } from '@vue/runtime-core'
+
 /**
  * Type definitions for the FlapiAvatar component props
  * @type {FlapiAvatarProps}
@@ -37,12 +41,6 @@ export type FlapiAvatarProps = {
   photo: string
   size: number
 }
-</script>
-
-<script lang="ts" setup>
-import { computed } from 'vue'
-import type { ComputedRef } from 'vue'
-import { defineProps } from '@vue/runtime-core'
 
 /**
  * Type definitions for the FlapiAvatar component props

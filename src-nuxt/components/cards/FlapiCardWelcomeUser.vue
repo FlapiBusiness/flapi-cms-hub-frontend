@@ -9,7 +9,10 @@
     </div>
   </div>
 </template>
-<script lang="ts">
+
+<script lang="ts" setup>
+import { defineProps } from '@vue/runtime-core'
+
 /**
  * Type definitions for the Card component props
  * @type {CardProps}
@@ -21,10 +24,6 @@ export type CardProps = {
   firstName: string
   email: string
 }
-</script>
-
-<script lang="ts" setup>
-import { defineProps } from '@vue/runtime-core'
 
 /**
  * Props

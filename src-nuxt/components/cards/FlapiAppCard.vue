@@ -9,8 +9,10 @@
     </div>
   </div>
 </template>
+<script lang="ts" setup>
+import { defineProps } from '@vue/runtime-core'
+import FlapiAvatar from '~/components/ui/FlapiAvatar.vue'
 
-<script lang="ts">
 /**
  * Type definitions for the Card component props
  * @type {CardProps}
@@ -21,11 +23,6 @@ export type CardProps = {
   title: string
   picture: string
 }
-</script>
-
-<script lang="ts" setup>
-import { defineProps } from '@vue/runtime-core'
-import FlapiAvatar from '~/components/ui/FlapiAvatar.vue'
 
 /**
  * Props
