@@ -11,17 +11,18 @@
 <script lang="ts" setup>
 import FlapiLink from '@/components/core/FlapiLink.vue'
 const links: { text: string; to: string }[] = [
-  { text: 'Applications', to: '/apps' },
+  { text: 'Applications', to: '/dashboard/apps' },
   { text: 'Loading Screen', to: '/loading-screen' },
   { text: 'Login', to: '/signin' },
   { text: 'Reset password', to: '/reset-password' },
-  { text: 'Settings App', to: '/settings/app' },
-  { text: 'Settings User', to: '/settings/user' },
-  { text: 'Setup App', to: '/setup/app' },
+  { text: 'Dashboard Settings App', to: '/dashboard/settings/app' },
+  { text: 'Admin Settings App', to: 'admin/settings/app' },
+  { text: 'Dashboard Settings User', to: '/dashboard/settings/user' },
+  { text: 'Dashboard Setup App', to: '/dashboard/setup/app' },
   { text: 'Signup', to: '/signup' },
-  { text: 'Users', to: '/users' },
-  { text: 'Users invite', to: '/users/invite' },
+  { text: 'Admin Users', to: '/admin/users' },
+  { text: 'Dashboard Users invite', to: '/dashboard/users/invite' },
   { text: 'Verify Account', to: '/verify-account' },
-  { text: 'Logs', to: '/logs' },
+  { text: 'Logs', to: '/admin/logs' }, //2
 ]
 </script>
