@@ -15,7 +15,6 @@
 
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import FlapiIcon from '@/components/ui/FlapiIcon.vue'
 
 /**
  * Type definition for the SideBarLink props
