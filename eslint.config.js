@@ -180,10 +180,7 @@ const ignoreConfig = {
     '.data/**',
     '.nitro/**',
     '.cache/**',
-    'src-tauri/target/**',
-    'src-tauri/gen/**',
-    'android/**',
-    'ios/**',
+    'src-core/api/**',
   ],
 }
 

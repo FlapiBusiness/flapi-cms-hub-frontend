@@ -21,13 +21,21 @@
       placeholder="subdomain.example.com"
       required
     />
+    <FlapiInput
+      :value="props.payload.subdomain"
+      @update:value="(value) => emit('update:payload', { ...payload, subdomain: value.toString() })"
+      label="Sous-domaine"
+      placeholder="subdomain.example.com"
+      :rows="3"
+      required
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { defineProps } from 'vue'
 import type { PropType } from 'vue'
-import type { CreateApplicationPayload } from '~/pages/setup/app/index.vue'
+import type { CreateApplicationPayload } from '~/pages/dashboard/setup/app.vue'
 /**
  * Type definitions for the CreateApplicationForm component props
  * @type {CreateApplicationFormProps}

@@ -11,9 +11,12 @@
   </div>
 </template>
 <script lang="ts" setup>
+import FlapiCardDownloadPicture from '@/components/cards/FlapiCardDownloadPicture.vue'
+import CreateApplicationForm from '@/components/forms/CreateApplicationForm.vue'
 import FlapiFormCard from '~/components/cards/FlapiFormCard.vue'
-import FlapiCardDownloadPicture from '~/components/cards/FlapiCardDownloadPicture.vue'
-import CreateApplicationForm from '~/components/forms/CreateApplicationForm.vue'
+import { ClientApi } from '~~/src-core/api'
+import { ref } from 'vue'
+import type { Ref } from 'vue'
 
 /**
  * Type definitions for the CreateApplicationForm component props
@@ -40,11 +43,10 @@ const payload: Ref<CreateApplicationPayload> = ref({
  */
 const createApp: () => Promise<void> = async (): Promise<void> => {
   // buttonLoading.value = true
-
   try {
     console.log('createApp', payload.value)
     // Call application service
-    await new Promise((resolve: (value?: unknown) => void) => setTimeout(resolve, 200))
+    await ClientApi.createNewApplication(payload.value)
   } catch (error: any) {
     console.error(error)
   } finally {
