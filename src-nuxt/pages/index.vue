@@ -23,6 +23,7 @@ const links: { text: string; to: string }[] = [
   { text: 'Admin Users', to: '/admin/users' },
   { text: 'Dashboard Users invite', to: '/dashboard/users/invite' },
   { text: 'Verify Account', to: '/verify-account' },
-  { text: 'Logs', to: '/admin/logs' }, //2
+  { text: 'Logs', to: '/admin/logs' },
+  { text: 'Dashboard Logs', to: '/dashboard/logs' },
 ]
 </script>

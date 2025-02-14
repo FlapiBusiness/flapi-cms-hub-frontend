@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import FlapiTable from '../components/core/FlapiTable.vue'
-import FlapiIcon from '../components/ui/FlapiIcon.vue'
-import FlapiSearchBar from '../components/inputs/FlapiSearchBar.vue'
-import FlapiBadge from '../components/ui/FlapiBadge.vue'
-import FlapiAvatar from '../components/ui/FlapiAvatar.vue'
+import FlapiTable from '../../components/core/FlapiTable.vue'
+import FlapiIcon from '../../components/ui/FlapiIcon.vue'
+import FlapiSearchBar from '../../components/inputs/FlapiSearchBar.vue'
+import FlapiBadge from '../../components/ui/FlapiBadge.vue'
+import FlapiAvatar from '../../components/ui/FlapiAvatar.vue'
 
 const fields: Array<any> = [
   {
