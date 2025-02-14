@@ -11,7 +11,8 @@
     "tailwind.config.ts",
     "nuxt.config.ts",
     "cypress.config.ts",
-    "app.config.ts"
+    "app.config.ts",
+    "app.vue"
   ],
   "exclude": ["dist", "node_modules"]
 }
