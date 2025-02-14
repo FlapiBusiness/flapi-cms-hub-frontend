@@ -11,8 +11,9 @@
   </div>
 </template>
 <script lang="ts" setup>
-import FlapiCardDownloadPicture from '@/components/cards/FlapiCardDownloadPicture.vue'
-import CreateApplicationForm from '@/components/forms/CreateApplicationForm.vue'
+import FlapiFormCard from '~/components/cards/FlapiFormCard.vue'
+import FlapiCardDownloadPicture from '~/components/cards/FlapiCardDownloadPicture.vue'
+import CreateApplicationForm from '~/components/forms/CreateApplicationForm.vue'
 
 /**
  * Type definitions for the CreateApplicationForm component props
