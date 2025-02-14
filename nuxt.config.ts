@@ -11,12 +11,15 @@ export default defineNuxtConfig({
       noscript: [],
     },
   },
+
   // Directory of your source files
   srcDir: 'src-nuxt',
+
   ssr: process.env.NUXT_SSR === 'true',
   devtools: { enabled: true },
   telemetry: false,
   components: true,
+
   modules: [
     '@pinia/nuxt',
     '@nuxt/test-utils/module',
@@ -26,9 +29,12 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
+    '@flapi/cms-designsystem',
     'nuxt-seo-utils',
   ],
+
   plugins: [{ src: '~/plugins/vee-validate.ts', mode: 'client' }],
+
   vite: {
     resolve: {
       alias: {
@@ -37,27 +43,34 @@ export default defineNuxtConfig({
       },
     },
   },
+
   pinia: {
     storesDirs: ['./src-nuxt/stores/**'],
   },
+
   tailwindcss: {
     exposeConfig: true,
     viewer: true,
     // Chemin vers le fichier CSS de Tailwind
     cssPath: 'src-nuxt/assets/css/tailwind.css',
   },
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
+
   googleFonts: {
     families: {
       Poppins: true,
     },
   },
+
   image: {
     // Options
   },
+
+  compatibilityDate: '2025-02-07',
 })

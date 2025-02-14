@@ -8,6 +8,5 @@
 </template>
 
 <script lang="ts" setup>
-import FlapiLogo from '@/components/flapi/FlapiLogo.vue'
 import SignUpForm from '@/components/forms/SignUpForm.vue'
 </script>

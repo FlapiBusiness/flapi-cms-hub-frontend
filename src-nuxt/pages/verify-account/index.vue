@@ -17,7 +17,9 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import { defineProps } from '@vue/runtime-core'
+
 /**
  * Type definitions for the FlapiVerifyAccount component props
  * @type {FlapiVerifyAccountProps}
@@ -26,13 +28,6 @@
 export type FlapiVerifyAccountProps = {
   email: string
 }
-</script>
-
-<script lang="ts" setup>
-import FlapiLogo from '@/components/flapi/FlapiLogo.vue'
-import FlapiPinCode from '@/components/inputs/FlapiPinCode.vue'
-import FlapiLink from '@/components/core/FlapiLink.vue'
-import { defineProps } from '@vue/runtime-core'
 
 /**
  * Props

@@ -7,12 +7,11 @@
       :email="fakeUser.email"
     />
     <div class="flex flex-1 items-center justify-center">
-      <FlapiCircularProgressBar :loading="incrementLoading" />
+      <FlapiCircularProgress :loading="incrementLoading" />
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-import FlapiCircularProgressBar from '@/components/ui/FlapiCircularProgressBar.vue'
 import FlapiCardWelcomeUser from '@/components/cards/FlapiCardWelcomeUser.vue'
 import { ref } from 'vue'
 

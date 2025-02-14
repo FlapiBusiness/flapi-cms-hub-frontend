@@ -82,6 +82,7 @@
     "axios": "^1.7.9",
     "keycloak-js": "^26.1.1",
     "luxon": "^3.5.0",
+    "pinia": "^3.0.1",
     "vee-validate": "^4.15.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
@@ -89,6 +90,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
+    "@flapi/cms-designsystem": "^1.2.0",
     "@nuxt/devtools": "^1.7.0",
     "@nuxt/image": "^1.9.0",
     "@nuxt/test-utils": "^3.15.4",

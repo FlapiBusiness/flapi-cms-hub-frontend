@@ -27,7 +27,6 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
 import type { PropType } from 'vue'
-import FlapiInput from '@/components/core/FlapiInput.vue'
 import type { CreateApplicationPayload } from '~/pages/setup/app/index.vue'
 /**
  * Type definitions for the CreateApplicationForm component props

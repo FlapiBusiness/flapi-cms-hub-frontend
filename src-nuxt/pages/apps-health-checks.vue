@@ -70,11 +70,6 @@
 </template>
 
 <script setup lang="ts">
-import FlapiTable from '@/components/core/FlapiTable.vue'
-import FlapiSearchBar from '@/components/inputs/FlapiSearchBar.vue'
-import FlapiIcon from '@/components/ui/FlapiIcon.vue'
-import FlapiCircularProgress from '@/components/ui/FlapiCircularProgress.vue'
-
 /**
  * Type definition for the Item
  * @type {Item}

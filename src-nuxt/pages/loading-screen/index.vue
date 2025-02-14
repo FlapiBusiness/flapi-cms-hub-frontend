@@ -3,6 +3,4 @@
     <FlapiSpinner variant="light" :size="64" />
   </div>
 </template>
-<script lang="ts" setup>
-import FlapiSpinner from '~/components/ui/FlapiSpinner.vue'
-</script>
+<script lang="ts" setup></script>
