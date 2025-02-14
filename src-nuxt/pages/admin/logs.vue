@@ -1,6 +1,10 @@
 <script setup lang="ts">
 const fields: Array<any> = [
   {
+    key: 'application_name',
+    label: 'Name Application',
+  },
+  {
     key: 'action',
     label: 'Action',
   },
@@ -24,6 +28,7 @@ const fields: Array<any> = [
 
 const items: Array<any> = [
   {
+    application_name: 'Flapi',
     action: {
       backgroundColor: '#CCFFEB',
       message: 'Ajout',
@@ -34,6 +39,7 @@ const items: Array<any> = [
     message: 'New product added to the catalog.',
   },
   {
+    application_name: 'Flapi',
     action: {
       backgroundColor: '#FFEECC',
       message: 'Modification',
@@ -44,6 +50,7 @@ const items: Array<any> = [
     message: 'Order #12345 updated with new shipping details.',
   },
   {
+    application_name: 'Flapi',
     action: {
       backgroundColor: '#FBD0D5',
       message: 'Suppression',
@@ -54,6 +61,7 @@ const items: Array<any> = [
     message: 'Customer account removed due to inactivity.',
   },
   {
+    application_name: 'Flapi',
     action: {
       backgroundColor: '#D6D0FB',
       message: 'Changement de mot de passe',
@@ -64,6 +72,7 @@ const items: Array<any> = [
     message: 'New category "Electronics" created.',
   },
   {
+    application_name: 'Flapi',
     action: {
       backgroundColor: '#D6D0FB',
       message: 'Inscription',
@@ -74,6 +83,7 @@ const items: Array<any> = [
     message: 'User permissions updated for admin access.',
   },
   {
+    application_name: 'Flapi',
     action: {
       backgroundColor: '#FFEECC',
       message: 'Modification',

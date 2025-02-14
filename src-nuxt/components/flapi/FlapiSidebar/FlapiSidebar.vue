@@ -1,8 +1,5 @@
 <template>
-  <nav
-    class="relative h-full bg-gray-500 shadow-md"
-    :class="{ 'w-full min-w-[280px]': props.expand, 'w-14': !props.expand }"
-  >
+  <nav class="relative h-full bg-gray-500 shadow-md" :class="{ 'w-full': props.expand, 'w-14': !props.expand }">
     <!-- Toggle Button -->
     <FlapiSidebarToggleButton :expand="props.expand" @update:expand="emit('update:expand', $event)" />
 

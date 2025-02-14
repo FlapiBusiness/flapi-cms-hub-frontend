@@ -25,7 +25,7 @@
     <slot />
 
     <h6 class="flex h-full flex-wrap items-center justify-center gap-2 font-medium text-light-400">
-      Vous n'avez pas de compte ?
+      Vous avez déjà un compte ?
       <FlapiLink class="text-primary-light" link="signin">Se connecter</FlapiLink>
     </h6>
 

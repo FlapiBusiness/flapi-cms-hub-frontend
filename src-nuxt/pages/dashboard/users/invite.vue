@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import InviteForm from '@/components/forms/InviteForm.vue'
+import InviteForm from '~/components/forms/InviteForm.vue'
 import { ref } from 'vue'
 // import { useSearchStore } from '@/stores/search.store'
 /*REFS*/
