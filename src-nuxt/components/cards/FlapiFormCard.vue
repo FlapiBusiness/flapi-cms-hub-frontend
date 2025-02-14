@@ -34,8 +34,6 @@
 <script lang="ts" setup>
 import { Form } from 'vee-validate'
 import { ref } from 'vue'
-import FlapiButton from '@/components/core/FlapiButton.vue'
-import FlapiConfirmModal from '@/components/core/FlapiConfirmModal.vue'
 import type { Ref } from 'vue'
 
 /* REFS */

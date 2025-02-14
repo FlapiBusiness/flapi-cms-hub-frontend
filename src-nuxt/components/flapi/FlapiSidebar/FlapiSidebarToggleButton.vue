@@ -10,7 +10,6 @@
 
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
-import FlapiIcon from '@/components/ui/FlapiIcon.vue'
 /**
  * Sidebar toggle button props definition
  * @type {SidebarToggleButtonProps}

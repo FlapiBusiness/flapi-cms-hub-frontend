@@ -28,7 +28,12 @@
     </div>
   </div>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
+import { useUserStore } from '~/stores/userStore'
+import type { User } from '~/stores/userStore'
+import { ref } from 'vue'
+import type { Ref } from 'vue'
+
 /**
  * Type definitions for the SelectOption type
  * @type {SelectOption}
@@ -39,13 +44,8 @@ export type SelectOption = {
   label: string
   value: number | string
 }
-</script>
 
 <script lang="ts" setup>
-import FlapiSearchBar from '~/components/inputs/FlapiSearchBar.vue'
-import FlapiUserCard from '~/components/cards/FlapiUserCard.vue'
-import FlapiInput from '~/components/core/FlapiInput.vue'
-import FlapiSelect from '~/components/core/FlapiSelect.vue'
 import { useUserStore } from '~/stores/userStore'
 import type { User } from '~/stores/userStore'
 import { ref } from 'vue'

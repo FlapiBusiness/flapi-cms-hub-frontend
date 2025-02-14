@@ -14,6 +14,4 @@
 
 <script lang="ts" setup>
 import LoginForm from '~/components/forms/LoginForm.vue'
-import FlapiLink from '~/components/core/FlapiLink.vue'
-import FlapiLogo from '~/components/flapi/FlapiLogo.vue'
 </script>

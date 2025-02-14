@@ -9,7 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-import FlapiLink from '@/components/core/FlapiLink.vue'
 const links: { text: string; to: string }[] = [
   { text: 'Applications', to: '/dashboard/apps' },
   { text: 'Loading Screen', to: '/loading-screen' },

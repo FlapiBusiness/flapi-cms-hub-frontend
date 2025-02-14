@@ -16,7 +16,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import FlapiButton from '~/components/core/FlapiButton.vue'
 import { useApplicationStore } from '~/stores/applicationStore'
 import type { Application } from '~/stores/applicationStore'
 import FlapiAppCard from '~/components/cards/FlapiAppCard.vue'

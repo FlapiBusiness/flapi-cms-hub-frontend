@@ -86,10 +86,6 @@ export type InviteFormEmits = {
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import { Form } from 'vee-validate'
-import FlapiButton from '@/components/core/FlapiButton.vue'
-import FlapiIcon from '@/components/ui/FlapiIcon.vue'
-import FlapiInput from '@/components/core/FlapiInput.vue'
-import FlapiSelect from '@/components/core/FlapiSelect.vue'
 import { computed, nextTick } from 'vue'
 
 /**
