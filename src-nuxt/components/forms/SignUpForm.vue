@@ -5,15 +5,17 @@
     <FlapiDivider text="or" class="w-full md:w-[calc(50%-10px)]" />
   </div>
   <Form v-slot="{ meta }" class="grid grid-cols-1 gap-6 md:grid-cols-2" @submit="signup">
+    <FlapiInput v-model:value="values.firstName" type="text" id="firstName" label="Prénom" placeholder="Corentin" />
+    <FlapiInput v-model:value="values.lastName" type="text" id="completeName" label="Nom" placeholder="Doe" />
     <FlapiInput
       v-model:value="values.email"
       type="email"
       id="email"
       label="Email"
       rules="email"
-      placeholder="email@crzgames.com"
+      placeholder="email@flapi.org"
+      class="col-span-2"
     />
-    <FlapiInput v-model:value="values.completeName" type="text" id="completeName" label="Nom complet" />
     <FlapiInput v-model:value="values.password" type="password" id="password" label="Mot de passe" />
     <FlapiInput
       v-model:value="values.confirmPassword"
@@ -51,9 +53,27 @@ import { Form } from 'vee-validate'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
 
+/**
+ * Interface for the sign up form values
+ * @interface SignUpFormValues
+ * @property {string} email - The email
+ * @property {string} completeName - The complete name
+ * @property {string} password - The password
+ * @property {string} confirmPassword - The confirmation password
+ * @property {string} [firstName] - The first name
+ */
+export interface SignUpFormValues {
+  lastName: string
+  firstName: string
+  email: string
+  password: string
+  confirmPassword: string
+}
+
 /* REFS */
-const values: Ref<{ completeName: string; email: string; password: string; confirmPassword: string }> = ref({
-  completeName: '',
+const values: Ref<SignUpFormValues> = ref({
+  firstName: '',
+  lastName: '',
   email: '',
   password: '',
   confirmPassword: '',
