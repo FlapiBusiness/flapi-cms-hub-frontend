@@ -28,6 +28,7 @@
     </div>
   </div>
 </template>
+
 <script lang="ts" setup>
 import { useUserStore } from '~/stores/userStore'
 import type { User } from '~/stores/userStore'
