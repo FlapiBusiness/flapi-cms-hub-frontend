@@ -28,6 +28,7 @@
     </div>
   </div>
 </template>
+
 <script lang="ts" setup>
 import { useUserStore } from '~/stores/userStore'
 import type { User } from '~/stores/userStore'
@@ -44,12 +45,6 @@ export type SelectOption = {
   label: string
   value: number | string
 }
-
-<script lang="ts" setup>
-import { useUserStore } from '~/stores/userStore'
-import type { User } from '~/stores/userStore'
-import { ref } from 'vue'
-import type { Ref } from 'vue'
 
 const search: Ref<string> = ref('')
 const options: SelectOption[] = [
