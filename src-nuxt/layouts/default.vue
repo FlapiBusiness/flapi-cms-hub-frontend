@@ -32,7 +32,7 @@ const items: FlapiSidebarItem[] = [
   },
   {
     text: 'État santé applications',
-    icon: 'Activity',
+    icon: 'Home',
     to: '/apps-health-checks',
   },
 ]
