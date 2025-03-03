@@ -3,7 +3,7 @@ import { configure, defineRule } from 'vee-validate'
 import { localize } from '@vee-validate/i18n'
 import en from '@vee-validate/i18n/dist/locale/en.json'
 import fr from '@vee-validate/i18n/dist/locale/fr.json'
-import { required, email, confirmed, numeric, min, max } from '@vee-validate/rules'
+import { required, email, numeric, min, max } from '@vee-validate/rules'
 
 export default defineNuxtPlugin(() => {
   /**
@@ -12,7 +12,6 @@ export default defineNuxtPlugin(() => {
   // Define global rules
   defineRule('required', required)
   defineRule('email', email)
-  defineRule('confirmed', confirmed)
   defineRule('min', min)
   defineRule('max', max)
 

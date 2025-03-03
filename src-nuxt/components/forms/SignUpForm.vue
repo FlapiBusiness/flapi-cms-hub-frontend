@@ -4,24 +4,41 @@
 
     <FlapiDivider text="or" class="w-full md:w-[calc(50%-10px)]" />
   </div>
+
+  <FlapiAlert v-if="errorMessage" :message="errorMessage" variant="error" dismissible />
+
   <Form v-slot="{ meta }" class="grid grid-cols-1 gap-6 md:grid-cols-2" @submit="signup">
-    <FlapiInput v-model:value="values.firstName" type="text" id="firstName" label="Prénom" placeholder="Corentin" />
-    <FlapiInput v-model:value="values.lastName" type="text" id="completeName" label="Nom" placeholder="Doe" />
+    <FlapiInput
+      v-model:value="values.firstname"
+      type="text"
+      rules="required"
+      id="prénom"
+      label="Prénom"
+      placeholder="Corentin"
+    />
+    <FlapiInput v-model:value="values.lastname" type="text" rules="required" id="nom" label="Nom" placeholder="Doe" />
     <FlapiInput
       v-model:value="values.email"
       type="email"
       id="email"
       label="Email"
-      rules="email"
+      rules="required|email"
       placeholder="email@flapi.org"
       class="col-span-2"
     />
-    <FlapiInput v-model:value="values.password" type="password" id="password" label="Mot de passe" />
     <FlapiInput
-      v-model:value="values.confirmPassword"
+      v-model:value="values.password"
       type="password"
-      id="confirmPassword"
-      label="Confirmation mot de passe"
+      rules="required|complex_password"
+      id="password"
+      label="password"
+    />
+    <FlapiInput
+      v-model:value="values.password_confirmation"
+      rules="required|confirmed:password"
+      type="password"
+      id="confirm_password"
+      label="confirm_password"
     />
 
     <slot />
@@ -31,20 +48,11 @@
       <FlapiLink class="text-primary-light" link="signin">Se connecter</FlapiLink>
     </h6>
 
-    <FlapiButton :disabled="!meta.valid" :load="buttonLoading" type="submit" iconPosition="right" icon="arrow-right">
-      <p class="font-semibold text-light-400">
+    <FlapiButton :disabled="!meta.valid" :load="buttonLoading" type="submit" class="px-0">
+      <span class="font-semibold text-light-400">
         {{ buttonLoading ? 'Création de votre compte...' : 'Créer mon compte' }}
-      </p>
+      </span>
     </FlapiButton>
-
-    <FlapiConfirmModal
-      :show="showModal"
-      :title="'Votre compte n\'est pas activé'"
-      :message="'Veuillez vérifier votre boîte de réception pour activer votre compte.'"
-      @update:show="showModal = $event"
-      @ok="resendMailCodeActivationAccount"
-      @cancel="showModal = false"
-    />
   </Form>
 </template>
 
@@ -52,34 +60,20 @@
 import { Form } from 'vee-validate'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
-
-/**
- * Interface for the sign up form values
- * @interface SignUpFormValues
- * @property {string} email - The email
- * @property {string} completeName - The complete name
- * @property {string} password - The password
- * @property {string} confirmPassword - The confirmation password
- * @property {string} [firstName] - The first name
- */
-export interface SignUpFormValues {
-  lastName: string
-  firstName: string
-  email: string
-  password: string
-  confirmPassword: string
-}
+import { AuthApi, type BadRequestResponse, type BadValidationRequestResponse } from '~~/src-core/api'
+import type { SignUpPayload } from '~~/src-core/api'
+import type { AxiosResponse } from 'axios'
 
 /* REFS */
-const values: Ref<SignUpFormValues> = ref({
-  firstName: '',
-  lastName: '',
+const values: Ref<SignUpPayload> = ref({
+  lastname: '',
+  firstname: '',
   email: '',
   password: '',
-  confirmPassword: '',
+  password_confirmation: '',
 })
 const buttonLoading: Ref<boolean> = ref(false)
-const showModal: Ref<boolean> = ref(false)
+const errorMessage: Ref<string | null> = ref(null)
 
 /* METHODS */
 /**
@@ -87,38 +81,32 @@ const showModal: Ref<boolean> = ref(false)
  * @returns {Promise<void>}
  */
 const signup: () => Promise<void> = async (): Promise<void> => {
-  //TODO Implémenter la logique pour se connecter
   buttonLoading.value = true
 
   try {
-    //  await useAuthStore().signIn(values.value)
-    //TODO: remove this line when the above line is implemented
-    await new Promise((resolve: (value?: unknown) => void) => setTimeout(resolve, 200))
-  } catch (error: any) {
-    if (
-      error?.response?.data &&
-      typeof error.response.data === 'string' &&
-      error.response.data === 'Account is not active'
-    ) {
-      showModal.value = true
+    await AuthApi.signUp(values.value)
+  } catch (error) {
+    const responseError: BadValidationRequestResponse | BadRequestResponse = (
+      error as AxiosResponse<BadValidationRequestResponse | BadRequestResponse>
+    ).data
+
+    console.log('responseError', JSON.stringify(error, null, 2))
+
+    if (typeof responseError === 'object' && 'code' in responseError) {
+      if ('messages' in responseError) {
+        // BadValidationRequestResponse : Affiche tous les messages d'erreur
+        errorMessage.value = responseError.messages.join(', ')
+      } else if ('message' in responseError) {
+        // BadRequestResponse : Affiche le message unique
+        errorMessage.value = responseError.message
+      }
     } else {
-      console.error('Unexpected error:', error)
+      errorMessage.value = "Une erreur inconnue s'est produite."
     }
+
+    console.error('Erreur lors de l’inscription:', responseError)
   } finally {
     buttonLoading.value = false
   }
-}
-
-/**
- * Method to resend the activation code by email
- * @returns {Promise<void>}
- */
-const resendMailCodeActivationAccount: () => Promise<void> = async (): Promise<void> => {
-  //TODO Implémenter la logique pour renvoyer le code de vérification
-  // await AuthService.resendNewCodeVerificationAccount(values.value.email)
-  //TODO: remove this line when the above line is implemented
-  await new Promise((resolve: (value?: unknown) => void) => setTimeout(resolve, 200))
-
-  showModal.value = false
 }
 </script>
