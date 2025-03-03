@@ -1,10 +1,56 @@
-<script setup lang="ts">
-import FlapiTable from '@/components/core/FlapiTable.vue'
-import FlapiIcon from '@/components/ui/FlapiIcon.vue'
-import FlapiSearchBar from '@/components/inputs/FlapiSearchBar.vue'
-import FlapiBadge from '@/components/ui/FlapiBadge.vue'
-import FlapiAvatar from '@/components/ui/FlapiAvatar.vue'
+<template>
+  <div class="h-screen bg-gray-700">
+    <!-- Conteneur central -->
+    <div class="px-8 py-8">
+      <div class="flex items-center justify-between gap-4">
+        <!-- Gauche : Breadcrumb -->
+        <div class="flex items-center gap-4">
+          <!-- Section Historique -->
+          <div class="flex items-center gap-2">
+            <FlapiIcon color="white" :height="24" mode="stroke" name="Home" viewBox="0 0 24 24" :width="24" />
+            <h3 class="text-xl font-semibold text-white">Historique</h3>
+          </div>
 
+          <!-- Séparateur -->
+          <span class="text-xl text-white">/</span>
+
+          <!-- Section Mon activité -->
+          <div class="flex items-center gap-2">
+            <FlapiIcon color="#BDB3FF" :height="24" mode="stroke" name="Users" viewBox="0 0 24 24" :width="24" />
+            <h3 class="text-xl font-semibold text-primary-300">Mon activité</h3>
+          </div>
+        </div>
+
+        <!-- Droite : Search bar -->
+        <div class="flex items-center pr-4">
+          <FlapiSearchBar placeholder="Rechercher (Ctrl + E)" title="Search" />
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="w-full">
+        <FlapiTable :fields="fields" :items="items" :load="false" showSearchBar>
+          <template #action="{ item }">
+            <div class="flex items-center gap-2">
+              <FlapiBadge :backgroundColor="item.action.backgroundColor">
+                {{ item.action.message }}
+              </FlapiBadge>
+            </div>
+          </template>
+
+          <template #user="{ item }">
+            <div class="flex items-center gap-2">
+              <FlapiAvatar :name="item.user.name" photo="/avatar-placeholder.png" :size="32" />
+              <span class="font-semibold">{{ item.user.name }}</span>
+            </div>
+          </template>
+        </FlapiTable>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
 const fields: Array<any> = [
   {
     key: 'application_name',
@@ -101,57 +147,3 @@ const items: Array<any> = [
   },
 ]
 </script>
-
-<template>
-  <div class="h-screen bg-gray-700">
-    <!-- Conteneur central -->
-    <div class="px-8 py-8">
-      <div class="flex items-center justify-between gap-4">
-        <!-- Gauche : Breadcrumb -->
-        <div class="flex items-center gap-4">
-          <!-- Section Historique -->
-          <div class="flex items-center gap-2">
-            <FlapiIcon color="white" :height="24" mode="stroke" name="Home" viewBox="0 0 24 24" :width="24" />
-            <h3 class="text-xl font-semibold text-white">Historique</h3>
-          </div>
-
-          <!-- Séparateur -->
-          <span class="text-xl text-white">/</span>
-
-          <!-- Section Mon activité -->
-          <div class="flex items-center gap-2">
-            <FlapiIcon color="#BDB3FF" :height="24" mode="stroke" name="Users" viewBox="0 0 24 24" :width="24" />
-            <h3 class="text-xl font-semibold text-primary-300">Mon activité</h3>
-          </div>
-        </div>
-
-        <!-- Droite : Search bar -->
-        <div class="flex items-center pr-4">
-          <FlapiSearchBar placeholder="Rechercher (Ctrl + E)" title="Search" />
-        </div>
-      </div>
-
-      <!-- Table -->
-      <div class="w-full">
-        <FlapiTable :fields="fields" :items="items" :load="false" showSearchBar>
-          <template #action="{ item }">
-            <div class="flex items-center gap-2">
-              <FlapiBadge :backgroundColor="item.action.backgroundColor">
-                {{ item.action.message }}
-              </FlapiBadge>
-            </div>
-          </template>
-
-          <template #user="{ item }">
-            <div class="flex items-center gap-2">
-              <FlapiAvatar :name="item.user.name" photo="/avatar-placeholder.png" :size="32" />
-              <span class="font-semibold">{{ item.user.name }}</span>
-            </div>
-          </template>
-        </FlapiTable>
-      </div>
-    </div>
-  </div>
-</template>
-
-<style scoped></style>

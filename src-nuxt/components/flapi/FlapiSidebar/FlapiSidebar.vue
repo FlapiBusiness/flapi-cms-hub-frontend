@@ -3,6 +3,9 @@
     <!-- Toggle Button -->
     <FlapiSidebarToggleButton :expand="props.expand" @update:expand="emit('update:expand', $event)" />
 
+    <FlapiIcon v-show="props.expand" name="ChevronLeft" mode="stroke" color="#F5F4FB" />
+    <FlapiIcon v-show="!props.expand" name="ChevronRight" mode="stroke" color="#F5F4FB" />
+
     <!-- Sidebar Content -->
     <div class="flex h-full flex-col justify-between">
       <!-- Logo -->
