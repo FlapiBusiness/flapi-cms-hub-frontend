@@ -59,6 +59,8 @@
 <script lang="ts" setup>
 import { Form } from 'vee-validate'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import type { Router } from 'vue-router'
 import type { Ref } from 'vue'
 import { AuthApi, type BadRequestResponse, type BadValidationRequestResponse } from '~~/src-core/api'
 import type { SignUpPayload } from '~~/src-core/api'
@@ -75,6 +77,9 @@ const values: Ref<SignUpPayload> = ref({
 const buttonLoading: Ref<boolean> = ref(false)
 const errorMessage: Ref<string | null> = ref(null)
 
+/* HOOKS */
+const router: Router = useRouter()
+
 /* METHODS */
 /**
  * Method to login
@@ -85,6 +90,8 @@ const signup: () => Promise<void> = async (): Promise<void> => {
 
   try {
     await AuthApi.signUp(values.value)
+    // Redirect to the home page
+    await router.push('/')
   } catch (error) {
     const responseError: BadValidationRequestResponse | BadRequestResponse = (
       error as AxiosResponse<BadValidationRequestResponse | BadRequestResponse>

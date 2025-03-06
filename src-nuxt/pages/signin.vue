@@ -14,8 +14,4 @@
 
 <script lang="ts" setup>
 import LoginForm from '~/components/forms/LoginForm.vue'
-
-definePageMeta({
-  layout: 'auth',
-})
 </script>

@@ -13,10 +13,9 @@
 </template>
 
 <script lang="ts" setup>
-import FlapiSidebar from '~/components/flapi/FlapiSidebar/FlapiSidebar.vue'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
-import type { FlapiSidebarItem } from '~/components/flapi/FlapiSidebar/FlapiSidebar.vue'
+import type { FlapiSidebarItem } from '@flapi/cms-designsystem/dist/runtime/core'
 
 /* DATAS */
 const user: { username: string; avatar: string | undefined } = {
