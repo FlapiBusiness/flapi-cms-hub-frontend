@@ -1,5 +1,7 @@
 <template>
-  <div>Connexion en cours...</div>
+  <div class="flex min-h-screen items-center justify-center bg-gray-700">
+    <FlapiSpinner variant="light" :size="64" />
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -8,10 +10,19 @@ import axios from 'axios'
 import type { AxiosResponse } from 'axios'
 import type { RouteLocationNormalizedLoadedGeneric, Router } from 'vue-router'
 
+/* HOOKS */
 const route: RouteLocationNormalizedLoadedGeneric = useRoute()
 const router: Router = useRouter()
+
+/* REFS */
 const authTokenCookie: CookieRef<string | null | undefined> = useCookie('authToken')
+
+/* CONSTANTS */
 const BASE_API_URL: string = import.meta.env.VITE_BASE_URL_API
+
+definePageMeta({
+  layout: 'auth',
+})
 
 /**
  *
@@ -25,14 +36,14 @@ const exchangeCodeForToken: () => Promise<void> = async (): Promise<void> => {
 
     if (response.data.access_token) {
       authTokenCookie.value = response.data.access_token
-      router.push('/dashboard')
+      await router.push('/dashboard')
     } else {
       console.error("Erreur lors de l'échange du code contre un token:", response.data)
-      router.push('/signup')
+      await router.push('/signup')
     }
   } catch (error: any) {
     console.error("Erreur lors de l'échange du code contre un token:", error)
-    router.push('/signup')
+    await router.push('/signup')
   }
 }
 

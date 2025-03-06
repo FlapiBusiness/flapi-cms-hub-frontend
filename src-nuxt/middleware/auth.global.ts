@@ -34,10 +34,10 @@ export default defineNuxtRouteMiddleware(async (to: RouteLocationNormalized, _fr
 
     // Si le token n'est pas valide, rediriger l'utilisateur vers la page de connexion
     if (!response.data.valid) {
-      // return navigateTo(BASE_URL_KEYCLOAK_LOGIN, { external: true })
+      return navigateTo(BASE_URL_KEYCLOAK_LOGIN, { external: true })
     }
   } catch (error: any) {
     console.error(error)
-    // return navigateTo(BASE_URL_KEYCLOAK_LOGIN, { external: true })
+    return navigateTo(BASE_URL_KEYCLOAK_LOGIN, { external: true })
   }
 })

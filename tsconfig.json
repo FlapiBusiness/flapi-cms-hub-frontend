@@ -14,5 +14,5 @@
     "app.config.ts",
     "app.vue"
   ],
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules"],
 }
