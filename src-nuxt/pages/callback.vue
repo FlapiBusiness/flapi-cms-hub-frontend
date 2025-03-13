@@ -25,7 +25,8 @@ definePageMeta({
 })
 
 /**
- *
+ *  Exchange the code for a token
+ *  @returns {Promise<void>}
  */
 const exchangeCodeForToken: () => Promise<void> = async (): Promise<void> => {
   try {
