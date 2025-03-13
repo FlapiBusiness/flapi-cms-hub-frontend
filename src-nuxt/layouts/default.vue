@@ -3,7 +3,7 @@
     <FlapiSidebar
       :avatar="user.avatar"
       :items="items"
-      :username="user.username"
+      :username="user.firstname"
       v-model:expand="flapiSidebarIsExpand"
     />
     <div class="px-4">
@@ -15,14 +15,16 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import type { Ref } from 'vue'
-import type { FlapiSidebarItem } from '@flapi/cms-designsystem/dist/runtime/core'
+import type { FlapiSidebarItem } from '@flapi/cms-designsystem/core'
+import { AuthApi } from '~~/src-core/api'
+import type { User } from '~~/src-core/api'
+import type { AxiosResponse } from 'axios'
+
+const userResponse: AxiosResponse<User, any> = await AuthApi.getAuthenticatedUser()
+const user: User = userResponse.data
+console.log({ user })
 
 /* DATAS */
-const user: { username: string; avatar: string | undefined } = {
-  username: 'John Doe',
-  avatar: undefined,
-}
-
 const items: FlapiSidebarItem[] = [
   {
     text: 'Accueil',

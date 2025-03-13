@@ -14,7 +14,7 @@
 
 
 import type { Configuration } from './configuration';
-import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig, AxiosResponse } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
@@ -85,31 +85,31 @@ export interface Bucket {
      * @type {number}
      * @memberof Bucket
      */
-    'public_id'?: number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof Bucket
      */
-    'public_name'?: string;
+    'name'?: string;
     /**
      * 
      * @type {string}
      * @memberof Bucket
      */
-    'public_visibility'?: string;
+    'visibility'?: string;
     /**
      * 
      * @type {string}
      * @memberof Bucket
      */
-    'public_created_at'?: string;
+    'created_at'?: string;
     /**
      * 
      * @type {string}
      * @memberof Bucket
      */
-    'public_updated_at'?: string;
+    'updated_at'?: string;
 }
 /**
  * checkDomainAvailabilityValidator (Validator)
@@ -123,6 +123,25 @@ export interface CheckDomainAvailabilityValidator {
      * @memberof CheckDomainAvailabilityValidator
      */
     'domain': string;
+}
+/**
+ * CheckSessionValidityResponse (Interface)
+ * @export
+ * @interface CheckSessionValidityResponse
+ */
+export interface CheckSessionValidityResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CheckSessionValidityResponse
+     */
+    'valid': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CheckSessionValidityResponse
+     */
+    'error'?: string;
 }
 /**
  * checkSubDomainAvailabilityValidator (Validator)
@@ -191,25 +210,38 @@ export interface Database {
      * @type {number}
      * @memberof Database
      */
-    'public_id'?: number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof Database
      */
-    'public_name'?: string;
+    'name'?: string;
     /**
      * 
      * @type {string}
      * @memberof Database
      */
-    'public_created_at'?: string;
+    'created_at'?: string;
     /**
      * 
      * @type {string}
      * @memberof Database
      */
-    'public_updated_at'?: string;
+    'updated_at'?: string;
+}
+/**
+ * getAuthenticatedUserErrorResponse (Interface)
+ * @export
+ * @interface GetAuthenticatedUserErrorResponse
+ */
+export interface GetAuthenticatedUserErrorResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof GetAuthenticatedUserErrorResponse
+     */
+    'error': string;
 }
 /**
  * HealthCheckDebugInfo (Interface)
@@ -384,49 +416,49 @@ export interface ModelFile {
      * @type {number}
      * @memberof ModelFile
      */
-    'public_id'?: number;
+    'id'?: number;
     /**
      * 
      * @type {number}
      * @memberof ModelFile
      */
-    'public_bucket_id'?: number;
+    'bucket_id'?: number;
     /**
      * 
      * @type {Bucket}
      * @memberof ModelFile
      */
-    'public_bucket'?: Bucket;
+    'bucket'?: Bucket;
     /**
      * 
      * @type {string}
      * @memberof ModelFile
      */
-    'public_pathfilename'?: string;
+    'pathfilename'?: string;
     /**
      * 
      * @type {string}
      * @memberof ModelFile
      */
-    'public_url'?: string;
+    'url'?: string;
     /**
      * 
      * @type {number}
      * @memberof ModelFile
      */
-    'public_size'?: number;
+    'size'?: number;
     /**
      * 
      * @type {string}
      * @memberof ModelFile
      */
-    'public_created_at'?: string;
+    'created_at'?: string;
     /**
      * 
      * @type {string}
      * @memberof ModelFile
      */
-    'public_updated_at'?: string;
+    'updated_at'?: string;
 }
 /**
  * 
@@ -506,67 +538,67 @@ export interface Project {
      * @type {number}
      * @memberof Project
      */
-    'public_id'?: number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof Project
      */
-    'public_application_name'?: string;
+    'application_name'?: string;
     /**
      * 
      * @type {number}
      * @memberof Project
      */
-    'public_user_id'?: number;
+    'user_id'?: number;
     /**
      * 
      * @type {User}
      * @memberof Project
      */
-    'public_user'?: User;
+    'user'?: User;
     /**
      * 
      * @type {string}
      * @memberof Project
      */
-    'public_domain_name'?: string;
+    'domain_name'?: string;
     /**
      * 
      * @type {number}
      * @memberof Project
      */
-    'public_file_id'?: number;
+    'file_id'?: number;
     /**
      * 
      * @type {any}
      * @memberof Project
      */
-    'public_file'?: any;
+    'file'?: any;
     /**
      * 
      * @type {number}
      * @memberof Project
      */
-    'public_database_id'?: number;
+    'database_id'?: number;
     /**
      * 
      * @type {Database}
      * @memberof Project
      */
-    'public_database'?: Database;
+    'database'?: Database;
     /**
      * 
      * @type {string}
      * @memberof Project
      */
-    'public_created_at'?: string;
+    'created_at'?: string;
     /**
      * 
      * @type {string}
      * @memberof Project
      */
-    'public_updated_at'?: string;
+    'updated_at'?: string;
 }
 /**
  * ResultMessageResponse (Interface)
@@ -635,79 +667,79 @@ export interface User {
      * @type {number}
      * @memberof User
      */
-    'public_id'?: number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    'public_keycloak_user_id'?: string;
+    'keycloak_user_id'?: string;
     /**
      * 
      * @type {number}
      * @memberof User
      */
-    'public_role_id'?: number;
+    'role_id'?: number;
     /**
      * 
      * @type {UserRole}
      * @memberof User
      */
-    'public_role'?: UserRole;
+    'role'?: UserRole;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    'public_lastname'?: string;
+    'lastname'?: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    'public_firstname'?: string;
+    'firstname'?: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    'public_email'?: string;
+    'email'?: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    'public_currency_code'?: string;
+    'currency_code'?: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    'public_ip_address'?: string;
+    'ip_address'?: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    'public_ip_region'?: string;
+    'ip_region'?: string;
     /**
      * 
      * @type {number}
      * @memberof User
      */
-    'public_stripe_customer_id'?: number;
+    'stripe_customer_id'?: number;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    'public_created_at'?: string;
+    'created_at'?: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    'public_updated_at'?: string;
+    'updated_at'?: string;
 }
 /**
  * UserRole (Model)
@@ -720,25 +752,25 @@ export interface UserRole {
      * @type {number}
      * @memberof UserRole
      */
-    'public_id'?: number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof UserRole
      */
-    'public_name'?: string;
+    'name'?: string;
     /**
      * 
      * @type {string}
      * @memberof UserRole
      */
-    'public_created_at'?: string;
+    'created_at'?: string;
     /**
      * 
      * @type {string}
      * @memberof UserRole
      */
-    'public_updated_at'?: string;
+    'updated_at'?: string;
 }
 /**
  * UserSession (Model)
@@ -751,73 +783,73 @@ export interface UserSession {
      * @type {number}
      * @memberof UserSession
      */
-    'public_id'?: number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof UserSession
      */
-    'public_issuer'?: string;
+    'issuer'?: string;
     /**
      * 
      * @type {string}
      * @memberof UserSession
      */
-    'public_redirect_uri'?: string;
+    'redirect_uri'?: string;
     /**
      * 
      * @type {string}
      * @memberof UserSession
      */
-    'public_session_state'?: string;
+    'session_state'?: string;
     /**
      * 
      * @type {string}
      * @memberof UserSession
      */
-    'public_type'?: string;
+    'type'?: string;
     /**
      * 
      * @type {string}
      * @memberof UserSession
      */
-    'public_access_token'?: string;
+    'access_token'?: string;
     /**
      * 
      * @type {string}
      * @memberof UserSession
      */
-    'public_refresh_token'?: string;
+    'refresh_token'?: string;
     /**
      * 
      * @type {string}
      * @memberof UserSession
      */
-    'public_expires_at'?: string;
+    'expires_at'?: string;
     /**
      * 
      * @type {number}
      * @memberof UserSession
      */
-    'public_user_id'?: number;
+    'user_id'?: number;
     /**
      * 
      * @type {User}
      * @memberof UserSession
      */
-    'public_user'?: User;
+    'user'?: User;
     /**
      * 
      * @type {string}
      * @memberof UserSession
      */
-    'public_created_at'?: string;
+    'created_at'?: string;
     /**
      * 
      * @type {string}
      * @memberof UserSession
      */
-    'public_updated_at'?: string;
+    'updated_at'?: string;
 }
 /**
  * ValidationError (Interface)
@@ -865,12 +897,12 @@ export interface ValidationErrorResponse {
 export const AuthApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         *    _app/controllers/auth_controller.ts_ - **checkSessionIsValid**
-         * @summary  (checkSessionIsValid)
+         * Returns **200** (OK) as **application/json**   _app/controllers/auth_controller.ts_ - **checkSessionIsValid**
+         * @summary Vérifie si la session utilisateur est valide (checkSessionIsValid)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authCheckSessionGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        checkSessionIsValid: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth/check-session`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -895,13 +927,13 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         *    _app/controllers/auth_controller.ts_ - **signinCallback**
-         * @summary  (signinCallback)
+         * Retourne les informations de l\'utilisateur connecté à partir du token fourni.   _app/controllers/auth_controller.ts_ - **getAuthenticatedUser**
+         * @summary Récupère l\'utilisateur authentifié (getAuthenticatedUser)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authSigninCallbackPost: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/auth/signin-callback`;
+        getAuthenticatedUser: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/auth/user`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -988,6 +1020,36 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Permet à un utilisateur de se connecter   _app/controllers/auth_controller.ts_ - **signinCallback**
+         * @summary Connexion d\'un utilisateur (signinCallback)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        signinCallback: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/auth/signin-callback`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -999,27 +1061,27 @@ export const AuthApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AuthApiAxiosParamCreator(configuration)
     return {
         /**
-         *    _app/controllers/auth_controller.ts_ - **checkSessionIsValid**
-         * @summary  (checkSessionIsValid)
+         * Returns **200** (OK) as **application/json**   _app/controllers/auth_controller.ts_ - **checkSessionIsValid**
+         * @summary Vérifie si la session utilisateur est valide (checkSessionIsValid)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authCheckSessionGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.authCheckSessionGet(options);
+        async checkSessionIsValid(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckSessionValidityResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.checkSessionIsValid(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AuthApi.authCheckSessionGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['AuthApi.checkSessionIsValid']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         *    _app/controllers/auth_controller.ts_ - **signinCallback**
-         * @summary  (signinCallback)
+         * Retourne les informations de l\'utilisateur connecté à partir du token fourni.   _app/controllers/auth_controller.ts_ - **getAuthenticatedUser**
+         * @summary Récupère l\'utilisateur authentifié (getAuthenticatedUser)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authSigninCallbackPost(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.authSigninCallbackPost(options);
+        async getAuthenticatedUser(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAuthenticatedUser(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AuthApi.authSigninCallbackPost']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['AuthApi.getAuthenticatedUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -1047,6 +1109,18 @@ export const AuthApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['AuthApi.signUp']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+        /**
+         * Permet à un utilisateur de se connecter   _app/controllers/auth_controller.ts_ - **signinCallback**
+         * @summary Connexion d\'un utilisateur (signinCallback)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async signinCallback(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.signinCallback(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AuthApi.signinCallback']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
     }
 };
 
@@ -1058,22 +1132,22 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = AuthApiFp(configuration)
     return {
         /**
-         *    _app/controllers/auth_controller.ts_ - **checkSessionIsValid**
-         * @summary  (checkSessionIsValid)
+         * Returns **200** (OK) as **application/json**   _app/controllers/auth_controller.ts_ - **checkSessionIsValid**
+         * @summary Vérifie si la session utilisateur est valide (checkSessionIsValid)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authCheckSessionGet(options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.authCheckSessionGet(options).then((request) => request(axios, basePath));
+        checkSessionIsValid(options?: RawAxiosRequestConfig): AxiosPromise<CheckSessionValidityResponse> {
+            return localVarFp.checkSessionIsValid(options).then((request) => request(axios, basePath));
         },
         /**
-         *    _app/controllers/auth_controller.ts_ - **signinCallback**
-         * @summary  (signinCallback)
+         * Retourne les informations de l\'utilisateur connecté à partir du token fourni.   _app/controllers/auth_controller.ts_ - **getAuthenticatedUser**
+         * @summary Récupère l\'utilisateur authentifié (getAuthenticatedUser)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authSigninCallbackPost(options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.authSigninCallbackPost(options).then((request) => request(axios, basePath));
+        getAuthenticatedUser(options?: RawAxiosRequestConfig): AxiosPromise<User> {
+            return localVarFp.getAuthenticatedUser(options).then((request) => request(axios, basePath));
         },
         /**
          * Permet à un utilisateur de se déconnecter   _app/controllers/auth_controller.ts_ - **signOut**
@@ -1094,6 +1168,15 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
         signUp(signUpPayload?: SignUpPayload, options?: RawAxiosRequestConfig): AxiosPromise<MessageResponse> {
             return localVarFp.signUp(signUpPayload, options).then((request) => request(axios, basePath));
         },
+        /**
+         * Permet à un utilisateur de se connecter   _app/controllers/auth_controller.ts_ - **signinCallback**
+         * @summary Connexion d\'un utilisateur (signinCallback)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        signinCallback(options?: RawAxiosRequestConfig): AxiosPromise<MessageResponse> {
+            return localVarFp.signinCallback(options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -1105,15 +1188,15 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
  */
 export class AuthApi {
     /**
-     *    _app/controllers/auth_controller.ts_ - **checkSessionIsValid**
-     * @summary  (checkSessionIsValid)
+     * Returns **200** (OK) as **application/json**   _app/controllers/auth_controller.ts_ - **checkSessionIsValid**
+     * @summary Vérifie si la session utilisateur est valide (checkSessionIsValid)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public static async authCheckSessionGet(options?: RawAxiosRequestConfig) {
-        const localVarAxiosArgs = await AuthApiAxiosParamCreator().authCheckSessionGet(options);
-        return globalAxios.request({
+    public static async checkSessionIsValid(options?: RawAxiosRequestConfig): Promise<AxiosResponse<CheckSessionValidityResponse, any>> {
+        const localVarAxiosArgs = await AuthApiAxiosParamCreator().checkSessionIsValid(options);
+        return globalAxios.request<CheckSessionValidityResponse>({
             ...localVarAxiosArgs.options,
             url: BASE_PATH + localVarAxiosArgs.url
         });
@@ -1121,15 +1204,15 @@ export class AuthApi {
 
 
     /**
-     *    _app/controllers/auth_controller.ts_ - **signinCallback**
-     * @summary  (signinCallback)
+     * Retourne les informations de l\'utilisateur connecté à partir du token fourni.   _app/controllers/auth_controller.ts_ - **getAuthenticatedUser**
+     * @summary Récupère l\'utilisateur authentifié (getAuthenticatedUser)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public static async authSigninCallbackPost(options?: RawAxiosRequestConfig) {
-        const localVarAxiosArgs = await AuthApiAxiosParamCreator().authSigninCallbackPost(options);
-        return globalAxios.request({
+    public static async getAuthenticatedUser(options?: RawAxiosRequestConfig): Promise<AxiosResponse<User, any>> {
+        const localVarAxiosArgs = await AuthApiAxiosParamCreator().getAuthenticatedUser(options);
+        return globalAxios.request<User>({
             ...localVarAxiosArgs.options,
             url: BASE_PATH + localVarAxiosArgs.url
         });
@@ -1143,9 +1226,9 @@ export class AuthApi {
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public static async signOut(options?: RawAxiosRequestConfig) {
+    public static async signOut(options?: RawAxiosRequestConfig): Promise<AxiosResponse<MessageResponse, any>> {
         const localVarAxiosArgs = await AuthApiAxiosParamCreator().signOut(options);
-        return globalAxios.request({
+        return globalAxios.request<MessageResponse>({
             ...localVarAxiosArgs.options,
             url: BASE_PATH + localVarAxiosArgs.url
         });
@@ -1160,9 +1243,25 @@ export class AuthApi {
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public static async signUp(signUpPayload?: SignUpPayload, options?: RawAxiosRequestConfig) {
+    public static async signUp(signUpPayload?: SignUpPayload, options?: RawAxiosRequestConfig): Promise<AxiosResponse<MessageResponse, any>> {
         const localVarAxiosArgs = await AuthApiAxiosParamCreator().signUp(signUpPayload, options);
-        return globalAxios.request({
+        return globalAxios.request<MessageResponse>({
+            ...localVarAxiosArgs.options,
+            url: BASE_PATH + localVarAxiosArgs.url
+        });
+    }
+
+
+    /**
+     * Permet à un utilisateur de se connecter   _app/controllers/auth_controller.ts_ - **signinCallback**
+     * @summary Connexion d\'un utilisateur (signinCallback)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApi
+     */
+    public static async signinCallback(options?: RawAxiosRequestConfig): Promise<AxiosResponse<MessageResponse, any>> {
+        const localVarAxiosArgs = await AuthApiAxiosParamCreator().signinCallback(options);
+        return globalAxios.request<MessageResponse>({
             ...localVarAxiosArgs.options,
             url: BASE_PATH + localVarAxiosArgs.url
         });
@@ -1330,9 +1429,9 @@ export class AwsDomainApi {
      * @throws {RequiredError}
      * @memberof AwsDomainApi
      */
-    public static async checkDomainAvailability(checkDomainAvailabilityValidator?: CheckDomainAvailabilityValidator, options?: RawAxiosRequestConfig) {
+    public static async checkDomainAvailability(checkDomainAvailabilityValidator?: CheckDomainAvailabilityValidator, options?: RawAxiosRequestConfig): Promise<AxiosResponse<AwsDomainResponse, any>> {
         const localVarAxiosArgs = await AwsDomainApiAxiosParamCreator().checkDomainAvailability(checkDomainAvailabilityValidator, options);
-        return globalAxios.request({
+        return globalAxios.request<AwsDomainResponse>({
             ...localVarAxiosArgs.options,
             url: BASE_PATH + localVarAxiosArgs.url
         });
@@ -1347,9 +1446,9 @@ export class AwsDomainApi {
      * @throws {RequiredError}
      * @memberof AwsDomainApi
      */
-    public static async checkSubDomainAvailability(checkSubDomainAvailabilityValidator?: CheckSubDomainAvailabilityValidator, options?: RawAxiosRequestConfig) {
+    public static async checkSubDomainAvailability(checkSubDomainAvailabilityValidator?: CheckSubDomainAvailabilityValidator, options?: RawAxiosRequestConfig): Promise<AxiosResponse<AwsDomainResponse, any>> {
         const localVarAxiosArgs = await AwsDomainApiAxiosParamCreator().checkSubDomainAvailability(checkSubDomainAvailabilityValidator, options);
-        return globalAxios.request({
+        return globalAxios.request<AwsDomainResponse>({
             ...localVarAxiosArgs.options,
             url: BASE_PATH + localVarAxiosArgs.url
         });
@@ -1460,9 +1559,9 @@ export class ClientApi {
      * @throws {RequiredError}
      * @memberof ClientApi
      */
-    public static async createNewApplication(createNewApplicationValidator?: CreateNewApplicationValidator, options?: RawAxiosRequestConfig) {
+    public static async createNewApplication(createNewApplicationValidator?: CreateNewApplicationValidator, options?: RawAxiosRequestConfig): Promise<AxiosResponse<ResultMessageResponse, any>> {
         const localVarAxiosArgs = await ClientApiAxiosParamCreator().createNewApplication(createNewApplicationValidator, options);
-        return globalAxios.request({
+        return globalAxios.request<ResultMessageResponse>({
             ...localVarAxiosArgs.options,
             url: BASE_PATH + localVarAxiosArgs.url
         });
@@ -1570,9 +1669,9 @@ export class HealthApi {
      * @throws {RequiredError}
      * @memberof HealthApi
      */
-    public static async health(options?: RawAxiosRequestConfig) {
+    public static async health(options?: RawAxiosRequestConfig): Promise<AxiosResponse<HealthCheckReport, any>> {
         const localVarAxiosArgs = await HealthApiAxiosParamCreator().health(options);
-        return globalAxios.request({
+        return globalAxios.request<HealthCheckReport>({
             ...localVarAxiosArgs.options,
             url: BASE_PATH + localVarAxiosArgs.url
         });
