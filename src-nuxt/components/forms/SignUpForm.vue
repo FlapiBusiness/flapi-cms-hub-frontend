@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col items-center justify-center gap-4">
-    <FlapiGoogleButton :disabled="false" class="w-full md:w-[calc(50%-10px)]" />
+  <!--  <div class="flex flex-col items-center justify-center gap-4">-->
+  <!--    <FlapiGoogleButton :disabled="false" class="w-full md:w-[calc(50%-10px)]" />-->
 
-    <FlapiDivider text="or" class="w-full md:w-[calc(50%-10px)]" />
-  </div>
+  <!--    <FlapiDivider text="or" class="w-full md:w-[calc(50%-10px)]" />-->
+  <!--  </div>-->
 
   <FlapiAlert v-if="errorMessage" :message="errorMessage" variant="error" dismissible />
 
@@ -48,7 +48,7 @@
       <FlapiLink class="text-primary-light" link="signin">Se connecter</FlapiLink>
     </h6>
 
-    <FlapiButton :disabled="!meta.valid" :load="buttonLoading" type="submit" class="px-0">
+    <FlapiButton :disabled="!meta.valid || buttonLoading" :load="buttonLoading" type="submit" class="px-0">
       <span class="font-semibold text-light-400">
         {{ buttonLoading ? 'Création de votre compte...' : 'Créer mon compte' }}
       </span>

@@ -1,7 +1,9 @@
 import { defineNuxtRouteMiddleware } from 'nuxt/app'
 import type { RouteLocationNormalized } from 'vue-router'
-import axios from 'axios'
 import type { AxiosResponse } from 'axios'
+import { AuthApi } from '~~/src-core/api'
+import type { CheckSessionValidityResponse, User } from '~~/src-core/api'
+import { useAuthStore } from '~/stores/authStore'
 
 /**
  * Middleware global pour vérifier si l'utilisateur est connecté.
@@ -12,7 +14,6 @@ import type { AxiosResponse } from 'axios'
  */
 export default defineNuxtRouteMiddleware(async (to: RouteLocationNormalized, _from: RouteLocationNormalized) => {
   const BASE_URL_KEYCLOAK_LOGIN: string = import.meta.env.VITE_BASE_URL_KEYCLOAK_LOGIN
-  const BASE_API_URL: string = import.meta.env.VITE_BASE_URL_API
 
   /**
    * Routes à exclure de la vérification de connexion
@@ -29,7 +30,7 @@ export default defineNuxtRouteMiddleware(async (to: RouteLocationNormalized, _fr
      * qui est ajoutée automatiquement par Axios grâce à l'interceptor 'auth-interceptor.ts',
      * qui viens récupérer depuis un cookie nommé 'authToken'.
      */
-    const response: AxiosResponse<any, any> = await axios.get(`${BASE_API_URL}/auth/check-session`)
+    const response: AxiosResponse<CheckSessionValidityResponse, any> = await AuthApi.checkSessionIsValid()
     console.log(response.data)
 
     // Si le token n'est pas valide, rediriger l'utilisateur vers la page de connexion
@@ -39,5 +40,17 @@ export default defineNuxtRouteMiddleware(async (to: RouteLocationNormalized, _fr
   } catch (error: any) {
     console.error(error)
     return navigateTo(BASE_URL_KEYCLOAK_LOGIN, { external: true })
+  }
+
+  /**
+   * Récupérer les informations de l'utilisateur connecté
+   * Les informations de l'utilisateur sont stockées dans le store 'authStore'
+   */
+  try {
+    const userResponse: AxiosResponse<User, any> = await AuthApi.getAuthenticatedUser()
+    const user: User = userResponse.data
+    useAuthStore().setAuthenticatedUser(user)
+  } catch (e) {
+    console.error(e)
   }
 })
