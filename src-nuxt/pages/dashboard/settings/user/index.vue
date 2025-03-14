@@ -8,7 +8,11 @@
         <span>&nbsp;</span>
         <span class="text-primary-400">{{ props.lastName }}</span>
       </p>
-      <FlapiFormCard> <div class="h-96"></div> </FlapiFormCard>
+      <FlapiFormCard @confirm="">
+        <div class="h-96">
+          <UpdateUserForm :payload="payload" @update:payload="payload = $event" />
+        </div>
+      </FlapiFormCard>
     </div>
   </div>
 </template>
@@ -24,7 +28,10 @@ type userInfos = {
 </script>
 <script lang="ts" setup>
 import FlapiCardDownloadPicture from '@/components/cards/FlapiCardDownloadPicture.vue'
-
+import UpdateUserForm from '~/components/forms/UpdateUserForm.vue'
+// import { ref } from 'vue'
+import type { UpdateUserPayload } from '~/components/forms/UpdateUserForm.vue'
+// type Ref
 /**
  * Type definitions for the Card component props
  *
@@ -41,4 +48,12 @@ const props: userInfos = defineProps({
     default: 'John',
   },
 })
+
+const payload: UpdateUserPayload = {
+  firstname: 'John',
+  lastname: 'Doe',
+  email: 'john.doe@email.com',
+  password: 'TestPassword35!',
+  confirmation_password: 'TestPassword35!',
+}
 </script>

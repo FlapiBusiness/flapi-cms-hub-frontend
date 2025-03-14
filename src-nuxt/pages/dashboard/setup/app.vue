@@ -4,7 +4,8 @@
       <p class="text-2xl font-semibold text-light-400">Photo de l'applications</p>
       <FlapiCardDownloadPicture picture="https://picsum.photos/136/136" />
       <p class="text-2xl font-semibold text-light-400">Personnalisation de l'application</p>
-      <FlapiFormCard @confirm="createApp">
+      <!--      @confirm="createApp"-->
+      <FlapiFormCard>
         <CreateApplicationForm :payload="payload" @update:payload="payload = $event" />
       </FlapiFormCard>
     </div>
@@ -14,7 +15,7 @@
 import FlapiCardDownloadPicture from '@/components/cards/FlapiCardDownloadPicture.vue'
 import CreateApplicationForm from '@/components/forms/CreateApplicationForm.vue'
 import FlapiFormCard from '~/components/cards/FlapiFormCard.vue'
-import { ClientApi } from '~~/src-core/api'
+// import { ClientApi } from '~~/src-core/api'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
 
@@ -41,7 +42,7 @@ const payload: Ref<CreateApplicationPayload> = ref({
  * Create an application
  * @returns {Promise<void>}
  */
-const createApp: () => Promise<void> = async (): Promise<void> => {
+/*const createApp: () => Promise<void> = async (): Promise<void> => {
   // buttonLoading.value = true
   try {
     console.log('createApp', payload.value)
@@ -52,5 +53,5 @@ const createApp: () => Promise<void> = async (): Promise<void> => {
   } finally {
     // buttonLoading.value = false
   }
-}
+}*/
 </script>
