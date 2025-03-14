@@ -6,14 +6,14 @@
       <p class="text-2xl font-semibold text-light-400">Personnalisation de l'application</p>
       <!--      @confirm="createApp"-->
       <FlapiFormCard>
-        <CreateApplicationForm :payload="payload" @update:payload="payload = $event" />
+        <ApplicationForm :payload="payload" @update:payload="payload = $event" :fields-is-required="true" />
       </FlapiFormCard>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import FlapiCardDownloadPicture from '@/components/cards/FlapiCardDownloadPicture.vue'
-import CreateApplicationForm from '@/components/forms/CreateApplicationForm.vue'
+import ApplicationForm from '@/components/forms/ApplicationForm.vue'
 import FlapiFormCard from '~/components/cards/FlapiFormCard.vue'
 // import { ClientApi } from '~~/src-core/api'
 import { ref } from 'vue'
@@ -21,21 +21,27 @@ import type { Ref } from 'vue'
 
 /**
  * Type definitions for the CreateApplicationForm component props
- * @type {CreateApplicationPayload}
+ * @type {ApplicationPayload}
  * @property {string} customerName - The name of the customer
  * @property {string} projectName - The name of the project
  * @property {string} subdomain - The subdomain of the project
  */
-export type CreateApplicationPayload = {
-  customerName: string
-  projectName: string
-  subdomain: string
+export type ApplicationPayload = {
+  customerName?: string
+  projectName?: string
+  subdomain?: string
+  categoryApp?: string
+  longDescriptionApp?: string
+  shortDescriptionApp?: string
 }
 
-const payload: Ref<CreateApplicationPayload> = ref({
+const payload: Ref<ApplicationPayload> = ref({
   customerName: '',
   projectName: '',
   subdomain: '',
+  categoryApp: '',
+  longDescriptionApp: '',
+  shortDescriptionApp: '',
 })
 
 /**
