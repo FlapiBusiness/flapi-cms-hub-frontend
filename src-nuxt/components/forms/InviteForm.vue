@@ -14,11 +14,10 @@
       <FlapiInput
         :value="email"
         @update:value="updateEmail(index, $event)"
-        rules="email"
+        rules="email|required"
         class="flex-1"
         placeholder="email@gmail.com"
         @keydown.enter.prevent="meta.valid && hasCompletedEmail ? emit('submit') : null"
-        type="required|email"
         :id="`email-${index + 1}`"
       />
 
