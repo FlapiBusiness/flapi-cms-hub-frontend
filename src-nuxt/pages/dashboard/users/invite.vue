@@ -1,6 +1,6 @@
 <template>
-  <div class="flex items-center justify-center">
-    <div class="flex max-w-3xl flex-col gap-8">
+  <div class="flex h-full w-full items-center justify-center">
+    <div class="flex flex-col gap-8">
       <h1 class="text-4xl font-semibold text-light-400">Invitez les membres de votre équipe</h1>
       <p class="text-base text-light-700">
         Invitez un ou plusieurs membres de votre équipe à votre application. Vous pouvez attribuer le rôle de

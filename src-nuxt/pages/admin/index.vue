@@ -23,12 +23,9 @@ const authenticatedUser: User | null = useAuthStore().authenticatedUser
 const incrementLoading: Ref<number> = ref(0)
 
 const links: { text: string; to: string }[] = [
-  { text: 'Applications', to: '/dashboard/apps' },
-  { text: 'Dashboard Settings App', to: '/dashboard/settings/app' },
-  { text: 'Dashboard Settings User', to: '/dashboard/settings/user' },
-  { text: 'Dashboard Setup App', to: '/dashboard/setup/app' },
-  { text: 'Dashboard Users invite', to: '/dashboard/users/invite' },
-  { text: 'Dashboard Logs', to: '/dashboard/logs' },
+  { text: 'Admin Settings App', to: 'admin/settings/app' },
+  { text: 'Admin Users', to: '/admin/users' },
+  { text: 'Admin Logs', to: '/admin/logs' },
 ]
 
 // TODO: Remove this interval and use the real loading value

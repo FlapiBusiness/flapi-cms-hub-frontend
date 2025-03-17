@@ -23,9 +23,14 @@ const authenticatedUser: User | null = useAuthStore().authenticatedUser
 
 const items: FlapiSidebarItem[] = [
   {
-    text: 'Accueil',
+    text: 'Dashboard',
     icon: 'Home',
-    to: '/',
+    to: '/dashboard',
+  },
+  {
+    text: 'Admin',
+    icon: 'Home',
+    to: '/admin',
   },
   {
     text: 'État santé applications',
