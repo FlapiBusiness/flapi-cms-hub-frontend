@@ -4,28 +4,16 @@
     class="flex h-full w-full flex-col rounded-lg border border-gray-300 bg-gray-500"
     @submit="emit('confirm')"
   >
-    <div class="h-full w-full">
+    <div class="h-full w-full p-4">
       <slot></slot>
     </div>
     <div class="flex w-full flex-row justify-end gap-4 rounded-b-lg bg-gray-300 p-4">
-      <FlapiButton backgroundColor="#35424D" type="button" size="xs" @click="() => $router.push('/setup/app')">
-        <p class="text-light-400">Annuler</p>
-      </FlapiButton>
-      <FlapiButton size="xs" :disabled="!meta.valid" :load="buttonLoading" type="submit">
+      <FlapiButton size="sm" :disabled="!meta.valid || props.buttonLoading" :load="props.buttonLoading" type="submit">
         <p class="text-light-400">
           {{ buttonLoading ? 'Enregistrement...' : 'Enregistrer' }}
         </p>
       </FlapiButton>
     </div>
-
-    <FlapiConfirmModal
-      :show="showModal"
-      :title="'Votre compte n\'est pas activé'"
-      :message="'Veuillez vérifier votre boîte de réception pour activer votre compte.'"
-      @update:show="showModal = $event"
-      @ok="validModal"
-      @cancel="showModal = false"
-    />
   </Form>
 </template>
 
@@ -33,27 +21,25 @@
 
 <script lang="ts" setup>
 import { Form } from 'vee-validate'
-import { ref } from 'vue'
-import type { Ref } from 'vue'
-
-/* REFS */
+import { defineProps } from 'vue'
+import type { PropType } from 'vue'
 
 /**
- * Refs
- * @param {Ref<boolean>} buttonLoading - The button loading state
- * @param {Ref<boolean>} showModal - The modal state
+ * Type definitions for the FlapiFormCard component props
+ * @type {FlapiFormCardProps}
+ * @property {boolean} buttonLoading - The loading state of the button
  */
-
-const buttonLoading: Ref<boolean> = ref(false)
-const showModal: Ref<boolean> = ref(false)
-
-/* METHODS */
-/**
- *
- */
-const validModal: () => void = () => {
-  console.log('validModal')
+type FlapiFormCardProps = {
+  buttonLoading: boolean
 }
+
+/* PROPS */
+const props: FlapiFormCardProps = defineProps({
+  buttonLoading: {
+    type: Boolean as PropType<boolean>,
+    default: false,
+  },
+})
 
 /*EMIT*/
 const emit: (event: 'confirm') => void = defineEmits<{

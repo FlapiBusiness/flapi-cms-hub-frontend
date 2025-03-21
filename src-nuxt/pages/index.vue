@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 const links: { text: string; to: string }[] = [
-  { text: 'Applications', to: '/dashboard/apps' },
+  { text: 'Applications', to: '/dashboard/projects' },
   { text: 'Loading Screen', to: '/loading-screen' },
   { text: 'Login', to: '/signin' },
   { text: 'Reset password', to: '/reset-password' },

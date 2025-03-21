@@ -1,7 +1,6 @@
 <template>
   <div class="flex h-full min-h-screen flex-col bg-gray-700 p-8">
     <FlapiCardWelcomeUser
-      :picture="'https://via.placeholder.com/120'"
       :firstName="authenticatedUser?.firstname || ''"
       :lastName="authenticatedUser?.lastname || ''"
       :email="authenticatedUser?.email || ''"

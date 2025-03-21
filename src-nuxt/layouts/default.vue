@@ -20,9 +20,7 @@ import { ref, computed } from 'vue'
 import type { Ref, ComputedRef } from 'vue'
 import type { FlapiSidebarItem } from '@flapi/cms-designsystem/core'
 import type { User } from '~~/src-core/api'
-
-/* DATAS */
-const authenticatedUser: User | null = useAuthStore().authenticatedUser
+import { useAuthStore } from '~/stores/authStore'
 
 const items: FlapiSidebarItem[] = [
   {
@@ -46,9 +44,10 @@ const items: FlapiSidebarItem[] = [
 const flapiSidebarIsExpand: Ref<boolean> = ref(true)
 
 /* COMPUTED */
+const authenticatedUser: ComputedRef<User | null> = computed(() => useAuthStore().authenticatedUser)
 const authenticatedUserFullName: ComputedRef<string> = computed(() => {
-  if (authenticatedUser) {
-    return `${authenticatedUser.firstname} ${authenticatedUser.lastname}`
+  if (authenticatedUser.value) {
+    return `${authenticatedUser.value.firstname} ${authenticatedUser.value.lastname}`
   }
   return ''
 })

@@ -1,6 +1,16 @@
 <template>
   <div class="flex w-full flex-row rounded-lg border border-gray-300 bg-gray-500 p-4">
-    <img :src="props.picture" alt="Card picture" class="h-24 w-24 rounded-lg" />
+    <img v-if="props.picture" :src="props.picture" alt="Card picture" class="h-24 w-24 rounded-lg" />
+    <FlapiIcon
+      v-else
+      style="stroke-width: 0"
+      name="Account"
+      class="inline-block align-middle"
+      :width="80"
+      :height="80"
+      viewBox="0 0 89 88"
+      color="#FFFFFF"
+    />
     <div class="ml-8 flex flex-col items-start justify-center">
       <h2 class="text-xl font-semibold text-light-400">Bienvenue, {{ props.firstName }} {{ props.lastName }}</h2>
       <p class="mt-6 text-base font-semibold text-light-400">
@@ -19,7 +29,7 @@ import { defineProps } from '@vue/runtime-core'
  * @property {string} picture - The picture of the card
  */
 export type CardProps = {
-  picture: string
+  picture?: string
   lastName: string
   firstName: string
   email: string
@@ -32,7 +42,7 @@ export type CardProps = {
 const props: CardProps = defineProps({
   picture: {
     type: String,
-    required: true,
+    default: false,
   },
   lastName: {
     type: String,
