@@ -5,7 +5,7 @@
       <FlapiCardDownloadPicture picture="https://picsum.photos/136/136" />
       <p class="text-2xl font-semibold text-light-400">Personnalisation de l'application</p>
       <FlapiFormCard @confirm="updatePayload(payload)">
-        <ApplicationForm :payload="payload" @update:payload="payload = $event" :fields-is-required="false" />
+        <ProjectForm :payload="payload" @update:payload="payload = $event" :fields-is-required="false" />
       </FlapiFormCard>
     </div>
   </div>
@@ -14,8 +14,19 @@
 <script lang="ts" setup>
 import FlapiFormCard from '~/components/cards/FlapiFormCard.vue'
 import FlapiCardDownloadPicture from '~/components/cards/FlapiCardDownloadPicture.vue'
-import ApplicationForm from '~/components/forms/ApplicationForm.vue'
-import type { ApplicationPayload } from '~/pages/dashboard/setup/app.vue'
+import ProjectForm from '~/components/forms/ProjectForm.vue'
+
+/**
+ * Application payload
+ */
+type ApplicationPayload = {
+  customerName: string
+  projectName: string
+  subdomain: string
+  categoryApp: string
+  longDescriptionApp: string
+  shortDescriptionApp: string
+}
 
 const payload: Ref<ApplicationPayload> = ref({
   customerName: 'John Doe',
@@ -23,6 +34,7 @@ const payload: Ref<ApplicationPayload> = ref({
   subdomain: 'flapi.example.com',
   categoryApp: 'Project management',
   longDescriptionApp: 'This is a project management application',
+  shortDescriptionApp: 'Project management app',
 })
 
 /**

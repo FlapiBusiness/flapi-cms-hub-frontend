@@ -46,7 +46,7 @@
 <script lang="ts" setup>
 import { defineProps, ref, type Ref } from 'vue'
 import type { PropType } from 'vue'
-// import type { CreateApplicationPayload } from '~/pages/dashboard/setup/app.vue'
+// import type { CreateApplicationPayload } from '~/pages/dashboard/setup/project.vue'
 // import { ClientApi } from '~~/src-core/api'
 /**
  * Type definitions for the UpdateUserForm component props

@@ -21,7 +21,7 @@ const authTokenCookie: CookieRef<string | null | undefined> = useCookie('authTok
 const BASE_API_URL: string = import.meta.env.VITE_BASE_URL_API
 
 definePageMeta({
-  layout: 'auth',
+  layout: 'blank',
 })
 
 /**

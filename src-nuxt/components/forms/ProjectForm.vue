@@ -49,15 +49,26 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
 import type { PropType } from 'vue'
-import type { ApplicationPayload } from '~/pages/dashboard/setup/app.vue'
+
 /**
- * Type definitions for the CreateApplicationForm component props
- * @type {ApplicationFormProps}
+ * Application payload
+ */
+type ApplicationPayload = {
+  customerName: string
+  projectName: string
+  subdomain: string
+  categoryApp: string
+  longDescriptionApp: string
+  shortDescriptionApp: string
+}
+/**
+ * Type definitions for the CreateProjectForm component props
+ * @type {ProjectFormProps}
  * @property {string} customerName - The name of the customer
  * @property {string} projectName - The name of the project
  * @property {string} subdomain - The subdomain of the project
  */
-export type ApplicationFormProps = {
+export type ProjectFormProps = {
   payload: ApplicationPayload
 }
 
@@ -69,7 +80,7 @@ export type SelectOption = {
   value: number | string
 }
 
-const props: ApplicationFormProps = defineProps({
+const props: ProjectFormProps = defineProps({
   payload: {
     type: Object as PropType<ApplicationPayload>,
     default: {
