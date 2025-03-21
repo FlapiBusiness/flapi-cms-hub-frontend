@@ -10,7 +10,6 @@ export default defineNuxtRouteMiddleware(async (to: RouteLocationNormalized, _fr
   const BASE_URL_KEYCLOAK_LOGIN: string = import.meta.env.VITE_BASE_URL_KEYCLOAK_LOGIN
   const setupProjectRoute: string = '/dashboard/setup/project'
   const projectsRoute: string = '/dashboard/projects'
-  const dashboardRoute: string = '/dashboard'
   const excludeRoutes: string[] = ['/signup', '/callback', setupProjectRoute, projectsRoute]
 
   if (excludeRoutes.includes(to.path)) {
@@ -36,8 +35,6 @@ export default defineNuxtRouteMiddleware(async (to: RouteLocationNormalized, _fr
 
       if (!activeProject && to.path !== projectsRoute) {
         return navigateTo(projectsRoute)
-      } else if (to.path !== dashboardRoute) {
-        return navigateTo(dashboardRoute)
       }
     } else {
       return navigateTo(BASE_URL_KEYCLOAK_LOGIN, { external: true })

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex max-w-32 flex-col items-center justify-center gap-2">
+  <div class="flex flex-col items-center justify-center gap-2">
     <img
       v-if="props.picture"
       :src="props.picture"
@@ -7,7 +7,15 @@
       class="h-[120px] w-[120px] rounded-lg bg-gray-400"
     />
     <div v-else class="flex h-[120px] w-[120px] items-center justify-center rounded-lg bg-gray-400">
-      <FlapiIcon name="account" class="inline-block align-middle" :width="80" :height="80" />
+      <FlapiIcon
+        style="stroke-width: 0"
+        name="Account"
+        class="inline-block align-middle"
+        :width="80"
+        :height="80"
+        viewBox="0 0 89 88"
+        color="#FFFFFF"
+      />
     </div>
     <p class="text-base font-medium text-light-400">{{ props.lastNames }} {{ props.firstName }}</p>
     <p class="text-sm font-medium text-light-700">{{ props.email }}</p>

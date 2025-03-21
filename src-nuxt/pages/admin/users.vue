@@ -15,26 +15,30 @@
       </div>
     </div>
 
-    <div class="flex flex-wrap items-center gap-8">
+    <div
+      v-if="filteredUsers.length > 0"
+      class="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8"
+    >
       <FlapiUserCard
-        v-for="user in users"
+        v-for="user in filteredUsers"
         :key="user.id"
         :id="user.id"
-        :picture="user.picture"
-        :lastNames="user.lastName"
-        :firstName="user.firstName"
+        :lastNames="user.lastname"
+        :firstName="user.firstname"
         :email="user.email"
       />
     </div>
+    <p v-else class="text-lg text-center text-light-400">Aucun utilisateur trouvé</p>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useUserStore } from '~/stores/userStore'
-import type { User } from '~/stores/userStore'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
 import FlapiUserCard from '~/components/cards/FlapiUserCard.vue'
+import { UsersApi } from '~~/src-core/api'
+import type { User } from '~~/src-core/api'
+import type { AxiosResponse } from 'axios'
 
 /**
  * Type definitions for the SelectOption type
@@ -54,7 +58,17 @@ const options: SelectOption[] = [
   { label: 'Email', value: 'email' },
 ]
 
-const userStore: ReturnType<typeof useUserStore> = useUserStore()
-await userStore.fetchUsers()
-const users: User[] = userStore.users
+const usersResponse: AxiosResponse<User[], any> = await UsersApi.getAllUsers()
+const users: User[] = usersResponse.data
+
+// COMPUTED
+const filteredUsers: Ref<User[]> = computed(() => {
+  return users.filter((user: User) => {
+    return (
+      user.lastname.toLowerCase().includes(search.value.toLowerCase()) ||
+      user.firstname.toLowerCase().includes(search.value.toLowerCase()) ||
+      user.email.toLowerCase().includes(search.value.toLowerCase())
+    )
+  })
+})
 </script>
