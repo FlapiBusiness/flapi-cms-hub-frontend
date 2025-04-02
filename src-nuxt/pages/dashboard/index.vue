@@ -22,7 +22,7 @@ const links: { text: string; to: string }[] = [
   { text: 'Applications', to: '/dashboard/projects' },
   { text: 'Dashboard Settings App', to: '/dashboard/settings/app' },
   { text: 'Dashboard Settings User', to: '/dashboard/settings/user' },
-  { text: 'Dashboard Setup App', to: '/dashboard/setup/app' },
+  { text: 'Dashboard Setup App', to: '/dashboard/setup/project' },
   { text: 'Dashboard Users invite', to: '/dashboard/users/invite' },
   { text: 'Dashboard Logs', to: '/dashboard/logs' },
 ]

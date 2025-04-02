@@ -53,6 +53,81 @@ export interface AddUserToTeamPayload {
   role: string
 }
 /**
+ * ApplicationEventLog (Model)
+ * @export
+ * @interface ApplicationEventLog
+ */
+export interface ApplicationEventLog {
+  /**
+   *
+   * @type {number}
+   * @memberof ApplicationEventLog
+   */
+  id: number
+  /**
+   *
+   * @type {number}
+   * @memberof ApplicationEventLog
+   */
+  user_id?: number
+  /**
+   *
+   * @type {number}
+   * @memberof ApplicationEventLog
+   */
+  project_id?: number
+  /**
+   *
+   * @type {string}
+   * @memberof ApplicationEventLog
+   */
+  action_type: ApplicationEventLogActionTypeEnum
+  /**
+   *
+   * @type {string}
+   * @memberof ApplicationEventLog
+   */
+  message: string
+  /**
+   *
+   * @type {string}
+   * @memberof ApplicationEventLog
+   */
+  created_at: string
+  /**
+   *
+   * @type {string}
+   * @memberof ApplicationEventLog
+   */
+  updated_at: string
+  /**
+   *
+   * @type {User}
+   * @memberof ApplicationEventLog
+   */
+  user?: User
+  /**
+   *
+   * @type {Project}
+   * @memberof ApplicationEventLog
+   */
+  project?: Project
+}
+
+export const ApplicationEventLogActionTypeEnum = {
+  Create: 'CREATE',
+  Update: 'UPDATE',
+  Delete: 'DELETE',
+  Signin: 'SIGNIN',
+  Signout: 'SIGNOUT',
+  Signup: 'SIGNUP',
+  Invite: 'INVITE',
+} as const
+
+export type ApplicationEventLogActionTypeEnum =
+  (typeof ApplicationEventLogActionTypeEnum)[keyof typeof ApplicationEventLogActionTypeEnum]
+
+/**
  * AwsDomainResponse (Interface)
  * @export
  * @interface AwsDomainResponse
@@ -141,15 +216,15 @@ export interface Bucket {
   updated_at?: string
 }
 /**
- * checkDomainAvailabilityValidator (Validator)
+ * CheckDomainAvailabilityPayload (Interface)
  * @export
- * @interface CheckDomainAvailabilityValidator
+ * @interface CheckDomainAvailabilityPayload
  */
-export interface CheckDomainAvailabilityValidator {
+export interface CheckDomainAvailabilityPayload {
   /**
    *
    * @type {string}
-   * @memberof CheckDomainAvailabilityValidator
+   * @memberof CheckDomainAvailabilityPayload
    */
   domain: string
 }
@@ -173,17 +248,48 @@ export interface CheckSessionValidityResponse {
   error?: string
 }
 /**
- * checkSubDomainAvailabilityValidator (Validator)
+ * CheckSubDomainAvailabilityPayload (Interface)
  * @export
- * @interface CheckSubDomainAvailabilityValidator
+ * @interface CheckSubDomainAvailabilityPayload
  */
-export interface CheckSubDomainAvailabilityValidator {
+export interface CheckSubDomainAvailabilityPayload {
   /**
    *
    * @type {string}
-   * @memberof CheckSubDomainAvailabilityValidator
+   * @memberof CheckSubDomainAvailabilityPayload
    */
   subdomain: string
+}
+/**
+ * CreateApplicationEventLogPayload (Interface)
+ * @export
+ * @interface CreateApplicationEventLogPayload
+ */
+export interface CreateApplicationEventLogPayload {
+  /**
+   *
+   * @type {number}
+   * @memberof CreateApplicationEventLogPayload
+   */
+  user_id?: number
+  /**
+   *
+   * @type {number}
+   * @memberof CreateApplicationEventLogPayload
+   */
+  project_id?: number
+  /**
+   *
+   * @type {string}
+   * @memberof CreateApplicationEventLogPayload
+   */
+  action_type: string
+  /**
+   *
+   * @type {string}
+   * @memberof CreateApplicationEventLogPayload
+   */
+  message: string
 }
 /**
  * CreateDatabasePayload (Interface)
@@ -199,45 +305,45 @@ export interface CreateDatabasePayload {
   name: string
 }
 /**
- * createNewApplicationValidator (Validator)
+ * CreateNewApplicationPayload (Interface)
  * @export
- * @interface CreateNewApplicationValidator
+ * @interface CreateNewApplicationPayload
  */
-export interface CreateNewApplicationValidator {
+export interface CreateNewApplicationPayload {
   /**
    *
    * @type {string}
-   * @memberof CreateNewApplicationValidator
+   * @memberof CreateNewApplicationPayload
    */
   customerName: string
   /**
    *
    * @type {string}
-   * @memberof CreateNewApplicationValidator
+   * @memberof CreateNewApplicationPayload
    */
   projectName: string
   /**
    *
    * @type {string}
-   * @memberof CreateNewApplicationValidator
+   * @memberof CreateNewApplicationPayload
    */
   fullDomain: string
   /**
    *
    * @type {string}
-   * @memberof CreateNewApplicationValidator
+   * @memberof CreateNewApplicationPayload
    */
   categoryApp: string
   /**
    *
    * @type {string}
-   * @memberof CreateNewApplicationValidator
+   * @memberof CreateNewApplicationPayload
    */
   longDescriptionApp: string
   /**
    *
    * @type {string}
-   * @memberof CreateNewApplicationValidator
+   * @memberof CreateNewApplicationPayload
    */
   shortDescriptionApp: string
 }
@@ -320,13 +426,13 @@ export interface Database {
    * @type {string}
    * @memberof Database
    */
-  created_at?: string
+  created_at: string
   /**
    *
    * @type {string}
    * @memberof Database
    */
-  updated_at?: string
+  updated_at: string
 }
 /**
  * getAuthenticatedUserErrorResponse (Interface)
@@ -470,25 +576,6 @@ export interface LoginSuccessResponse {
    * @memberof LoginSuccessResponse
    */
   expiresAt: string
-}
-/**
- * loginValidator (Validator)
- * @export
- * @interface LoginValidator
- */
-export interface LoginValidator {
-  /**
-   *
-   * @type {string}
-   * @memberof LoginValidator
-   */
-  email: string
-  /**
-   *
-   * @type {string}
-   * @memberof LoginValidator
-   */
-  password: string
 }
 /**
  * MessageResponse (Interface)
@@ -702,13 +789,13 @@ export interface Project {
    * @type {string}
    * @memberof Project
    */
-  created_at?: string
+  created_at: string
   /**
    *
    * @type {string}
    * @memberof Project
    */
-  updated_at?: string
+  updated_at: string
 }
 /**
  * ResultMessageResponse (Interface)
@@ -807,13 +894,13 @@ export interface Team {
    * @type {string}
    * @memberof Team
    */
-  created_at?: string
+  created_at: string
   /**
    *
    * @type {string}
    * @memberof Team
    */
-  updated_at?: string
+  updated_at: string
   /**
    *
    * @type {Array<User>}
@@ -1035,7 +1122,7 @@ export interface User {
    * @type {string}
    * @memberof User
    */
-  created_at?: string
+  created_at: string
   /**
    *
    * @type {string}
@@ -1190,6 +1277,418 @@ export interface ValidationErrorResponse {
    * @memberof ValidationErrorResponse
    */
   errors: ValidationError
+}
+
+/**
+ * ApplicationeventlogsApi - axios parameter creator
+ * @export
+ */
+export const ApplicationeventlogsApiAxiosParamCreator = function (configuration?: Configuration) {
+  return {
+    /**
+     * Returns **201** (Created) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **createApplicationEventLog**
+     * @summary Create an application event log (createApplicationEventLog)
+     * @param {CreateApplicationEventLogPayload} [createApplicationEventLogPayload]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createApplicationEventLog: async (
+      createApplicationEventLogPayload?: CreateApplicationEventLogPayload,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/application-event-log`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        createApplicationEventLogPayload,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * Returns **200** (OK) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **getAllApplicationEventLogs**
+     * @summary Get all application event logs (getAllApplicationEventLogs)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAllApplicationEventLogs: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/application-event-logs`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * Returns **200** (OK) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **getApplicationEventLogsByProjectId**
+     * @summary Get application event logs by project ID (getApplicationEventLogsByProjectId)
+     * @param {number} projectId The ID of the project
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getApplicationEventLogsByProjectId: async (
+      projectId: number,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'projectId' is not null or undefined
+      assertParamExists('getApplicationEventLogsByProjectId', 'projectId', projectId)
+      const localVarPath = `/application-event-logs/project/{project_id}`.replace(
+        `{${'project_id'}}`,
+        encodeURIComponent(String(projectId)),
+      )
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * Returns **200** (OK) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **getApplicationEventLogsByUserId**
+     * @summary Get application event logs by user ID (getApplicationEventLogsByUserId)
+     * @param {number} userId The ID of the user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getApplicationEventLogsByUserId: async (
+      userId: number,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'userId' is not null or undefined
+      assertParamExists('getApplicationEventLogsByUserId', 'userId', userId)
+      const localVarPath = `/application-event-logs/user/{user_id}`.replace(
+        `{${'user_id'}}`,
+        encodeURIComponent(String(userId)),
+      )
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+  }
+}
+
+/**
+ * ApplicationeventlogsApi - functional programming interface
+ * @export
+ */
+export const ApplicationeventlogsApiFp = function (configuration?: Configuration) {
+  const localVarAxiosParamCreator = ApplicationeventlogsApiAxiosParamCreator(configuration)
+  return {
+    /**
+     * Returns **201** (Created) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **createApplicationEventLog**
+     * @summary Create an application event log (createApplicationEventLog)
+     * @param {CreateApplicationEventLogPayload} [createApplicationEventLogPayload]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async createApplicationEventLog(
+      createApplicationEventLogPayload?: CreateApplicationEventLogPayload,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.createApplicationEventLog(
+        createApplicationEventLogPayload,
+        options,
+      )
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0
+      const localVarOperationServerBasePath =
+        operationServerMap['ApplicationeventlogsApi.createApplicationEventLog']?.[localVarOperationServerIndex]?.url
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath)
+    },
+    /**
+     * Returns **200** (OK) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **getAllApplicationEventLogs**
+     * @summary Get all application event logs (getAllApplicationEventLogs)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getAllApplicationEventLogs(
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ApplicationEventLog>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getAllApplicationEventLogs(options)
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0
+      const localVarOperationServerBasePath =
+        operationServerMap['ApplicationeventlogsApi.getAllApplicationEventLogs']?.[localVarOperationServerIndex]?.url
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath)
+    },
+    /**
+     * Returns **200** (OK) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **getApplicationEventLogsByProjectId**
+     * @summary Get application event logs by project ID (getApplicationEventLogsByProjectId)
+     * @param {number} projectId The ID of the project
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getApplicationEventLogsByProjectId(
+      projectId: number,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ApplicationEventLog>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getApplicationEventLogsByProjectId(projectId, options)
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0
+      const localVarOperationServerBasePath =
+        operationServerMap['ApplicationeventlogsApi.getApplicationEventLogsByProjectId']?.[localVarOperationServerIndex]
+          ?.url
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath)
+    },
+    /**
+     * Returns **200** (OK) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **getApplicationEventLogsByUserId**
+     * @summary Get application event logs by user ID (getApplicationEventLogsByUserId)
+     * @param {number} userId The ID of the user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getApplicationEventLogsByUserId(
+      userId: number,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ApplicationEventLog>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getApplicationEventLogsByUserId(userId, options)
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0
+      const localVarOperationServerBasePath =
+        operationServerMap['ApplicationeventlogsApi.getApplicationEventLogsByUserId']?.[localVarOperationServerIndex]
+          ?.url
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath)
+    },
+  }
+}
+
+/**
+ * ApplicationeventlogsApi - factory interface
+ * @export
+ */
+export const ApplicationeventlogsApiFactory = function (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance,
+) {
+  const localVarFp = ApplicationeventlogsApiFp(configuration)
+  return {
+    /**
+     * Returns **201** (Created) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **createApplicationEventLog**
+     * @summary Create an application event log (createApplicationEventLog)
+     * @param {CreateApplicationEventLogPayload} [createApplicationEventLogPayload]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createApplicationEventLog(
+      createApplicationEventLogPayload?: CreateApplicationEventLogPayload,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<MessageResponse> {
+      return localVarFp
+        .createApplicationEventLog(createApplicationEventLogPayload, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * Returns **200** (OK) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **getAllApplicationEventLogs**
+     * @summary Get all application event logs (getAllApplicationEventLogs)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAllApplicationEventLogs(options?: RawAxiosRequestConfig): AxiosPromise<Array<ApplicationEventLog>> {
+      return localVarFp.getAllApplicationEventLogs(options).then((request) => request(axios, basePath))
+    },
+    /**
+     * Returns **200** (OK) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **getApplicationEventLogsByProjectId**
+     * @summary Get application event logs by project ID (getApplicationEventLogsByProjectId)
+     * @param {number} projectId The ID of the project
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getApplicationEventLogsByProjectId(
+      projectId: number,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<Array<ApplicationEventLog>> {
+      return localVarFp
+        .getApplicationEventLogsByProjectId(projectId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * Returns **200** (OK) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **getApplicationEventLogsByUserId**
+     * @summary Get application event logs by user ID (getApplicationEventLogsByUserId)
+     * @param {number} userId The ID of the user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getApplicationEventLogsByUserId(
+      userId: number,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<Array<ApplicationEventLog>> {
+      return localVarFp.getApplicationEventLogsByUserId(userId, options).then((request) => request(axios, basePath))
+    },
+  }
+}
+
+/**
+ * ApplicationeventlogsApi - object-oriented interface
+ * @export
+ * @class ApplicationeventlogsApi
+ * @extends {BaseAPI}
+ */
+export class ApplicationeventlogsApi {
+  /**
+   * Returns **201** (Created) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **createApplicationEventLog**
+   * @summary Create an application event log (createApplicationEventLog)
+   * @param {CreateApplicationEventLogPayload} [createApplicationEventLogPayload]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ApplicationeventlogsApi
+   */
+  public static async createApplicationEventLog(
+    createApplicationEventLogPayload?: CreateApplicationEventLogPayload,
+    options?: RawAxiosRequestConfig,
+  ): Promise<AxiosResponse<MessageResponse, any>> {
+    const localVarAxiosArgs = await ApplicationeventlogsApiAxiosParamCreator().createApplicationEventLog(
+      createApplicationEventLogPayload,
+      options,
+    )
+    return globalAxios.request<MessageResponse, any>({
+      ...localVarAxiosArgs.options,
+      url: BASE_PATH + localVarAxiosArgs.url,
+    })
+  }
+
+  /**
+   * Returns **200** (OK) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **getAllApplicationEventLogs**
+   * @summary Get all application event logs (getAllApplicationEventLogs)
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ApplicationeventlogsApi
+   */
+  public static async getAllApplicationEventLogs(
+    options?: RawAxiosRequestConfig,
+  ): Promise<AxiosResponse<Array<ApplicationEventLog>, any>> {
+    const localVarAxiosArgs = await ApplicationeventlogsApiAxiosParamCreator().getAllApplicationEventLogs(options)
+    return globalAxios.request<Array<ApplicationEventLog>, any>({
+      ...localVarAxiosArgs.options,
+      url: BASE_PATH + localVarAxiosArgs.url,
+    })
+  }
+
+  /**
+   * Returns **200** (OK) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **getApplicationEventLogsByProjectId**
+   * @summary Get application event logs by project ID (getApplicationEventLogsByProjectId)
+   * @param {number} projectId The ID of the project
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ApplicationeventlogsApi
+   */
+  public static async getApplicationEventLogsByProjectId(
+    projectId: number,
+    options?: RawAxiosRequestConfig,
+  ): Promise<AxiosResponse<Array<ApplicationEventLog>, any>> {
+    const localVarAxiosArgs = await ApplicationeventlogsApiAxiosParamCreator().getApplicationEventLogsByProjectId(
+      projectId,
+      options,
+    )
+    return globalAxios.request<Array<ApplicationEventLog>, any>({
+      ...localVarAxiosArgs.options,
+      url: BASE_PATH + localVarAxiosArgs.url,
+    })
+  }
+
+  /**
+   * Returns **200** (OK) as **application/json**   _app/controllers/application_event_log_controller.ts_ - **getApplicationEventLogsByUserId**
+   * @summary Get application event logs by user ID (getApplicationEventLogsByUserId)
+   * @param {number} userId The ID of the user
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ApplicationeventlogsApi
+   */
+  public static async getApplicationEventLogsByUserId(
+    userId: number,
+    options?: RawAxiosRequestConfig,
+  ): Promise<AxiosResponse<Array<ApplicationEventLog>, any>> {
+    const localVarAxiosArgs = await ApplicationeventlogsApiAxiosParamCreator().getApplicationEventLogsByUserId(
+      userId,
+      options,
+    )
+    return globalAxios.request<Array<ApplicationEventLog>, any>({
+      ...localVarAxiosArgs.options,
+      url: BASE_PATH + localVarAxiosArgs.url,
+    })
+  }
 }
 
 /**
@@ -1614,12 +2113,12 @@ export const AwsDomainApiAxiosParamCreator = function (configuration?: Configura
     /**
      * Vérifie si un domaine est disponible via AWS Route 53 Domains   _app/controllers/aws_domain_controller.ts_ - **checkDomainAvailability**
      * @summary Vérifie la disponibilité d\'un domaine (checkDomainAvailability)
-     * @param {CheckDomainAvailabilityValidator} [checkDomainAvailabilityValidator]
+     * @param {CheckDomainAvailabilityPayload} [checkDomainAvailabilityPayload]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     checkDomainAvailability: async (
-      checkDomainAvailabilityValidator?: CheckDomainAvailabilityValidator,
+      checkDomainAvailabilityPayload?: CheckDomainAvailabilityPayload,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/aws/domain/check`
@@ -1640,7 +2139,7 @@ export const AwsDomainApiAxiosParamCreator = function (configuration?: Configura
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers }
       localVarRequestOptions.data = serializeDataIfNeeded(
-        checkDomainAvailabilityValidator,
+        checkDomainAvailabilityPayload,
         localVarRequestOptions,
         configuration,
       )
@@ -1653,12 +2152,12 @@ export const AwsDomainApiAxiosParamCreator = function (configuration?: Configura
     /**
      * Vérifie si un sous-domaine est disponible via AWS Route 53 Domains   _app/controllers/aws_domain_controller.ts_ - **checkSubDomainAvailability**
      * @summary Vérifie la disponibilité d\'un sous-domaine (checkSubDomainAvailability)
-     * @param {CheckSubDomainAvailabilityValidator} [checkSubDomainAvailabilityValidator]
+     * @param {CheckSubDomainAvailabilityPayload} [checkSubDomainAvailabilityPayload]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     checkSubDomainAvailability: async (
-      checkSubDomainAvailabilityValidator?: CheckSubDomainAvailabilityValidator,
+      checkSubDomainAvailabilityPayload?: CheckSubDomainAvailabilityPayload,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/aws/subdomain/check`
@@ -1679,7 +2178,7 @@ export const AwsDomainApiAxiosParamCreator = function (configuration?: Configura
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers }
       localVarRequestOptions.data = serializeDataIfNeeded(
-        checkSubDomainAvailabilityValidator,
+        checkSubDomainAvailabilityPayload,
         localVarRequestOptions,
         configuration,
       )
@@ -1702,16 +2201,16 @@ export const AwsDomainApiFp = function (configuration?: Configuration) {
     /**
      * Vérifie si un domaine est disponible via AWS Route 53 Domains   _app/controllers/aws_domain_controller.ts_ - **checkDomainAvailability**
      * @summary Vérifie la disponibilité d\'un domaine (checkDomainAvailability)
-     * @param {CheckDomainAvailabilityValidator} [checkDomainAvailabilityValidator]
+     * @param {CheckDomainAvailabilityPayload} [checkDomainAvailabilityPayload]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async checkDomainAvailability(
-      checkDomainAvailabilityValidator?: CheckDomainAvailabilityValidator,
+      checkDomainAvailabilityPayload?: CheckDomainAvailabilityPayload,
       options?: RawAxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AwsDomainResponse>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.checkDomainAvailability(
-        checkDomainAvailabilityValidator,
+        checkDomainAvailabilityPayload,
         options,
       )
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0
@@ -1728,16 +2227,16 @@ export const AwsDomainApiFp = function (configuration?: Configuration) {
     /**
      * Vérifie si un sous-domaine est disponible via AWS Route 53 Domains   _app/controllers/aws_domain_controller.ts_ - **checkSubDomainAvailability**
      * @summary Vérifie la disponibilité d\'un sous-domaine (checkSubDomainAvailability)
-     * @param {CheckSubDomainAvailabilityValidator} [checkSubDomainAvailabilityValidator]
+     * @param {CheckSubDomainAvailabilityPayload} [checkSubDomainAvailabilityPayload]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async checkSubDomainAvailability(
-      checkSubDomainAvailabilityValidator?: CheckSubDomainAvailabilityValidator,
+      checkSubDomainAvailabilityPayload?: CheckSubDomainAvailabilityPayload,
       options?: RawAxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AwsDomainResponse>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.checkSubDomainAvailability(
-        checkSubDomainAvailabilityValidator,
+        checkSubDomainAvailabilityPayload,
         options,
       )
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0
@@ -1764,31 +2263,31 @@ export const AwsDomainApiFactory = function (configuration?: Configuration, base
     /**
      * Vérifie si un domaine est disponible via AWS Route 53 Domains   _app/controllers/aws_domain_controller.ts_ - **checkDomainAvailability**
      * @summary Vérifie la disponibilité d\'un domaine (checkDomainAvailability)
-     * @param {CheckDomainAvailabilityValidator} [checkDomainAvailabilityValidator]
+     * @param {CheckDomainAvailabilityPayload} [checkDomainAvailabilityPayload]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     checkDomainAvailability(
-      checkDomainAvailabilityValidator?: CheckDomainAvailabilityValidator,
+      checkDomainAvailabilityPayload?: CheckDomainAvailabilityPayload,
       options?: RawAxiosRequestConfig,
     ): AxiosPromise<AwsDomainResponse> {
       return localVarFp
-        .checkDomainAvailability(checkDomainAvailabilityValidator, options)
+        .checkDomainAvailability(checkDomainAvailabilityPayload, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * Vérifie si un sous-domaine est disponible via AWS Route 53 Domains   _app/controllers/aws_domain_controller.ts_ - **checkSubDomainAvailability**
      * @summary Vérifie la disponibilité d\'un sous-domaine (checkSubDomainAvailability)
-     * @param {CheckSubDomainAvailabilityValidator} [checkSubDomainAvailabilityValidator]
+     * @param {CheckSubDomainAvailabilityPayload} [checkSubDomainAvailabilityPayload]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     checkSubDomainAvailability(
-      checkSubDomainAvailabilityValidator?: CheckSubDomainAvailabilityValidator,
+      checkSubDomainAvailabilityPayload?: CheckSubDomainAvailabilityPayload,
       options?: RawAxiosRequestConfig,
     ): AxiosPromise<AwsDomainResponse> {
       return localVarFp
-        .checkSubDomainAvailability(checkSubDomainAvailabilityValidator, options)
+        .checkSubDomainAvailability(checkSubDomainAvailabilityPayload, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1804,17 +2303,17 @@ export class AwsDomainApi {
   /**
    * Vérifie si un domaine est disponible via AWS Route 53 Domains   _app/controllers/aws_domain_controller.ts_ - **checkDomainAvailability**
    * @summary Vérifie la disponibilité d\'un domaine (checkDomainAvailability)
-   * @param {CheckDomainAvailabilityValidator} [checkDomainAvailabilityValidator]
+   * @param {CheckDomainAvailabilityPayload} [checkDomainAvailabilityPayload]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AwsDomainApi
    */
   public static async checkDomainAvailability(
-    checkDomainAvailabilityValidator?: CheckDomainAvailabilityValidator,
+    checkDomainAvailabilityPayload?: CheckDomainAvailabilityPayload,
     options?: RawAxiosRequestConfig,
   ): Promise<AxiosResponse<AwsDomainResponse, any>> {
     const localVarAxiosArgs = await AwsDomainApiAxiosParamCreator().checkDomainAvailability(
-      checkDomainAvailabilityValidator,
+      checkDomainAvailabilityPayload,
       options,
     )
     return globalAxios.request<AwsDomainResponse, any>({
@@ -1826,17 +2325,17 @@ export class AwsDomainApi {
   /**
    * Vérifie si un sous-domaine est disponible via AWS Route 53 Domains   _app/controllers/aws_domain_controller.ts_ - **checkSubDomainAvailability**
    * @summary Vérifie la disponibilité d\'un sous-domaine (checkSubDomainAvailability)
-   * @param {CheckSubDomainAvailabilityValidator} [checkSubDomainAvailabilityValidator]
+   * @param {CheckSubDomainAvailabilityPayload} [checkSubDomainAvailabilityPayload]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AwsDomainApi
    */
   public static async checkSubDomainAvailability(
-    checkSubDomainAvailabilityValidator?: CheckSubDomainAvailabilityValidator,
+    checkSubDomainAvailabilityPayload?: CheckSubDomainAvailabilityPayload,
     options?: RawAxiosRequestConfig,
   ): Promise<AxiosResponse<AwsDomainResponse, any>> {
     const localVarAxiosArgs = await AwsDomainApiAxiosParamCreator().checkSubDomainAvailability(
-      checkSubDomainAvailabilityValidator,
+      checkSubDomainAvailabilityPayload,
       options,
     )
     return globalAxios.request<AwsDomainResponse, any>({
@@ -1855,12 +2354,12 @@ export const ClientApiAxiosParamCreator = function (configuration?: Configuratio
     /**
      * Returns **201** (Created) as **application/json**   _app/controllers/client_controller.ts_ - **createNewApplication**
      * @summary Créer une nouvelle application (createNewApplication)
-     * @param {CreateNewApplicationValidator} [createNewApplicationValidator]
+     * @param {CreateNewApplicationPayload} [createNewApplicationPayload]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createNewApplication: async (
-      createNewApplicationValidator?: CreateNewApplicationValidator,
+      createNewApplicationPayload?: CreateNewApplicationPayload,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/client/app/create`
@@ -1881,7 +2380,7 @@ export const ClientApiAxiosParamCreator = function (configuration?: Configuratio
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers }
       localVarRequestOptions.data = serializeDataIfNeeded(
-        createNewApplicationValidator,
+        createNewApplicationPayload,
         localVarRequestOptions,
         configuration,
       )
@@ -1904,16 +2403,16 @@ export const ClientApiFp = function (configuration?: Configuration) {
     /**
      * Returns **201** (Created) as **application/json**   _app/controllers/client_controller.ts_ - **createNewApplication**
      * @summary Créer une nouvelle application (createNewApplication)
-     * @param {CreateNewApplicationValidator} [createNewApplicationValidator]
+     * @param {CreateNewApplicationPayload} [createNewApplicationPayload]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createNewApplication(
-      createNewApplicationValidator?: CreateNewApplicationValidator,
+      createNewApplicationPayload?: CreateNewApplicationPayload,
       options?: RawAxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResultMessageResponse>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.createNewApplication(
-        createNewApplicationValidator,
+        createNewApplicationPayload,
         options,
       )
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0
@@ -1940,16 +2439,16 @@ export const ClientApiFactory = function (configuration?: Configuration, basePat
     /**
      * Returns **201** (Created) as **application/json**   _app/controllers/client_controller.ts_ - **createNewApplication**
      * @summary Créer une nouvelle application (createNewApplication)
-     * @param {CreateNewApplicationValidator} [createNewApplicationValidator]
+     * @param {CreateNewApplicationPayload} [createNewApplicationPayload]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createNewApplication(
-      createNewApplicationValidator?: CreateNewApplicationValidator,
+      createNewApplicationPayload?: CreateNewApplicationPayload,
       options?: RawAxiosRequestConfig,
     ): AxiosPromise<ResultMessageResponse> {
       return localVarFp
-        .createNewApplication(createNewApplicationValidator, options)
+        .createNewApplication(createNewApplicationPayload, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1965,17 +2464,17 @@ export class ClientApi {
   /**
    * Returns **201** (Created) as **application/json**   _app/controllers/client_controller.ts_ - **createNewApplication**
    * @summary Créer une nouvelle application (createNewApplication)
-   * @param {CreateNewApplicationValidator} [createNewApplicationValidator]
+   * @param {CreateNewApplicationPayload} [createNewApplicationPayload]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ClientApi
    */
   public static async createNewApplication(
-    createNewApplicationValidator?: CreateNewApplicationValidator,
+    createNewApplicationPayload?: CreateNewApplicationPayload,
     options?: RawAxiosRequestConfig,
   ): Promise<AxiosResponse<ResultMessageResponse, any>> {
     const localVarAxiosArgs = await ClientApiAxiosParamCreator().createNewApplication(
-      createNewApplicationValidator,
+      createNewApplicationPayload,
       options,
     )
     return globalAxios.request<ResultMessageResponse, any>({

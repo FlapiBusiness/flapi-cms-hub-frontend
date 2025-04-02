@@ -1,11 +1,15 @@
 <template>
-  <div class="grid min-h-screen w-full grid-cols-[auto,1fr] bg-gray-700">
+  <div class="grid min-h-screen w-full grid-cols-[auto,1fr] overflow-x-hidden">
     <FlapiSidebar
       :avatar="undefined"
       :items="items"
       :username="authenticatedUserFullName"
-      v-model:expand="flapiSidebarIsExpand"
+      :expand="flapiSidebarIsExpand"
+      @update:expand="updateFlapiSidebarIsExpand($event)"
     />
+    <div class="px-4">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -35,7 +39,7 @@ const items: FlapiSidebarItem[] = [
 ]
 
 /*  REFS */
-const flapiSidebarIsExpand: Ref<boolean> = ref(true)
+const flapiSidebarIsExpand: Ref<boolean> = ref(localStorage.getItem('flapiSidebarIsExpand') === 'true')
 
 /* COMPUTED */
 const authenticatedUser: ComputedRef<User | null> = computed(() => useAuthStore().authenticatedUser)
@@ -45,4 +49,14 @@ const authenticatedUserFullName: ComputedRef<string> = computed(() => {
   }
   return ''
 })
+
+/* METHODS */
+/**
+ * Update the sidebar expand state
+ * @param {boolean} value - The new value for the sidebar expand state
+ */
+const updateFlapiSidebarIsExpand: (value: boolean) => void = (value: boolean): void => {
+  flapiSidebarIsExpand.value = value
+  localStorage.setItem('flapiSidebarIsExpand', String(value))
+}
 </script>

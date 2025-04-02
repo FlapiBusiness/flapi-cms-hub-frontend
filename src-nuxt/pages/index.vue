@@ -17,7 +17,7 @@ const links: { text: string; to: string }[] = [
   { text: 'Dashboard Settings App', to: '/dashboard/settings/app' },
   { text: 'Admin Settings App', to: 'admin/settings/app' },
   { text: 'Dashboard Settings User', to: '/dashboard/settings/user' },
-  { text: 'Dashboard Setup App', to: '/dashboard/setup/app' },
+  { text: 'Dashboard Setup App', to: '/dashboard/setup/project' },
   { text: 'Signup', to: '/signup' },
   { text: 'Admin Users', to: '/admin/users' },
   { text: 'Dashboard Users invite', to: '/dashboard/users/invite' },

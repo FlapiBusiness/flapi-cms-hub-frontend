@@ -1,5 +1,5 @@
 <template>
-  <div class="flex min-h-screen items-center justify-center bg-gray-700">
+  <div class="flex h-full items-center justify-center">
     <FlapiSpinner variant="light" :size="64" />
   </div>
 </template>

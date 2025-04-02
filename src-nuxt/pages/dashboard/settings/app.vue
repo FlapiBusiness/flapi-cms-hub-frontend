@@ -5,7 +5,7 @@
       <FlapiCardDownloadPicture picture="https://picsum.photos/136/136" />
       <p class="text-2xl font-semibold text-light-400">Personnalisation de l'application</p>
       <FlapiFormCard @confirm="updatePayload(payload)">
-        <ProjectForm :payload="payload" @update:payload="payload = $event" :fields-is-required="false" />
+        <ProjectForm :project="payload" @update:payload="payload = $event" :fields-is-required="false" />
       </FlapiFormCard>
     </div>
   </div>

@@ -15,8 +15,17 @@
       id="prénom"
       label="Prénom"
       placeholder="Corentin"
+      class="col-span-2 md:col-span-1"
     />
-    <FlapiInput v-model:value="values.lastname" type="text" rules="required" id="nom" label="Nom" placeholder="Doe" />
+    <FlapiInput
+      v-model:value="values.lastname"
+      type="text"
+      rules="required"
+      id="nom"
+      label="Nom"
+      placeholder="Doe"
+      class="col-span-2 md:col-span-1"
+    />
     <FlapiInput
       v-model:value="values.email"
       type="email"
@@ -31,24 +40,33 @@
       type="password"
       rules="required|complex_password"
       id="password"
-      label="password"
+      label="Mot de passe"
+      class="col-span-2 md:col-span-1"
     />
     <FlapiInput
       v-model:value="values.password_confirmation"
       rules="required|confirmed:password"
       type="password"
       id="confirm_password"
-      label="confirm_password"
+      label="Confirmer le mot de passe"
+      class="col-span-2 md:col-span-1"
     />
 
     <slot />
 
-    <h6 class="flex h-full flex-wrap items-center justify-center gap-2 font-medium text-light-400">
+    <h6
+      class="col-span-2 flex h-full flex-wrap items-center justify-center gap-2 font-medium text-light-400 md:col-span-1"
+    >
       Vous avez déjà un compte ?
       <FlapiLink class="text-primary-light" link="signin">Se connecter</FlapiLink>
     </h6>
 
-    <FlapiButton :disabled="!meta.valid || buttonLoading" :load="buttonLoading" type="submit" class="px-0">
+    <FlapiButton
+      :disabled="!meta.valid || buttonLoading"
+      :load="buttonLoading"
+      type="submit"
+      class="col-span-2 px-0 md:col-span-1"
+    >
       <span class="font-semibold text-light-400">
         {{ buttonLoading ? 'Création de votre compte...' : 'Créer mon compte' }}
       </span>
