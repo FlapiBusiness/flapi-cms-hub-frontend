@@ -1,5 +1,5 @@
 <template>
-  <div class="grid min-h-screen w-full grid-cols-[auto,1fr] bg-gray-700">
+  <div class="grid min-h-screen w-full grid-cols-[auto,1fr]">
     <FlapiSidebar
       :avatar="undefined"
       :items="items"

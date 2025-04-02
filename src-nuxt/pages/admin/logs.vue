@@ -1,20 +1,98 @@
+<template>
+  <div class="px-8 py-8">
+    <div class="flex items-center justify-between gap-4">
+      <!-- Gauche : Breadcrumb -->
+      <div class="flex items-center gap-4">
+        <!-- Section Historique -->
+        <div class="flex items-center gap-2">
+          <FlapiIcon color="white" :height="24" mode="stroke" name="Home" viewBox="0 0 24 24" :width="24" />
+          <h3 class="text-xl font-semibold text-white">Historique</h3>
+        </div>
+
+        <!-- Séparateur -->
+        <span class="text-xl text-white">/</span>
+
+        <!-- Section Mon activité -->
+        <div class="flex items-center gap-2">
+          <FlapiIcon color="#BDB3FF" :height="24" mode="stroke" name="Users" viewBox="0 0 24 24" :width="24" />
+          <h3 class="text-xl font-semibold text-primary-300">Mon activité</h3>
+        </div>
+      </div>
+
+      <!-- Droite : Search bar -->
+      <div class="flex items-center pr-4">
+        <FlapiSearchBar placeholder="Rechercher (Ctrl + E)" title="Search" />
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="w-full">
+      <FlapiTable
+        :fields="applicationEventLogsFields"
+        :items="applicationEventLogs"
+        :load="!applicationEventLogsIsLoaded"
+        showSearchBar
+      >
+        <template #project.application_name="{ item }">
+          <div v-if="item.project" class="flex items-center gap-2">
+            <FlapiAvatar :name="item.project.application_name" :size="32" backgroundColor="#35424d" />
+            <span class="font-semibold">{{ item.project.application_name }}</span>
+          </div>
+          <div v-else>Aucun projet associé</div>
+        </template>
+
+        <template #action_type="{ item }">
+          <div class="flex items-center gap-2">
+            <FlapiLogActionBadge :actionType="item.action_type" />
+          </div>
+        </template>
+
+        <template #created_at="{ item }">
+          <span v-if="item.created_at" class="font-semibold">
+            {{ DateService.stringToDayMonthYearHour(item.created_at) }}
+          </span>
+        </template>
+
+        <template #user="{ item }">
+          <div v-if="item.user" class="flex items-center gap-2">
+            <FlapiAvatar :name="UserHelper.getFullName(item.user)" :size="32" backgroundColor="#35424d" />
+            <span class="font-semibold">{{ UserHelper.getFullName(item.user) }}</span>
+          </div>
+        </template>
+      </FlapiTable>
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
-const fields: Array<any> = [
+import { ref, onMounted } from 'vue'
+import type { Ref } from 'vue'
+import { ApplicationeventlogsApi } from '~~/src-core/api'
+import type { ApplicationEventLog } from '~~/src-core/api'
+import type { AxiosResponse } from 'axios'
+import { useApplicationEventLogStore } from '~/stores/applicationEventLogStore'
+import type { FlapiTableField } from '@flapi/cms-designsystem/core'
+import FlapiLogActionBadge from '~/components/ui/FlapiLogActionBadge.vue'
+import { DateService } from '~~/src-core/services/DateService'
+import { UserHelper } from '~~/src-core/helpers/UserHelper'
+
+// REFS
+const applicationEventLogsIsLoaded: Ref<boolean> = ref(false)
+const applicationEventLogsAlreadyLoaded: Ref<boolean> = ref(false)
+const applicationEventLogs: Ref<ApplicationEventLog[]> = ref(useApplicationEventLogStore().applicationEventLogs)
+
+const applicationEventLogsFields: FlapiTableField[] = [
   {
-    key: 'application_name',
-    label: 'Name Application',
+    key: 'project.application_name',
+    label: 'Nom du projet',
   },
   {
-    key: 'action',
+    key: 'action_type',
     label: 'Action',
   },
   {
-    key: 'collection',
-    label: 'Collection',
-  },
-  {
-    key: 'date',
-    label: 'Date',
+    key: 'created_at',
+    label: 'Date de création',
   },
   {
     key: 'user',
@@ -26,126 +104,17 @@ const fields: Array<any> = [
   },
 ]
 
-const items: Array<any> = [
-  {
-    application_name: 'Flapi',
-    action: {
-      backgroundColor: '#CCFFEB',
-      message: 'Ajout',
-    },
-    collection: 'Products',
-    date: '2024-12-19T10:30:00',
-    user: 'John Doe',
-    message: 'New product added to the catalog.',
-  },
-  {
-    application_name: 'Flapi',
-    action: {
-      backgroundColor: '#FFEECC',
-      message: 'Modification',
-    },
-    collection: 'Orders',
-    date: '2024-12-18T14:15:00',
-    user: 'Jane Smith',
-    message: 'Order #12345 updated with new shipping details.',
-  },
-  {
-    application_name: 'Flapi',
-    action: {
-      backgroundColor: '#FBD0D5',
-      message: 'Suppression',
-    },
-    collection: 'Customers',
-    date: '2024-12-17T09:00:00',
-    user: 'Alice Brown',
-    message: 'Customer account removed due to inactivity.',
-  },
-  {
-    application_name: 'Flapi',
-    action: {
-      backgroundColor: '#D6D0FB',
-      message: 'Changement de mot de passe',
-    },
-    collection: 'Categories',
-    date: '2024-12-16T11:45:00',
-    user: 'Bob Johnson',
-    message: 'New category "Electronics" created.',
-  },
-  {
-    application_name: 'Flapi',
-    action: {
-      backgroundColor: '#D6D0FB',
-      message: 'Inscription',
-    },
-    collection: 'Users',
-    date: '2024-12-15T16:20:00',
-    user: 'Eve Davis',
-    message: 'User permissions updated for admin access.',
-  },
-  {
-    application_name: 'Flapi',
-    action: {
-      backgroundColor: '#FFEECC',
-      message: 'Modification',
-    },
-    collection: 'Users',
-    date: '2024-12-15T16:20:00',
-    user: 'Eve Davis',
-    message: 'User permissions updated for admin access.',
-  },
-]
+// FETCH APPLICATION EVENT LOGS
+onMounted(async () => {
+  if (!applicationEventLogsAlreadyLoaded.value) {
+    applicationEventLogsIsLoaded.value = false
+    const applicationEventLogsResponse: AxiosResponse<ApplicationEventLog[], any> =
+      await ApplicationeventlogsApi.getAllApplicationEventLogs()
+    console.log('set applicationEventLogs', applicationEventLogsResponse.data)
+    useApplicationEventLogStore().setApplicationEventLogs(applicationEventLogsResponse.data)
+    applicationEventLogs.value = applicationEventLogsResponse.data
+  }
+  applicationEventLogsIsLoaded.value = true
+  applicationEventLogsAlreadyLoaded.value = true
+})
 </script>
-
-<template>
-  <div class="h-screen w-screen bg-gray-700">
-    <!-- Conteneur central -->
-    <div class="px-8 py-8">
-      <div class="flex items-center justify-between gap-4">
-        <!-- Gauche : Breadcrumb -->
-        <div class="flex items-center gap-4">
-          <!-- Section Historique -->
-          <div class="flex items-center gap-2">
-            <FlapiIcon color="white" :height="24" mode="stroke" name="Home" viewBox="0 0 24 24" :width="24" />
-            <h3 class="text-xl font-semibold text-white">Historique</h3>
-          </div>
-
-          <!-- Séparateur -->
-          <span class="text-xl text-white">/</span>
-
-          <!-- Section Mon activité -->
-          <div class="flex items-center gap-2">
-            <FlapiIcon color="#BDB3FF" :height="24" mode="stroke" name="Users" viewBox="0 0 24 24" :width="24" />
-            <h3 class="text-xl font-semibold text-primary-300">Mon activité</h3>
-          </div>
-        </div>
-
-        <!-- Droite : Search bar -->
-        <div class="flex items-center pr-4">
-          <FlapiSearchBar placeholder="Rechercher (Ctrl + E)" title="Search" />
-        </div>
-      </div>
-
-      <!-- Table -->
-      <div class="w-full">
-        <FlapiTable :fields="fields" :items="items" :load="false" showSearchBar>
-          <template #action="{ item }">
-            <div class="flex items-center gap-2">
-              <FlapiBadge :backgroundColor="item.action.backgroundColor">
-                {{ item.action.message }}
-              </FlapiBadge>
-            </div>
-          </template>
-
-          <template #user="{ item }">
-            <div class="flex items-center gap-2">
-              <FlapiAvatar :name="item.user.name" photo="/avatar-placeholder.png" :size="32" />
-              <span class="font-semibold">{{ item.user.name }}</span>
-            </div>
-          </template>
-        </FlapiTable>
-      </div>
-    </div>
-  </div>
-</template>
-
-<style scoped></style>

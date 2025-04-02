@@ -15,8 +15,17 @@
       id="prénom"
       label="Prénom"
       placeholder="Corentin"
+      class="col-span-2 md:col-span-1"
     />
-    <FlapiInput v-model:value="values.lastname" type="text" rules="required" id="nom" label="Nom" placeholder="Doe" />
+    <FlapiInput
+      v-model:value="values.lastname"
+      type="text"
+      rules="required"
+      id="nom"
+      label="Nom"
+      placeholder="Doe"
+      class="col-span-2 md:col-span-1"
+    />
     <FlapiInput
       v-model:value="values.email"
       type="email"
@@ -31,14 +40,16 @@
       type="password"
       rules="required|complex_password"
       id="password"
-      label="password"
+      label="Mot de passe"
+      class="col-span-2 md:col-span-1"
     />
     <FlapiInput
       v-model:value="values.password_confirmation"
       rules="required|confirmed:password"
       type="password"
       id="confirm_password"
-      label="confirm_password"
+      label="Confirmer le mot de passe"
+      class="col-span-2 md:col-span-1"
     />
 
     <slot />

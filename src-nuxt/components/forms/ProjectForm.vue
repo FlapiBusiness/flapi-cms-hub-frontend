@@ -1,36 +1,36 @@
 <template>
-  <div class="grid grid-cols-2 gap-3 p-4">
+  <div class="grid grid-cols-2 gap-3">
     <FlapiInput
-      :value="props.payload.customerName"
-      @update:value="(value) => emit('update:payload', { ...payload, customerName: value.toString() })"
+      :value="props.project.customerName"
+      @update:value="(value) => emit('update:project', { ...project, customerName: value.toString() })"
       label="Nom du client"
       placeholder="John Doe"
       :rules="fieldsIsRequired ? 'required' : ''"
     />
     <FlapiInput
-      :value="props.payload.projectName"
-      @update:value="(value) => emit('update:payload', { ...payload, projectName: value.toString() })"
+      :value="props.project.application_name"
+      @update:value="(value) => emit('update:project', { ...project, application_name: value.toString() })"
       label="Nom de l'application"
       placeholder="Enter the project name"
       :rules="fieldsIsRequired ? 'required' : ''"
     />
     <FlapiInput
-      :value="props.payload.subdomain"
-      @update:value="(value) => emit('update:payload', { ...payload, subdomain: value.toString() })"
+      :value="props.project.domain_name"
+      @update:value="(value) => emit('update:project', { ...project, domain_name: value.toString() })"
       label="Sous-domaine"
       placeholder="subdomain.example.com"
       :rules="fieldsIsRequired ? 'required' : ''"
     />
     <FlapiInput
-      :value="props.payload.shortDescriptionApp"
-      @update:value="(value) => emit('update:payload', { ...payload, shortDescriptionApp: value.toString() })"
+      :value="props.project.shortDescriptionApp"
+      @update:value="(value) => emit('update:project', { ...project, shortDescriptionApp: value.toString() })"
       label="Courte Description de l'application"
       placeholder="Application de gestion de projet"
       :rules="fieldsIsRequired ? 'required' : ''"
     />
     <FlapiInput
-      :value="props.payload.longDescriptionApp"
-      @update:value="(value) => emit('update:payload', { ...payload, longDescriptionApp: value.toString() })"
+      :value="props.project.longDescriptionApp"
+      @update:value="(value) => emit('update:project', { ...project, longDescriptionApp: value.toString() })"
       label="Description détaillé de l'application"
       placeholder="Longue Description de l'application"
       :rows="3"
@@ -38,8 +38,8 @@
     />
     <FlapiSelect
       :options="options"
-      :value="props.payload.categoryApp"
-      @update:value="(value: string) => emit('update:payload', { ...payload, categoryApp: value.toString() })"
+      :value="props.project.categoryApp"
+      @update:value="(value: string) => emit('update:project', { ...project, categoryApp: value.toString() })"
       label="Catégorie de l'application"
       :required="fieldsIsRequired"
     />
@@ -49,27 +49,12 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
 import type { PropType } from 'vue'
-
-/**
- * Application payload
- */
-type ApplicationPayload = {
-  customerName: string
-  projectName: string
-  subdomain: string
-  categoryApp: string
-  longDescriptionApp: string
-  shortDescriptionApp: string
-}
+import type { UpdateProjectPayload } from '~~/src-core/api'
 /**
  * Type definitions for the CreateProjectForm component props
- * @type {ProjectFormProps}
- * @property {string} customerName - The name of the customer
- * @property {string} projectName - The name of the project
- * @property {string} subdomain - The subdomain of the project
  */
 export type ProjectFormProps = {
-  payload: ApplicationPayload
+  project: UpdateProjectPayload
 }
 
 /**
@@ -81,16 +66,9 @@ export type SelectOption = {
 }
 
 const props: ProjectFormProps = defineProps({
-  payload: {
-    type: Object as PropType<ApplicationPayload>,
-    default: {
-      customerName: '',
-      projectName: '',
-      subdomain: '',
-      categoryApp: '',
-      longDescriptionApp: '',
-      shortDescriptionApp: '',
-    },
+  project: {
+    type: Object as PropType<UpdateProjectPayload>,
+    required: true,
   },
   fieldsIsRequired: {
     type: Boolean,
@@ -106,7 +84,7 @@ const options: SelectOption[] = [
 ]
 
 /*EMIT*/
-const emit: (event: 'update:payload', value: ApplicationPayload) => void = defineEmits<{
-  (event: 'update:payload', value: ApplicationPayload): void
+const emit: (event: 'update:project', project: UpdateProjectPayload) => void = defineEmits<{
+  (event: 'update:project', project: UpdateProjectPayload): void
 }>()
 </script>
