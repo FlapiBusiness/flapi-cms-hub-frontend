@@ -119,7 +119,7 @@ export const ApplicationEventLogActionTypeEnum = {
   Update: 'UPDATE',
   Delete: 'DELETE',
   Signin: 'SIGNIN',
-  Signout: 'LOGOUT',
+  Signout: 'SIGNOUT',
   Signup: 'SIGNUP',
   Invite: 'INVITE',
 } as const

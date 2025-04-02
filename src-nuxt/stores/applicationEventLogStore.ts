@@ -47,7 +47,7 @@ export const useApplicationEventLogStore: ReturnType<
        * @param {ApplicationEventLog} log - The new event log to add.
        */
       addApplicationEventLog(log: ApplicationEventLog): void {
-        this.applicationEventLogs.push(log)
+        this.applicationEventLogs.unshift(log)
       },
     },
   },

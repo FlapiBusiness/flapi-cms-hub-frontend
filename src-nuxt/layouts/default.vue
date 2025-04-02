@@ -1,21 +1,19 @@
 <template>
-  <div class="grid min-h-screen w-full grid-cols-[auto,1fr]">
+  <div class="grid min-h-screen w-full grid-cols-[auto,1fr] overflow-x-hidden">
     <FlapiSidebar
       :avatar="undefined"
       :items="items"
       :username="authenticatedUserFullName"
-      v-model:expand="flapiSidebarIsExpand"
+      :expand="flapiSidebarIsExpand"
+      @update:expand="updateFlapiSidebarIsExpand($event)"
     />
     <div class="px-4">
       <slot />
-      <FlapiButton @click="signOut">Déconnexion</FlapiButton>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useCookie, navigateTo } from 'nuxt/app'
-import type { CookieRef } from 'nuxt/app'
 import { ref, computed } from 'vue'
 import type { Ref, ComputedRef } from 'vue'
 import type { FlapiSidebarItem } from '@flapi/cms-designsystem/core'
@@ -41,7 +39,7 @@ const items: FlapiSidebarItem[] = [
 ]
 
 /*  REFS */
-const flapiSidebarIsExpand: Ref<boolean> = ref(true)
+const flapiSidebarIsExpand: Ref<boolean> = ref(localStorage.getItem('flapiSidebarIsExpand') === 'true')
 
 /* COMPUTED */
 const authenticatedUser: ComputedRef<User | null> = computed(() => useAuthStore().authenticatedUser)
@@ -54,15 +52,11 @@ const authenticatedUserFullName: ComputedRef<string> = computed(() => {
 
 /* METHODS */
 /**
- * Sign out the user
- * @returns {Promise<void>}
+ * Update the sidebar expand state
+ * @param {boolean} value - The new value for the sidebar expand state
  */
-const signOut: () => Promise<void> = async (): Promise<void> => {
-  const BASE_URL_KEYCLOAK_LOGIN: string = import.meta.env.VITE_BASE_URL_KEYCLOAK_LOGIN
-  // remove cookie authToken
-  const authTokenCookie: CookieRef<string | null> = useCookie('authToken')
-  authTokenCookie.value = null
-  // redirect to external login page (keycloak)
-  await navigateTo(BASE_URL_KEYCLOAK_LOGIN, { external: true })
+const updateFlapiSidebarIsExpand: (value: boolean) => void = (value: boolean): void => {
+  flapiSidebarIsExpand.value = value
+  localStorage.setItem('flapiSidebarIsExpand', String(value))
 }
 </script>

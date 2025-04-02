@@ -54,12 +54,19 @@
 
     <slot />
 
-    <h6 class="flex h-full flex-wrap items-center justify-center gap-2 font-medium text-light-400">
+    <h6
+      class="col-span-2 flex h-full flex-wrap items-center justify-center gap-2 font-medium text-light-400 md:col-span-1"
+    >
       Vous avez déjà un compte ?
       <FlapiLink class="text-primary-light" link="signin">Se connecter</FlapiLink>
     </h6>
 
-    <FlapiButton :disabled="!meta.valid || buttonLoading" :load="buttonLoading" type="submit" class="px-0">
+    <FlapiButton
+      :disabled="!meta.valid || buttonLoading"
+      :load="buttonLoading"
+      type="submit"
+      class="col-span-2 px-0 md:col-span-1"
+    >
       <span class="font-semibold text-light-400">
         {{ buttonLoading ? 'Création de votre compte...' : 'Créer mon compte' }}
       </span>
