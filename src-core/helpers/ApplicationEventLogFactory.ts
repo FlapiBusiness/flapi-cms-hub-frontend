@@ -41,15 +41,15 @@ export class ApplicationEventLogFactory {
       case ApplicationEventLogActionTypeEnum.Create:
         return '#CCFFEB' // menthe pastel (conservée)
       case ApplicationEventLogActionTypeEnum.Update:
-        return '#FFEECC' // orange clair (conservée)
+        return '#fff1d4' // orange clair (conservée)
       case ApplicationEventLogActionTypeEnum.Delete:
         return '#FBD0D5' // rose doux (conservée)
       case ApplicationEventLogActionTypeEnum.Signin:
-        return '#D0E1FF' // bleu lavande
+        return '#cfdefa' // bleu lavande
       case ApplicationEventLogActionTypeEnum.Signout:
         return '#FFD6E0' // rose framboise
       case ApplicationEventLogActionTypeEnum.Signup:
-        return '#E8FFB7' // vert anis
+        return '#edffc7' // vert anis
       case ApplicationEventLogActionTypeEnum.Invite:
         return '#D4F2FF' // bleu azur doux
       default:
