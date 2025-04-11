@@ -6,7 +6,7 @@
 import { defineProps, computed } from 'vue'
 import type { PropType, ComputedRef } from 'vue'
 import type { ApplicationEventLogActionTypeEnum } from '~~/src-core/api'
-import { ApplicationEventLogFactory } from '~~/src-core/helpers/ApplicationEventLogFactory'
+import { ApplicationEventLogHelper } from '~~/src-core/helpers/ApplicationEventLogHelper'
 
 // TYPES
 /**
@@ -27,10 +27,10 @@ const props: FlapiLogActionBadgeProps = defineProps({
 
 // COMPUTED
 const actionTypeLabel: ComputedRef<string> = computed(() =>
-  ApplicationEventLogFactory.getApplicationEventLogLabel(props.actionType),
+  ApplicationEventLogHelper.getApplicationEventLogLabel(props.actionType),
 )
 
 const actionTypeColor: ComputedRef<string> = computed(() =>
-  ApplicationEventLogFactory.getApplicationEventLogColor(props.actionType),
+  ApplicationEventLogHelper.getApplicationEventLogColor(props.actionType),
 )
 </script>

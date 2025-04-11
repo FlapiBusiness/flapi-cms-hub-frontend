@@ -4,7 +4,7 @@ import { ApplicationEventLogActionTypeEnum } from '~~/src-core/api'
  * Helper class for application event log
  * @class ApplicationEventLogHelper
  */
-export class ApplicationEventLogFactory {
+export class ApplicationEventLogHelper {
   /**
    * Get the label for the application event log action type
    * @param {ApplicationEventLogActionTypeEnum} applicationEventLog - The application event log action type

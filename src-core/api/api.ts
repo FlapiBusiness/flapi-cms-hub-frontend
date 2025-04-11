@@ -1050,13 +1050,13 @@ export interface User {
    * @type {string}
    * @memberof User
    */
-  keycloak_user_id?: string
+  keycloak_user_id: string
   /**
    *
    * @type {number}
    * @memberof User
    */
-  role_id?: number
+  role_id: number
   /**
    *
    * @type {UserRole}
@@ -1141,19 +1141,19 @@ export interface UserRole {
    * @type {number}
    * @memberof UserRole
    */
-  id?: number
+  id: number
   /**
    *
    * @type {string}
    * @memberof UserRole
    */
-  name?: string
+  name: UserRoleNameEnum
   /**
    *
    * @type {string}
    * @memberof UserRole
    */
-  created_at?: string
+  created_at: string
   /**
    *
    * @type {string}
@@ -1161,6 +1161,18 @@ export interface UserRole {
    */
   updated_at?: string
 }
+
+export const UserRoleNameEnum = {
+  SuperAdminFlapi: 'SUPER_ADMIN_FLAPI',
+  AdminClient: 'ADMIN_CLIENT',
+  AppManagerClient: 'APP_MANAGER_CLIENT',
+  MarketingClient: 'MARKETING_CLIENT',
+  SupportClient: 'SUPPORT_CLIENT',
+  CommercialClient: 'COMMERCIAL_CLIENT',
+} as const
+
+export type UserRoleNameEnum = (typeof UserRoleNameEnum)[keyof typeof UserRoleNameEnum]
+
 /**
  * UserSession (Model)
  * @export

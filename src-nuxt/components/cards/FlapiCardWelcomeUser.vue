@@ -1,60 +1,50 @@
 <template>
-  <div class="flex w-full flex-row rounded-lg border border-gray-300 bg-gray-500 p-4">
-    <img v-if="props.picture" :src="props.picture" alt="Card picture" class="h-24 w-24 rounded-lg" />
-    <FlapiIcon
-      v-else
-      style="stroke-width: 0"
-      name="Account"
-      class="inline-block align-middle"
-      :width="80"
-      :height="80"
-      viewBox="0 0 89 88"
-      color="#FFFFFF"
-    />
-    <div class="ml-8 flex flex-col items-start justify-center">
-      <h2 class="text-xl font-semibold text-light-400">Bienvenue, {{ props.firstName }} {{ props.lastName }}</h2>
-      <p class="mt-6 text-base font-semibold text-light-400">
-        {{ props.email }}
+  <div class="flex w-full flex-row gap-4 rounded-lg border border-gray-300 bg-gray-500 p-4">
+    <FlapiAvatar :name="userFullName" :size="60" backgroundColor="#35424d" />
+    <div class="flex flex-col items-start justify-center gap-2">
+      <h2 class="text-lg font-semibold text-light-400">Hey {{ userFullName }} !</h2>
+      <p class="text-sm font-medium text-light-400">
+        Bienvenue sur le projet <b>{{ project.application_name }}</b> !<br />
       </p>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from '@vue/runtime-core'
+import { defineProps, computed } from 'vue'
+import type { PropType, ComputedRef } from 'vue'
+import type { User, Project } from '~~/src-core/api'
+import { UserHelper } from '~~/src-core/helpers/UserHelper'
 
 /**
- * Type definitions for the Card component props
- * @type {CardProps}
- * @property {string} picture - The picture of the card
+ * Type definitions for the flapi card welcome component
+ * @type {FlapiCardWelcomeProps}
+ * @property {User} user - The user object
+ * @property {Project} project - The project object
  */
-export type CardProps = {
-  picture?: string
-  lastName: string
-  firstName: string
-  email: string
+export type FlapiCardWelcomeProps = {
+  user: User
+  project: Project
 }
 
+// PROPS
+const props: FlapiCardWelcomeProps = defineProps({
+  user: {
+    type: Object as PropType<User>,
+    required: true,
+  },
+  project: {
+    type: Object as PropType<Project>,
+    required: true,
+  },
+})
+
+// COMPUTED
 /**
- * Props
- * @param {string} picture - The picture of the card
+ * Computed property to get the first name of the user
+ * @returns {string} - The first name of the user
  */
-const props: CardProps = defineProps({
-  picture: {
-    type: String,
-    default: false,
-  },
-  lastName: {
-    type: String,
-    required: true,
-  },
-  firstName: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
+const userFullName: ComputedRef<string> = computed(() => {
+  return UserHelper.getFullName(props.user)
 })
 </script>

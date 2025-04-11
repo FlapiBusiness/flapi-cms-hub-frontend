@@ -5,6 +5,7 @@
       :items="items"
       :username="authenticatedUserFullName"
       :expand="flapiSidebarIsExpand"
+      :activePath="route.path"
       @update:expand="updateFlapiSidebarIsExpand($event)"
     />
     <div class="px-4">
@@ -19,22 +20,80 @@ import type { Ref, ComputedRef } from 'vue'
 import type { FlapiSidebarItem } from '@flapi/cms-designsystem/core'
 import type { User } from '~~/src-core/api'
 import { useAuthStore } from '~/stores/authStore'
+import type { RouteLocationNormalizedGeneric } from 'vue-router'
+import { useRoute } from 'vue-router'
 
+// HOOKS
+const route: RouteLocationNormalizedGeneric = useRoute()
+
+// DATAS
 const items: FlapiSidebarItem[] = [
   {
-    text: 'Dashboard',
+    text: 'Tableau de bord',
     icon: 'Home',
     to: '/dashboard',
   },
   {
-    text: 'Admin',
+    text: 'Admin Tableau de bord',
     icon: 'Home',
     to: '/admin',
   },
   {
+    text: 'Utilisateurs',
+    icon: 'User',
+    to: '/dashboard/users',
+    subItems: [
+      { text: 'Permissions', icon: 'Lock', to: '/dashboard/users/permissions' },
+      { text: 'Tous les utilisateurs', icon: 'Users', to: '/dashboard/users' },
+      { text: 'Administrateurs', icon: 'Shield', to: '/users/admins' },
+      { text: 'Managers', icon: 'BriefCase', to: '/users/managers' },
+      { text: 'Marketing', icon: 'BarChart', to: '/users/marketing' },
+      { text: 'Support', icon: 'Headphones', to: '/users/support' },
+      { text: 'Commerciaux', icon: 'ShoppingBag', to: '/users/commercial' },
+      { text: 'Sessions utilisateurs', icon: 'Activity', to: '/users/sessions' },
+    ],
+  },
+  {
+    text: 'Équipes',
+    icon: 'Users',
+    to: '/teams',
+  },
+  {
+    text: 'Applications',
+    icon: 'Grid',
+    to: '/applications',
+  },
+  {
     text: 'État santé applications',
-    icon: 'Home',
+    icon: 'Activity',
     to: '/apps-health-checks',
+  },
+  {
+    text: 'Historique',
+    icon: 'Clock',
+    to: '/history',
+    subItems: [
+      { text: "Tout l'historique", icon: 'List', to: '/history/all' },
+      { text: 'Mon activité', icon: 'Activity', to: '/history/me' },
+      { text: 'Authentification', icon: 'Login', to: '/history/auth' },
+      { text: 'Ajouts', icon: 'PlusCircle', to: '/history/create' },
+      { text: 'Modifications', icon: 'Edit', to: '/history/update' },
+      { text: 'Suppressions', icon: 'Trash2', to: '/history/delete' },
+    ],
+  },
+  {
+    text: 'Base de données',
+    icon: 'Database',
+    to: '/database',
+  },
+  {
+    text: 'Paramètres',
+    icon: 'Settings',
+    to: '/settings',
+    subItems: [
+      { text: 'Application', icon: 'Grid', to: '/settings/app' },
+      { text: 'Mon compte', icon: 'User', to: '/settings/account' },
+    ],
   },
 ]
 

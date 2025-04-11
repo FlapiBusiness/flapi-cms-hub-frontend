@@ -1,9 +1,9 @@
 <template>
   <div class="flex h-full min-h-screen flex-col bg-gray-700 p-8">
     <FlapiCardWelcomeUser
-      :firstName="authenticatedUser?.firstname || ''"
-      :lastName="authenticatedUser?.lastname || ''"
-      :email="authenticatedUser?.email || ''"
+      v-if="authenticatedUser && activeProject"
+      :user="authenticatedUser"
+      :project="activeProject"
     />
     <div class="grid gap-3 p-4">
       <FlapiLink v-for="(link, i) in links" :key="`link-${i}-${link.to}`" :link="link.to">
@@ -15,9 +15,12 @@
 <script lang="ts" setup>
 import FlapiCardWelcomeUser from '@/components/cards/FlapiCardWelcomeUser.vue'
 import { ref } from 'vue'
-import type { User } from '~~/src-core/api'
+import type { User, Project } from '~~/src-core/api'
+import { useAuthStore } from '~/stores/authStore'
+import { useProjectStore } from '~/stores/projectStore'
 
 const authenticatedUser: User | null = useAuthStore().authenticatedUser
+const activeProject: Project | null = useProjectStore().activeProject
 
 const incrementLoading: Ref<number> = ref(0)
 
