@@ -1,12 +1,12 @@
 <template>
   <div class="grid grid-cols-2 gap-3">
-    <FlapiInput
-      :value="props.project.customerName"
-      @update:value="(value) => emit('update:project', { ...project, customerName: value.toString() })"
-      label="Nom du client"
-      placeholder="John Doe"
-      :rules="fieldsIsRequired ? 'required' : ''"
-    />
+    <!--    <FlapiInput-->
+    <!--      :value="props.project.customerName"-->
+    <!--      @update:value="(value) => emit('update:project', { ...project, customerName: value.toString() })"-->
+    <!--      label="Nom du client"-->
+    <!--      placeholder="John Doe"-->
+    <!--      :rules="fieldsIsRequired ? 'required' : ''"-->
+    <!--    />-->
     <FlapiInput
       :value="props.project.application_name"
       @update:value="(value) => emit('update:project', { ...project, application_name: value.toString() })"
@@ -54,7 +54,12 @@ import type { UpdateProjectPayload } from '~~/src-core/api'
  * Type definitions for the CreateProjectForm component props
  */
 export type ProjectFormProps = {
-  project: UpdateProjectPayload
+  project: {
+    UpdateProjectPayload
+    shortDescriptionApp: string
+    longDescriptionApp: string
+    categoryApp: string
+  }
 }
 
 /**

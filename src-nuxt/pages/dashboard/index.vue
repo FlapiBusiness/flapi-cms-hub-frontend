@@ -28,5 +28,6 @@ const links: { text: string; to: string }[] = [
   { text: 'Dashboard Setup App', to: '/dashboard/setup/project' },
   { text: 'Dashboard Users invite', to: '/dashboard/users/invite' },
   { text: 'Dashboard Logs', to: '/dashboard/logs' },
+  { text: 'Dashboard Teams', to: '/teams' },
 ]
 </script>

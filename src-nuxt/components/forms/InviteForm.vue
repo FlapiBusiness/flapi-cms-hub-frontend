@@ -36,11 +36,15 @@
         :id="`role-${index + 1}`"
       />
 
-      <button v-if="showDeleteFlapiButtons" @click.prevent="removeEmail(index)">
-        <span class="flex items-center justify-center gap-2 rounded-md bg-red p-2">
-          <FlapiIcon name="trash" class="inline-block align-middle" width="12" height="12" />
-        </span>
-      </button>
+      <FlapiButton
+        backgroundColor="#f9566e"
+        backgroundHoverColor="#e82020"
+        size="md"
+        v-if="showDeleteFlapiButtons"
+        @click.prevent="removeEmail(index)"
+      >
+        <FlapiIcon color="#fff" :height="24" mode="stroke" name="Trash" viewBox="0 0 24 24" :width="24" />
+      </FlapiButton>
     </div>
 
     <!-- <FlapiButton class="gap-2" @click.prevent="addEmail" startIcon="plus" variant="dashed"> Ajouter Plus </FlapiButton> -->
