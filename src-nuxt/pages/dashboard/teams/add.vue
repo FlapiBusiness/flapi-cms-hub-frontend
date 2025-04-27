@@ -4,7 +4,7 @@
       <p class="text-2xl font-semibold text-light-400">Création d'une équipe</p>
       <!--      @confirm="createApp"-->
       <FlapiFormCard @confirm="createTeam">
-        <NewTeamForm :team="payloadTeam" @update:team="payloadTeam = $event" />
+        <NewTeamForm :team="team" @update:team="team = $event" />
       </FlapiFormCard>
     </div>
   </div>
