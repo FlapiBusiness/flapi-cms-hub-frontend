@@ -29,121 +29,47 @@
 
       <!-- Table -->
       <div class="w-full">
-        <FlapiTable :fields="fields" :items="items" :load="false" showSearchBar>
-          <template #action="{ item }">
-            <div class="flex items-center gap-2">
-              <FlapiBadge :backgroundColor="item.action.backgroundColor">
-                {{ item.action.message }}
-              </FlapiBadge>
-            </div>
-          </template>
-
-          <template #user="{ item }">
-            <div class="flex items-center gap-2">
-              <FlapiAvatar :name="item.user.name" photo="/avatar-placeholder.png" :size="32" />
-              <span class="font-semibold">{{ item.user.name }}</span>
-            </div>
-          </template>
-        </FlapiTable>
+        <ApplicationEventLogsView :load="!applicationEventLogsIsLoaded" :applicationEventLogs="applicationEventLogs" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const fields: Array<any> = [
-  {
-    key: 'application_name',
-    label: 'Name Application',
-  },
-  {
-    key: 'action',
-    label: 'Action',
-  },
-  {
-    key: 'collection',
-    label: 'Collection',
-  },
-  {
-    key: 'date',
-    label: 'Date',
-  },
-  {
-    key: 'user',
-    label: 'Utilisateur',
-  },
-  {
-    key: 'message',
-    label: 'Message',
-  },
-]
+import { ref, onMounted } from 'vue'
+import type { Ref } from 'vue'
+import { ApplicationeventlogsApi } from '~~/src-core/api'
+import type { ApplicationEventLog } from '~~/src-core/api'
+import type { AxiosResponse } from 'axios'
+import { useAuthStore } from '~/stores/authStore'
+import { useUserApplicationEventLogStore } from '~/stores/userApplicationEventLogStore'
+import ApplicationEventLogsView from '~/components/views/ApplicationEventLogsView.vue'
 
-const items: Array<any> = [
-  {
-    application_name: 'Flapi',
-    action: {
-      backgroundColor: '#CCFFEB',
-      message: 'Ajout',
-    },
-    collection: 'Products',
-    date: '2024-12-19T10:30:00',
-    user: 'John Doe',
-    message: 'New product added to the catalog.',
-  },
-  {
-    application_name: 'Flapi',
-    action: {
-      backgroundColor: '#FFEECC',
-      message: 'Modification',
-    },
-    collection: 'Orders',
-    date: '2024-12-18T14:15:00',
-    user: 'Jane Smith',
-    message: 'Order #12345 updated with new shipping details.',
-  },
-  {
-    application_name: 'Flapi',
-    action: {
-      backgroundColor: '#FBD0D5',
-      message: 'Suppression',
-    },
-    collection: 'Customers',
-    date: '2024-12-17T09:00:00',
-    user: 'Alice Brown',
-    message: 'Customer account removed due to inactivity.',
-  },
-  {
-    application_name: 'Flapi',
-    action: {
-      backgroundColor: '#D6D0FB',
-      message: 'Changement de mot de passe',
-    },
-    collection: 'Categories',
-    date: '2024-12-16T11:45:00',
-    user: 'Bob Johnson',
-    message: 'New category "Electronics" created.',
-  },
-  {
-    application_name: 'Flapi',
-    action: {
-      backgroundColor: '#D6D0FB',
-      message: 'Inscription',
-    },
-    collection: 'Users',
-    date: '2024-12-15T16:20:00',
-    user: 'Eve Davis',
-    message: 'User permissions updated for admin access.',
-  },
-  {
-    application_name: 'Flapi',
-    action: {
-      backgroundColor: '#FFEECC',
-      message: 'Modification',
-    },
-    collection: 'Users',
-    date: '2024-12-15T16:20:00',
-    user: 'Eve Davis',
-    message: 'User permissions updated for admin access.',
-  },
-]
+// REFS
+const applicationEventLogsIsLoaded: Ref<boolean> = ref(false)
+const applicationEventLogsAlreadyLoaded: Ref<boolean> = ref(false)
+let applicationEventLogs: Ref<ApplicationEventLog[]> = ref(useApplicationEventLogStore().applicationEventLogs)
+const userId: number | undefined = useAuthStore().$state.authenticatedUser?.id
+
+// FETCH APPLICATION EVENT LOGS FOR THE USER
+onMounted(async () => {
+  if (!applicationEventLogsAlreadyLoaded.value) {
+    applicationEventLogsIsLoaded.value = false
+
+    if (!userId) {
+      console.error('User ID is not defined')
+      return
+    }
+
+    const applicationEventLogsResponse: AxiosResponse<ApplicationEventLog[], any> =
+      await ApplicationeventlogsApi.getApplicationEventLogsByUserId(userId)
+
+    console.log('set userApplicationEventLogs', applicationEventLogsResponse.data)
+    useUserApplicationEventLogStore().setUserApplicationEventLogs(applicationEventLogsResponse.data)
+    applicationEventLogs.value = applicationEventLogsResponse.data
+  }
+
+  applicationEventLogsIsLoaded.value = true
+  applicationEventLogsAlreadyLoaded.value = true
+})
 </script>

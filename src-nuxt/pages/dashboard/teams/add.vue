@@ -12,32 +12,31 @@
 <script lang="ts" setup>
 import FlapiFormCard from '~/components/cards/FlapiFormCard.vue'
 import NewTeamForm from '~/components/forms/NewTeamForm.vue'
-import { type Project, type Team, TeamsApi, type User } from '~~/src-core/api'
-
-// import { ClientApi } from '~~/src-core/api'
-// import { ProjectsApi } from '~~/src-core/api'
-// import type { CreateProjectPayload } from '~~/src-core/api'
+import { TeamsApi } from '~~/src-core/api'
+import type { Team } from '~~/src-core/api'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
-
-// STORE
+import { DateTime } from 'luxon'
 
 // REFS
-// const buttonLoading: Ref<boolean> = ref(false)
-const payloadTeam: Ref<Team> = ref({
+const team: Ref<Team> = ref({
+  id: -1,
   name: '',
   description: '',
-  owner_id: '',
-  users: [] as User[],
-  projects: [] as Project[],
+  owner_id: -1,
+  created_at: DateTime.now().toISO(),
+  updated_at: DateTime.now().toISO(),
 })
 
-// // METHODS
+//  METHODS
 /**
  * Create a team
  * @returns {Promise<void>}
  */
 const createTeam: () => Promise<void> = async (): Promise<void> => {
-  await TeamsApi.create(payloadTeam.value)
+  await TeamsApi.create({
+    name: team.value.name,
+    description: team.value.description,
+  })
 }
 </script>

@@ -11,6 +11,7 @@
         v-for="team in teams"
         :key="team.id"
         :name="team.name"
+        :teamId="team.id"
         :description="team.description"
         @click="selectTeam(team.id)"
       />
@@ -18,22 +19,31 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
+import type { Ref } from 'vue'
 import FlapiTeamCard from '~/components/cards/FlapiTeamCard.vue'
 import { useRouter } from 'vue-router'
 import type { Router } from 'vue-router'
-import { TeamsApi, type User } from '~~/src-core/api'
-import type { Team } from '~~/src-core/api'
+import { TeamsApi } from '~~/src-core/api'
+import type { Team, User } from '~~/src-core/api'
 import type { AxiosResponse } from 'axios'
 import { useAuthStore } from '~/stores/authStore'
 
+/* HOOKS */
 const router: Router = useRouter()
+/* STORE */
 const authenticatedUser: User | null = useAuthStore().authenticatedUser
-const teams: Team[] = ref<Team[]>([])
+/* REFS */
+const teams: Ref<Team[]> = ref([])
 
+/* LIFECYCLE */
 onMounted(async () => {
-  const teamsResponse: AxiosResponse<Team[], any> = await TeamsApi.getTeamsByUserId(authenticatedUser?.id)
-  teams.value = teamsResponse.data
+  if (authenticatedUser) {
+    const teamsResponse: AxiosResponse<Team[], any> = await TeamsApi.getTeamsByUserId(authenticatedUser.id)
+    teams.value = teamsResponse.data
+  } else {
+    console.error('User is null')
+  }
 })
 
 // METHODS

@@ -1,10 +1,14 @@
 <template>
-  <div class="flex h-full min-h-screen flex-col bg-gray-700 p-8">
+  <div class="mt-12 flex h-full min-h-screen flex-col gap-12 bg-gray-700 p-8">
     <FlapiCardWelcomeUser
       v-if="authenticatedUser && activeProject"
       :user="authenticatedUser"
       :project="activeProject"
     />
+
+    <FlapiProjectSetupCard :statusMessage="'Initial Deployment in progress'" :progress="50" />
+    <FlapiProjectLiveDeploymentCard v-if="activeProject" :applicationUrl="'https://example.com'" :isOnline="true" />
+
     <div class="grid gap-3 p-4">
       <FlapiLink v-for="(link, i) in links" :key="`link-${i}-${link.to}`" :link="link.to">
         {{ link.text }}
@@ -17,6 +21,8 @@ import FlapiCardWelcomeUser from '@/components/cards/FlapiCardWelcomeUser.vue'
 import type { User, Project } from '~~/src-core/api'
 import { useAuthStore } from '~/stores/authStore'
 import { useProjectStore } from '~/stores/projectStore'
+import FlapiProjectSetupCard from '~/components/cards/FlapiProjectSetupCard.vue'
+import FlapiProjectLiveDeploymentCard from '~/components/cards/FlapiProjectLiveDeploymentCard.vue'
 
 const authenticatedUser: User | null = useAuthStore().authenticatedUser
 const activeProject: Project | null = useProjectStore().activeProject

@@ -4,9 +4,8 @@
       <p class="text-2xl font-semibold text-light-400">Photo de l'applications</p>
       <FlapiCardDownloadPicture picture="https://picsum.photos/136/136" />
       <p class="text-2xl font-semibold text-light-400">Personnalisation de l'application</p>
-      <!--      @confirm="createApp"-->
       <FlapiFormCard>
-        <ProjectForm :payload="payload" @update:payload="payload = $event" :fields-is-required="true" />
+        <ProjectForm :project="payload" @update:payload="payload = $event" :fields-is-required="true" />
       </FlapiFormCard>
     </div>
   </div>
@@ -17,7 +16,7 @@ import ProjectForm from '~/components/forms/ProjectForm.vue'
 import FlapiFormCard from '~/components/cards/FlapiFormCard.vue'
 // import { ClientApi } from '~~/src-core/api'
 // import { ProjectsApi } from '~~/src-core/api'
-// import type { CreateProjectPayload } from '~~/src-core/api'
+import type { CreateProjectPayload } from '~~/src-core/api'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
 
@@ -25,12 +24,12 @@ import type { Ref } from 'vue'
 
 // REFS
 // const buttonLoading: Ref<boolean> = ref(false)
-const payload: Ref<any> = ref({
+const payload: Ref<CreateProjectPayload> = ref({
+  customer_user_id: -1,
+  customer_name: '',
   application_name: '',
-  user_id: -1,
-  categoryApp: '',
-  longDescriptionApp: '',
-  shortDescriptionApp: '',
+  domain_name: '',
+  project_setup_id: undefined,
 })
 
 // // METHODS

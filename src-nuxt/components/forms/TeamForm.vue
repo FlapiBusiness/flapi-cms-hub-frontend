@@ -56,38 +56,74 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, type Ref } from 'vue'
-import type { PropType } from 'vue'
-import type { Team } from '~~/src-core/api'
+import { defineProps } from 'vue'
 import { onMounted, ref } from 'vue'
 import { UserApi } from '~~/src-core/api'
-import type { User } from '~~/src-core/api'
-import type { AxiosResponse } from 'axios'
 import { SearchUtil } from '~~/src-core/utils/SearchUtil'
 import { UserHelper } from '~~/src-core/helpers/UserHelper'
 import FlapiUserRoleBadge from '~/components/ui/badges/FlapiUserRoleBadge.vue'
-import type { FlapiTableCardField } from '#/core'
 import FlapiProjectCard from '~/components/cards/FlapiProjectCard.vue'
 import type { Router } from 'vue-router'
+import type { FlapiTableCardField } from '#/core'
+import type { AxiosResponse } from 'axios'
+import type { PropType, Ref } from 'vue'
+import type { Team, User } from '~~/src-core/api'
 
+/* TYPES */
+/**
+ * Type definitions for the CreateProjectForm component props
+ * @type {TeamFormProps}
+ * @property {Team} team - The team object
+ * @property {boolean} fieldsIsRequired - Indicates if the fields are required
+ */
+export type TeamFormProps = {
+  team: Team
+  fieldsIsRequired: boolean
+}
+
+/* PROPS */
+const props: TeamFormProps = defineProps({
+  team: {
+    type: Object as PropType<Team>,
+    required: true,
+  },
+  fieldsIsRequired: {
+    type: Boolean,
+    default: true,
+  },
+})
+
+/* HOOKS */
 const router: Router = useRouter()
 
+/* REFS */
 const owner: Ref<User | null> = ref(null)
 const ownerName: Ref<string> = ref('')
 const ownerIsLoaded: Ref<boolean> = ref(false)
-
 const users: Ref<User[]> = ref([])
 const usersSearchTerm: Ref<string> = ref('')
 
+/* COMPUTED */
+/**
+ * Filter users based on the search term
+ * @returns {User[]} Filtered users
+ * @description This computed property filters the users based on the search term provided in the `usersSearchTerm` ref. It uses the `SearchUtil.filterBySearchText` method to filter the users based on specific fields.
+ */
+const usersFiltered: ComputedRef<User[]> = computed(() => {
+  return SearchUtil.filterBySearchText<User>(users.value, usersSearchTerm.value, ['firstname', 'lastname', 'email'])
+})
+
+/* LIFECYCLE */
 onMounted(async () => {
   ownerIsLoaded.value = false
   const userResponse: AxiosResponse<User> = await UserApi.getUserById(props.team.owner_id)
   owner.value = userResponse.data
   ownerName.value = owner.value.firstname + ' ' + owner.value.lastname
-  users.value = props.team.users
+  users.value = props.team.users || []
   ownerIsLoaded.value = true
 })
 
+/* DATAS */
 const usersFields: FlapiTableCardField[] = [
   {
     key: 'fullName',
@@ -118,56 +154,17 @@ const usersCardFields: FlapiTableCardField[] = [
   },
 ]
 
-/**
- * Type definitions for the CreateProjectForm component props
- */
-export type TeamFormProps = {
-  team: Team
-}
-
-/**
- * Type definitions for the SelectOption type
- */
-export type SelectOption = {
-  label: string
-  value: number | string
-}
-
-const props: TeamFormProps = defineProps({
-  team: {
-    type: Object as PropType<Team>,
-    required: true,
-  },
-  fieldsIsRequired: {
-    type: Boolean,
-    default: true,
-  },
-})
-
 /*EMIT*/
 const emit: (event: 'update:team', project: Team) => void = defineEmits<{
   (event: 'update:team', team: Team): void
 }>()
 
-/**
- * Filter users based on the search term
- * @returns {User[]} Filtered users
- * @description This computed property filters the users based on the search term provided in the `usersSearchTerm` ref. It uses the `SearchUtil.filterBySearchText` method to filter the users based on specific fields.
- */
-const usersFiltered: ComputedRef<User[]> = computed(() => {
-  return SearchUtil.filterBySearchText<User>(users.value, usersSearchTerm.value, ['firstname', 'lastname', 'email'])
-})
-
+/*METHODS*/
 /**
  * Redirect to invite member page
  * @returns {void}
  */
 const goToInvitePage: () => void = (): void => {
-  router.push({
-    path: '/dashboard/teams/invite',
-    params: {
-      teamId: props.team.id,
-    },
-  })
+  router.push(`/dashboard/teams/invite/${props.team.id}`)
 }
 </script>

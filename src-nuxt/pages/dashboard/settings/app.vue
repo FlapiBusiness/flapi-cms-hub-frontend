@@ -10,37 +10,25 @@
     </div>
   </div>
 </template>
-<script lang="ts"></script>
 <script lang="ts" setup>
 import FlapiFormCard from '~/components/cards/FlapiFormCard.vue'
 import FlapiCardDownloadPicture from '~/components/cards/FlapiCardDownloadPicture.vue'
 import ProjectForm from '~/components/forms/ProjectForm.vue'
-
-/**
- * Application payload
- */
-type ApplicationPayload = {
-  customerName: string
-  projectName: string
-  subdomain: string
-  categoryApp: string
-  longDescriptionApp: string
-  shortDescriptionApp: string
-}
-
-const payload: Ref<ApplicationPayload> = ref({
-  customerName: 'John Doe',
-  projectName: 'Flapi',
-  subdomain: 'flapi.example.com',
-  categoryApp: 'Project management',
-  longDescriptionApp: 'This is a project management application',
-  shortDescriptionApp: 'Project management app',
+import type { UpdateProjectPayload } from '~~/src-core/api'
+import { ref } from 'vue'
+import type { Ref } from 'vue'
+const payload: Ref<UpdateProjectPayload> = ref({
+  customer_user_id: -1,
+  customer_name: '',
+  application_name: '',
+  domain_name: '',
+  project_setup_id: undefined,
 })
 
 /**
  * Update the payload
  */
-const updatePayload: (payload: ApplicationPayload) => void = () => {
+const updatePayload: (payload: UpdateProjectPayload) => void = () => {
   console.log('updatePayload', payload.value)
 }
 </script>

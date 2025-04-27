@@ -21,23 +21,26 @@
 import { defineProps } from '@vue/runtime-core'
 import { TeamsApi } from '~~/src-core/api'
 
+/* TYPES */
 /**
- * Type definitions for the Card component props
- * @type {CardProps}
+ * Type definitions for the FlapiTeamCard component props
+ * @type {FlapiTeamCardProps}
  * @property {string} title - The title of the card
  * @property {string} picture - The picture of the card
  */
-export type CardProps = {
+export type FlapiTeamCardProps = {
   name: string
   description: string
+  teamId: number
 }
 
+/* PROPS */
 /**
  * Props
  * @param {string} name - The name of the team
  * @param {string} description - The description of the team
  */
-const props: CardProps = defineProps({
+const props: FlapiTeamCardProps = defineProps({
   name: {
     type: String,
     required: true,
@@ -46,14 +49,18 @@ const props: CardProps = defineProps({
     type: String,
     default: null,
   },
+  teamId: {
+    type: Number,
+    required: true,
+  },
 })
-
+/* METHODS */
 /**
  * Delete a project
  * @param {number} teamId - The team id
- * @returns {void}
+ * @returns {Promise<void>}
  */
-const deleteTeam: (teamId: number) => void = async (teamId: number): void => {
+const deleteTeam: (teamId: number) => Promise<void> = async (teamId: number): Promise<void> => {
   await TeamsApi.delete(teamId)
 }
 </script>
