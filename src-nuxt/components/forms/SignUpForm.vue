@@ -14,7 +14,7 @@
       rules="required"
       id="prénom"
       label="Prénom"
-      placeholder="Corentin"
+      placeholder="John"
       class="col-span-2 md:col-span-1"
     />
     <FlapiInput
