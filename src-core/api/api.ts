@@ -229,6 +229,19 @@ export interface CheckDomainAvailabilityPayload {
   domain: string
 }
 /**
+ * checkDomainAvailabilityValidator (Validator)
+ * @export
+ * @interface CheckDomainAvailabilityValidator
+ */
+export interface CheckDomainAvailabilityValidator {
+  /**
+   *
+   * @type {string}
+   * @memberof CheckDomainAvailabilityValidator
+   */
+  domain: string
+}
+/**
  * CheckSessionValidityResponse (Interface)
  * @export
  * @interface CheckSessionValidityResponse
@@ -257,6 +270,19 @@ export interface CheckSubDomainAvailabilityPayload {
    *
    * @type {string}
    * @memberof CheckSubDomainAvailabilityPayload
+   */
+  subdomain: string
+}
+/**
+ * checkSubDomainAvailabilityValidator (Validator)
+ * @export
+ * @interface CheckSubDomainAvailabilityValidator
+ */
+export interface CheckSubDomainAvailabilityValidator {
+  /**
+   *
+   * @type {string}
+   * @memberof CheckSubDomainAvailabilityValidator
    */
   subdomain: string
 }
@@ -292,6 +318,37 @@ export interface CreateApplicationEventLogPayload {
   message: string
 }
 /**
+ * createApplicationEventLogValidator (Validator)
+ * @export
+ * @interface CreateApplicationEventLogValidator
+ */
+export interface CreateApplicationEventLogValidator {
+  /**
+   *
+   * @type {number}
+   * @memberof CreateApplicationEventLogValidator
+   */
+  user_id?: number
+  /**
+   *
+   * @type {number}
+   * @memberof CreateApplicationEventLogValidator
+   */
+  project_id?: number
+  /**
+   *
+   * @type {string}
+   * @memberof CreateApplicationEventLogValidator
+   */
+  action_type: string
+  /**
+   *
+   * @type {string}
+   * @memberof CreateApplicationEventLogValidator
+   */
+  message: string
+}
+/**
  * CreateDatabasePayload (Interface)
  * @export
  * @interface CreateDatabasePayload
@@ -305,49 +362,6 @@ export interface CreateDatabasePayload {
   name: string
 }
 /**
- * CreateNewApplicationPayload (Interface)
- * @export
- * @interface CreateNewApplicationPayload
- */
-export interface CreateNewApplicationPayload {
-  /**
-   *
-   * @type {string}
-   * @memberof CreateNewApplicationPayload
-   */
-  customerName: string
-  /**
-   *
-   * @type {string}
-   * @memberof CreateNewApplicationPayload
-   */
-  projectName: string
-  /**
-   *
-   * @type {string}
-   * @memberof CreateNewApplicationPayload
-   */
-  fullDomain: string
-  /**
-   *
-   * @type {string}
-   * @memberof CreateNewApplicationPayload
-   */
-  categoryApp: string
-  /**
-   *
-   * @type {string}
-   * @memberof CreateNewApplicationPayload
-   */
-  longDescriptionApp: string
-  /**
-   *
-   * @type {string}
-   * @memberof CreateNewApplicationPayload
-   */
-  shortDescriptionApp: string
-}
-/**
  * CreateProjectPayload (Interface)
  * @export
  * @interface CreateProjectPayload
@@ -355,16 +369,22 @@ export interface CreateNewApplicationPayload {
 export interface CreateProjectPayload {
   /**
    *
+   * @type {number}
+   * @memberof CreateProjectPayload
+   */
+  customer_user_id: number
+  /**
+   *
+   * @type {string}
+   * @memberof CreateProjectPayload
+   */
+  customer_name: string
+  /**
+   *
    * @type {string}
    * @memberof CreateProjectPayload
    */
   application_name: string
-  /**
-   *
-   * @type {number}
-   * @memberof CreateProjectPayload
-   */
-  user_id: number
   /**
    *
    * @type {string}
@@ -376,13 +396,38 @@ export interface CreateProjectPayload {
    * @type {number}
    * @memberof CreateProjectPayload
    */
-  file_id: number
+  project_setup_id?: number
+}
+/**
+ * CreateProjectSetupPayload (Interface)
+ * @export
+ * @interface CreateProjectSetupPayload
+ */
+export interface CreateProjectSetupPayload {
   /**
    *
    * @type {number}
-   * @memberof CreateProjectPayload
+   * @memberof CreateProjectSetupPayload
    */
-  database_id: number
+  project_id: number
+  /**
+   *
+   * @type {string}
+   * @memberof CreateProjectSetupPayload
+   */
+  step: string
+  /**
+   *
+   * @type {string}
+   * @memberof CreateProjectSetupPayload
+   */
+  status: string
+  /**
+   *
+   * @type {string}
+   * @memberof CreateProjectSetupPayload
+   */
+  message?: string
 }
 /**
  * CreateTeamPayload (Interface)
@@ -578,6 +623,25 @@ export interface LoginSuccessResponse {
   expiresAt: string
 }
 /**
+ * loginValidator (Validator)
+ * @export
+ * @interface LoginValidator
+ */
+export interface LoginValidator {
+  /**
+   *
+   * @type {string}
+   * @memberof LoginValidator
+   */
+  email: string
+  /**
+   *
+   * @type {string}
+   * @memberof LoginValidator
+   */
+  password: string
+}
+/**
  * MessageResponse (Interface)
  * @export
  * @interface MessageResponse
@@ -738,10 +802,22 @@ export interface Project {
   user_id: number
   /**
    *
+   * @type {number}
+   * @memberof Project
+   */
+  project_setup_id: number
+  /**
+   *
    * @type {User}
    * @memberof Project
    */
   user?: User
+  /**
+   *
+   * @type {ProjectSetup}
+   * @memberof Project
+   */
+  project_setup?: ProjectSetup
   /**
    *
    * @type {string}
@@ -797,6 +873,83 @@ export interface Project {
    */
   updated_at: string
 }
+/**
+ * ProjectSetup (Model)
+ * @export
+ * @interface ProjectSetup
+ */
+export interface ProjectSetup {
+  /**
+   *
+   * @type {number}
+   * @memberof ProjectSetup
+   */
+  id: number
+  /**
+   *
+   * @type {number}
+   * @memberof ProjectSetup
+   */
+  project_id: number
+  /**
+   *
+   * @type {string}
+   * @memberof ProjectSetup
+   */
+  step: ProjectSetupStepEnum
+  /**
+   *
+   * @type {string}
+   * @memberof ProjectSetup
+   */
+  status: ProjectSetupStatusEnum
+  /**
+   *
+   * @type {string}
+   * @memberof ProjectSetup
+   */
+  message?: string
+  /**
+   *
+   * @type {Project}
+   * @memberof ProjectSetup
+   */
+  project?: Project
+  /**
+   *
+   * @type {string}
+   * @memberof ProjectSetup
+   */
+  started_at: string
+  /**
+   *
+   * @type {string}
+   * @memberof ProjectSetup
+   */
+  ended_at?: string
+}
+
+export const ProjectSetupStepEnum = {
+  SetupStarted: 'SETUP_STARTED',
+  VerifySubdomains: 'VERIFY_SUBDOMAINS',
+  CreateSubdomains: 'CREATE_SUBDOMAINS',
+  CreateDatabase: 'CREATE_DATABASE',
+  CreateRepositories: 'CREATE_REPOSITORIES',
+  Deployment: 'DEPLOYMENT',
+  SetupDone: 'SETUP_DONE',
+  SetupFailed: 'SETUP_FAILED',
+} as const
+
+export type ProjectSetupStepEnum = (typeof ProjectSetupStepEnum)[keyof typeof ProjectSetupStepEnum]
+export const ProjectSetupStatusEnum = {
+  Pending: 'PENDING',
+  InProgress: 'IN_PROGRESS',
+  Completed: 'COMPLETED',
+  Failed: 'FAILED',
+} as const
+
+export type ProjectSetupStatusEnum = (typeof ProjectSetupStatusEnum)[keyof typeof ProjectSetupStatusEnum]
+
 /**
  * ResultMessageResponse (Interface)
  * @export
@@ -935,16 +1088,22 @@ export interface UpdateDatabasePayload {
 export interface UpdateProjectPayload {
   /**
    *
+   * @type {number}
+   * @memberof UpdateProjectPayload
+   */
+  customer_user_id?: number
+  /**
+   *
+   * @type {string}
+   * @memberof UpdateProjectPayload
+   */
+  customer_name?: string
+  /**
+   *
    * @type {string}
    * @memberof UpdateProjectPayload
    */
   application_name?: string
-  /**
-   *
-   * @type {number}
-   * @memberof UpdateProjectPayload
-   */
-  user_id?: number
   /**
    *
    * @type {string}
@@ -956,13 +1115,7 @@ export interface UpdateProjectPayload {
    * @type {number}
    * @memberof UpdateProjectPayload
    */
-  file_id?: number
-  /**
-   *
-   * @type {number}
-   * @memberof UpdateProjectPayload
-   */
-  database_id?: number
+  project_setup_id?: number
 }
 /**
  * UpdateTeamPayload (Interface)
@@ -2351,145 +2504,6 @@ export class AwsDomainApi {
       options,
     )
     return globalAxios.request<AwsDomainResponse, any>({
-      ...localVarAxiosArgs.options,
-      url: BASE_PATH + localVarAxiosArgs.url,
-    })
-  }
-}
-
-/**
- * ClientApi - axios parameter creator
- * @export
- */
-export const ClientApiAxiosParamCreator = function (configuration?: Configuration) {
-  return {
-    /**
-     * Returns **201** (Created) as **application/json**   _app/controllers/client_controller.ts_ - **createNewApplication**
-     * @summary Créer une nouvelle application (createNewApplication)
-     * @param {CreateNewApplicationPayload} [createNewApplicationPayload]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createNewApplication: async (
-      createNewApplicationPayload?: CreateNewApplicationPayload,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/client/app/create`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        createNewApplicationPayload,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-  }
-}
-
-/**
- * ClientApi - functional programming interface
- * @export
- */
-export const ClientApiFp = function (configuration?: Configuration) {
-  const localVarAxiosParamCreator = ClientApiAxiosParamCreator(configuration)
-  return {
-    /**
-     * Returns **201** (Created) as **application/json**   _app/controllers/client_controller.ts_ - **createNewApplication**
-     * @summary Créer une nouvelle application (createNewApplication)
-     * @param {CreateNewApplicationPayload} [createNewApplicationPayload]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async createNewApplication(
-      createNewApplicationPayload?: CreateNewApplicationPayload,
-      options?: RawAxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResultMessageResponse>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.createNewApplication(
-        createNewApplicationPayload,
-        options,
-      )
-      const localVarOperationServerIndex = configuration?.serverIndex ?? 0
-      const localVarOperationServerBasePath =
-        operationServerMap['ClientApi.createNewApplication']?.[localVarOperationServerIndex]?.url
-      return (axios, basePath) =>
-        createRequestFunction(
-          localVarAxiosArgs,
-          globalAxios,
-          BASE_PATH,
-          configuration,
-        )(axios, localVarOperationServerBasePath || basePath)
-    },
-  }
-}
-
-/**
- * ClientApi - factory interface
- * @export
- */
-export const ClientApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-  const localVarFp = ClientApiFp(configuration)
-  return {
-    /**
-     * Returns **201** (Created) as **application/json**   _app/controllers/client_controller.ts_ - **createNewApplication**
-     * @summary Créer une nouvelle application (createNewApplication)
-     * @param {CreateNewApplicationPayload} [createNewApplicationPayload]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createNewApplication(
-      createNewApplicationPayload?: CreateNewApplicationPayload,
-      options?: RawAxiosRequestConfig,
-    ): AxiosPromise<ResultMessageResponse> {
-      return localVarFp
-        .createNewApplication(createNewApplicationPayload, options)
-        .then((request) => request(axios, basePath))
-    },
-  }
-}
-
-/**
- * ClientApi - object-oriented interface
- * @export
- * @class ClientApi
- * @extends {BaseAPI}
- */
-export class ClientApi {
-  /**
-   * Returns **201** (Created) as **application/json**   _app/controllers/client_controller.ts_ - **createNewApplication**
-   * @summary Créer une nouvelle application (createNewApplication)
-   * @param {CreateNewApplicationPayload} [createNewApplicationPayload]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ClientApi
-   */
-  public static async createNewApplication(
-    createNewApplicationPayload?: CreateNewApplicationPayload,
-    options?: RawAxiosRequestConfig,
-  ): Promise<AxiosResponse<ResultMessageResponse, any>> {
-    const localVarAxiosArgs = await ClientApiAxiosParamCreator().createNewApplication(
-      createNewApplicationPayload,
-      options,
-    )
-    return globalAxios.request<ResultMessageResponse, any>({
       ...localVarAxiosArgs.options,
       url: BASE_PATH + localVarAxiosArgs.url,
     })
