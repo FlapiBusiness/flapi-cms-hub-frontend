@@ -5,7 +5,13 @@
     <div class="flex w-full flex-row items-center justify-between gap-8">
       <p class="text-base font-semibold text-light-400">{{ props.name }}</p>
       <p class="text-base text-light-400">{{ props.description }}</p>
-      <FlapiButton backgroundColor="#f9566e" backgroundHoverColor="#e82020" :disabled="false" size="md">
+      <FlapiButton
+        backgroundColor="#f9566e"
+        backgroundHoverColor="#e82020"
+        :disabled="false"
+        size="md"
+        @click="deleteTeam(props.teamId)"
+      >
         <FlapiIcon color="#fff" :height="24" mode="stroke" name="Trash" viewBox="0 0 24 24" :width="24" />
       </FlapiButton>
     </div>
@@ -13,6 +19,7 @@
 </template>
 <script lang="ts" setup>
 import { defineProps } from '@vue/runtime-core'
+import { TeamsApi } from '~~/src-core/api'
 
 /**
  * Type definitions for the Card component props
@@ -40,4 +47,13 @@ const props: CardProps = defineProps({
     default: null,
   },
 })
+
+/**
+ * Delete a project
+ * @param {number} teamId - The team id
+ * @returns {void}
+ */
+const deleteTeam: (teamId: number) => void = async (teamId: number): void => {
+  await TeamsApi.delete(teamId)
+}
 </script>

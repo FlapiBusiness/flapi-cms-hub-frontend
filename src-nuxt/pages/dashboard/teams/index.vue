@@ -2,7 +2,7 @@
   <div class="flex w-full flex-col items-center pt-6">
     <p class="mb-8 text-center text-4xl text-light-400">Choisissez votre équipe</p>
     <div class="w-full max-w-xs">
-      <FlapiButton class="w-full" type="submit" to="/teams/add">
+      <FlapiButton class="w-full" type="submit" to="/dashboard/teams/add">
         <p class="font-medium text-light-400">Nouvelle Equipe</p>
       </FlapiButton>
     </div>
@@ -42,8 +42,7 @@ onMounted(async () => {
  * @param {number} teamId - The team id
  * @returns {void}
  */
-const selectTeam: (projectId: number) => void = (teamId: number): void => {
-  //projectStore.setActiveProject(projectId)
-  router.push('/teams/' + teamId)
+const selectTeam: (teamId: number) => void = (teamId: number): void => {
+  router.push('/dashboard/teams/' + teamId)
 }
 </script>

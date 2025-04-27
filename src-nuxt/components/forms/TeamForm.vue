@@ -164,7 +164,7 @@ const usersFiltered: ComputedRef<User[]> = computed(() => {
  */
 const goToInvitePage: () => void = (): void => {
   router.push({
-    path: '/teams/invite',
+    path: '/dashboard/teams/invite',
     params: {
       teamId: props.team.id,
     },

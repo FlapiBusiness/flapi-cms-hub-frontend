@@ -56,16 +56,16 @@ const items: FlapiSidebarItem[] = [
   {
     text: 'Équipes',
     icon: 'Users',
-    to: '/teams',
+    to: '/dashboard/teams',
     subItems: [
-      { text: 'Créer une équipe', icon: 'PlusCircle', to: '/teams/add' },
-      { text: 'Inviter des utilisateurs', icon: 'UserPlus', to: '/teams/invite' },
+      { text: 'Créer une équipe', icon: 'PlusCircle', to: '/dashboard/teams/add' },
+      { text: 'Inviter des utilisateurs', icon: 'UserPlus', to: '/dashboard/teams/invite' },
     ],
   },
   {
     text: 'Applications',
     icon: 'Grid',
-    to: '/applications',
+    to: '/dashboard/projects',
   },
   {
     text: 'État santé applications',
