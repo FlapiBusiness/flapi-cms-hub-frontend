@@ -1,23 +1,25 @@
 <template>
-  <Form class="grid grid-cols-1 gap-6 md:grid-cols-2">
-    <FlapiInput
-      :value="props.user.lastname"
-      @update:value="(value) => emit('update:user', { ...user, lastname: value.toString() })"
-      label="Nom"
-      id="lastname"
-    />
+  <div class="grid grid-cols-2 gap-3">
     <FlapiInput
       :value="props.user.firstname"
       @update:value="(value) => emit('update:user', { ...user, firstname: value.toString() })"
       label="Prénom"
-      id="firstname"
+      id="prénom"
+      placeholder="John"
+    />
+    <FlapiInput
+      :value="props.user.lastname"
+      @update:value="(value) => emit('update:user', { ...user, lastname: value.toString() })"
+      label="Nom"
+      id="nom"
+      placeholder="Doe"
     />
     <FlapiInput
       :value="props.user.email"
       @update:value="(value) => emit('update:user', { ...user, email: value.toString() })"
       label="Email"
       id="email"
-      placeholder="john.doe@email.com"
+      placeholder="john.doe@flapi.org"
       class="col-span-2"
     />
     <FlapiInput
@@ -25,16 +27,16 @@
       :value="props.user.password"
       @update:value="(value) => emit('update:user', { ...user, password: value.toString() })"
       label="Mot de passe"
-      id="password"
+      id="mot de passe"
     />
     <FlapiInput
       type="password"
       :value="props.user.password_confirmation"
       @update:value="(value) => emit('update:user', { ...user, password_confirmation: value.toString() })"
       label="Confirmation mot de passe"
-      id="password_confirmation"
+      id="confirmation mot de passe"
     />
-  </Form>
+  </div>
 </template>
 
 <script lang="ts" setup>

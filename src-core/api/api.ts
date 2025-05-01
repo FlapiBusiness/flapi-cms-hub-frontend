@@ -399,6 +399,25 @@ export interface CreateProjectPayload {
   project_setup_id?: number
 }
 /**
+ * CreateProjectResponse (Interface)
+ * @export
+ * @interface CreateProjectResponse
+ */
+export interface CreateProjectResponse {
+  /**
+   *
+   * @type {string}
+   * @memberof CreateProjectResponse
+   */
+  message: string
+  /**
+   *
+   * @type {number}
+   * @memberof CreateProjectResponse
+   */
+  project_id: number
+}
+/**
  * CreateProjectSetupPayload (Interface)
  * @export
  * @interface CreateProjectSetupPayload
@@ -428,6 +447,43 @@ export interface CreateProjectSetupPayload {
    * @memberof CreateProjectSetupPayload
    */
   message?: string
+}
+/**
+ * createProjectValidator (Validator)
+ * @export
+ * @interface CreateProjectValidator
+ */
+export interface CreateProjectValidator {
+  /**
+   *
+   * @type {number}
+   * @memberof CreateProjectValidator
+   */
+  customer_user_id: number
+  /**
+   *
+   * @type {string}
+   * @memberof CreateProjectValidator
+   */
+  customer_name: string
+  /**
+   *
+   * @type {string}
+   * @memberof CreateProjectValidator
+   */
+  application_name: string
+  /**
+   *
+   * @type {string}
+   * @memberof CreateProjectValidator
+   */
+  domain_name: string
+  /**
+   *
+   * @type {number}
+   * @memberof CreateProjectValidator
+   */
+  project_setup_id?: number
 }
 /**
  * CreateTeamPayload (Interface)
@@ -951,6 +1007,19 @@ export const ProjectSetupStatusEnum = {
 export type ProjectSetupStatusEnum = (typeof ProjectSetupStatusEnum)[keyof typeof ProjectSetupStatusEnum]
 
 /**
+ * resendNewCodeValidator (Validator)
+ * @export
+ * @interface ResendNewCodeValidator
+ */
+export interface ResendNewCodeValidator {
+  /**
+   *
+   * @type {string}
+   * @memberof ResendNewCodeValidator
+   */
+  email: string
+}
+/**
  * ResultMessageResponse (Interface)
  * @export
  * @interface ResultMessageResponse
@@ -1003,6 +1072,43 @@ export interface SignUpPayload {
    *
    * @type {string}
    * @memberof SignUpPayload
+   */
+  password_confirmation: string
+}
+/**
+ * signUpValidator (Validator)
+ * @export
+ * @interface SignUpValidator
+ */
+export interface SignUpValidator {
+  /**
+   *
+   * @type {string}
+   * @memberof SignUpValidator
+   */
+  lastname: string
+  /**
+   *
+   * @type {string}
+   * @memberof SignUpValidator
+   */
+  firstname: string
+  /**
+   *
+   * @type {string}
+   * @memberof SignUpValidator
+   */
+  email: string
+  /**
+   *
+   * @type {string}
+   * @memberof SignUpValidator
+   */
+  password: string
+  /**
+   *
+   * @type {string}
+   * @memberof SignUpValidator
    */
   password_confirmation: string
 }
@@ -1118,6 +1224,43 @@ export interface UpdateProjectPayload {
   project_setup_id?: number
 }
 /**
+ * updateProjectValidator (Validator)
+ * @export
+ * @interface UpdateProjectValidator
+ */
+export interface UpdateProjectValidator {
+  /**
+   *
+   * @type {number}
+   * @memberof UpdateProjectValidator
+   */
+  customer_user_id?: number
+  /**
+   *
+   * @type {string}
+   * @memberof UpdateProjectValidator
+   */
+  customer_name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof UpdateProjectValidator
+   */
+  application_name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof UpdateProjectValidator
+   */
+  domain_name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof UpdateProjectValidator
+   */
+  project_setup_id?: number
+}
+/**
  * UpdateTeamPayload (Interface)
  * @export
  * @interface UpdateTeamPayload
@@ -1185,6 +1328,37 @@ export interface UpdateUserRolePayload {
    * @memberof UpdateUserRolePayload
    */
   role: string
+}
+/**
+ * UpdateUserValidator (Validator)
+ * @export
+ * @interface UpdateUserValidator
+ */
+export interface UpdateUserValidator {
+  /**
+   *
+   * @type {string}
+   * @memberof UpdateUserValidator
+   */
+  lastname?: string
+  /**
+   *
+   * @type {string}
+   * @memberof UpdateUserValidator
+   */
+  firstname?: string
+  /**
+   *
+   * @type {string}
+   * @memberof UpdateUserValidator
+   */
+  email?: string
+  /**
+   *
+   * @type {string}
+   * @memberof UpdateUserValidator
+   */
+  password?: string
 }
 /**
  * User (Model)
@@ -1442,6 +1616,25 @@ export interface ValidationErrorResponse {
    * @memberof ValidationErrorResponse
    */
   errors: ValidationError
+}
+/**
+ * verifyCodeValidator (Validator)
+ * @export
+ * @interface VerifyCodeValidator
+ */
+export interface VerifyCodeValidator {
+  /**
+   *
+   * @type {string}
+   * @memberof VerifyCodeValidator
+   */
+  email: string
+  /**
+   *
+   * @type {number}
+   * @memberof VerifyCodeValidator
+   */
+  code: number
 }
 
 /**
@@ -3413,7 +3606,7 @@ export const ProjectsApiFp = function (configuration?: Configuration) {
     async createProject(
       createProjectPayload?: CreateProjectPayload,
       options?: RawAxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateProjectResponse>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.createProject(createProjectPayload, options)
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0
       const localVarOperationServerBasePath =
@@ -3597,7 +3790,7 @@ export const ProjectsApiFactory = function (configuration?: Configuration, baseP
     createProject(
       createProjectPayload?: CreateProjectPayload,
       options?: RawAxiosRequestConfig,
-    ): AxiosPromise<MessageResponse> {
+    ): AxiosPromise<CreateProjectResponse> {
       return localVarFp.createProject(createProjectPayload, options).then((request) => request(axios, basePath))
     },
     /**
@@ -3707,9 +3900,9 @@ export class ProjectsApi {
   public static async createProject(
     createProjectPayload?: CreateProjectPayload,
     options?: RawAxiosRequestConfig,
-  ): Promise<AxiosResponse<MessageResponse, any>> {
+  ): Promise<AxiosResponse<CreateProjectResponse, any>> {
     const localVarAxiosArgs = await ProjectsApiAxiosParamCreator().createProject(createProjectPayload, options)
-    return globalAxios.request<MessageResponse, any>({
+    return globalAxios.request<CreateProjectResponse, any>({
       ...localVarAxiosArgs.options,
       url: BASE_PATH + localVarAxiosArgs.url,
     })

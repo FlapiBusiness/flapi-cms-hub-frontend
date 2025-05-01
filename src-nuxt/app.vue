@@ -10,9 +10,19 @@
 import { onMounted } from 'vue'
 import { useApplicationEventLogsListener } from '~/composables/useApplicationEventLogsListener'
 import { useUserApplicationEventLogsListener } from '~/composables/useUserApplicationEventLogsListener'
+import { useProjectSetupListener } from '~/composables/useProjectSetupListener'
 
 onMounted(async () => {
-  await useApplicationEventLogsListener()
-  await useUserApplicationEventLogsListener()
+  const results = await Promise.allSettled([
+    useProjectSetupListener(),
+    useApplicationEventLogsListener(),
+    useUserApplicationEventLogsListener(),
+  ])
+
+  results.forEach((result, index) => {
+    if (result.status === 'rejected') {
+      console.error(`❌ Listener ${index} a échoué:`, result.reason)
+    }
+  })
 })
 </script>

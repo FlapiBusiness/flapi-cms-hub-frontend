@@ -34,23 +34,18 @@ const items: FlapiSidebarItem[] = [
     to: '/dashboard',
   },
   {
-    text: 'Admin Tableau de bord',
-    icon: 'Home',
-    to: '/admin',
-  },
-  {
     text: 'Utilisateurs',
     icon: 'User',
     to: '/dashboard/users',
     subItems: [
       { text: 'Permissions', icon: 'Lock', to: '/dashboard/users/permissions' },
       { text: 'Tous les utilisateurs', icon: 'Users', to: '/dashboard/users' },
-      { text: 'Administrateurs', icon: 'Shield', to: '/users/admins' },
-      { text: 'Managers', icon: 'BriefCase', to: '/users/managers' },
-      { text: 'Marketing', icon: 'BarChart', to: '/users/marketing' },
-      { text: 'Support', icon: 'Headphones', to: '/users/support' },
-      { text: 'Commerciaux', icon: 'ShoppingBag', to: '/users/commercial' },
-      { text: 'Sessions utilisateurs', icon: 'Activity', to: '/users/sessions' },
+      { text: 'Administrateurs', icon: 'Shield', to: '/dashboard/users/admins' },
+      { text: 'Managers', icon: 'BriefCase', to: '/dashboard/users/managers' },
+      { text: 'Marketing', icon: 'BarChart', to: '/dashboard/users/marketing' },
+      { text: 'Support', icon: 'Headphones', to: '/dashboard/users/support' },
+      { text: 'Commerciaux', icon: 'ShoppingBag', to: '/dashboard/users/commercial' },
+      { text: 'Sessions utilisateurs', icon: 'Activity', to: '/dashboard/users/sessions' },
     ],
   },
   {
@@ -66,6 +61,10 @@ const items: FlapiSidebarItem[] = [
     text: 'Applications',
     icon: 'Grid',
     to: '/dashboard/projects',
+    subItems: [
+      { text: 'Liste des applications', icon: 'List', to: '/dashboard/projects' },
+      { text: 'Créer une application', icon: 'PlusCircle', to: '/dashboard/setup/project' },
+    ],
   },
   {
     text: 'État santé applications',
@@ -75,14 +74,14 @@ const items: FlapiSidebarItem[] = [
   {
     text: 'Historique',
     icon: 'Clock',
-    to: '/history',
+    to: '/dashboard/history',
     subItems: [
-      { text: "Tout l'historique", icon: 'List', to: '/history/all' },
-      { text: 'Mon activité', icon: 'Activity', to: '/history/me' },
-      { text: 'Authentification', icon: 'Login', to: '/history/auth' },
-      { text: 'Ajouts', icon: 'PlusCircle', to: '/history/create' },
-      { text: 'Modifications', icon: 'Edit', to: '/history/update' },
-      { text: 'Suppressions', icon: 'Trash2', to: '/history/delete' },
+      { text: "Tout l'historique", icon: 'List', to: '/dashboard/history' },
+      { text: 'Mon activité', icon: 'Activity', to: '/dashboard/history/me' },
+      { text: 'Authentification', icon: 'Login', to: '/dashboard/history/auth' },
+      { text: 'Ajouts', icon: 'PlusCircle', to: '/dashboard/history/create' },
+      { text: 'Modifications', icon: 'Edit', to: '/dashboard/history/update' },
+      { text: 'Suppressions', icon: 'Trash2', to: '/dashboard/history/delete' },
     ],
   },
   {
@@ -93,10 +92,9 @@ const items: FlapiSidebarItem[] = [
   {
     text: 'Paramètres',
     icon: 'Settings',
-    to: '/settings',
     subItems: [
-      { text: 'Application', icon: 'Grid', to: '/settings/app' },
-      { text: 'Mon compte', icon: 'User', to: '/settings/account' },
+      { text: 'Application', icon: 'Grid', to: '/dashboard/settings/app' },
+      { text: 'Mon compte', icon: 'User', to: '/dashboard/settings/account' },
     ],
   },
 ]

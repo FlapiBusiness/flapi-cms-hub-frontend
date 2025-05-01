@@ -2,20 +2,11 @@
   <div class="w-full overflow-x-hidden px-4 py-8">
     <div class="flex items-center justify-between gap-4">
       <!-- Gauche : Breadcrumb -->
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3">
         <!-- Section Historique -->
         <div class="flex items-center gap-2">
-          <FlapiIcon color="white" :height="24" mode="stroke" name="Home" viewBox="0 0 24 24" :width="24" />
-          <h3 class="text-xl font-semibold text-white">Historique</h3>
-        </div>
-
-        <!-- Séparateur -->
-        <span class="text-xl text-white">/</span>
-
-        <!-- Section Mon activité -->
-        <div class="flex items-center gap-2">
-          <FlapiIcon color="#BDB3FF" :height="24" mode="stroke" name="Users" viewBox="0 0 24 24" :width="24" />
-          <h3 class="text-xl font-semibold text-primary-300">Mon activité</h3>
+          <FlapiIcon color="white" :height="20" mode="stroke" name="Clock" viewBox="0 0 24 24" :width="20" />
+          <h3 class="text-lg font-semibold text-white">Historique</h3>
         </div>
       </div>
     </div>

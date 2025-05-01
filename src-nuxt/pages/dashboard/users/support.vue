@@ -8,6 +8,15 @@
           <FlapiIcon color="white" :height="20" mode="stroke" name="Users" viewBox="0 0 24 24" :width="20" />
           <h3 class="text-lg font-semibold text-white">Utilisateurs</h3>
         </div>
+
+        <!-- Séparateur -->
+        <span class="text-lg text-white">/</span>
+
+        <!-- Section Mon activité -->
+        <div class="flex items-center gap-2">
+          <FlapiIcon color="#BDB3FF" :height="20" mode="stroke" name="Headphones" viewBox="0 0 24 24" :width="20" />
+          <h3 class="text-lg font-semibold text-primary-300">Support</h3>
+        </div>
       </div>
     </div>
 
@@ -59,7 +68,9 @@ const usersIsLoaded: Ref<boolean> = ref(false)
 // API CALL
 const usersResponse: AxiosResponse<User[], any> = await UsersApi.getAllUsers()
 usersIsLoaded.value = true
-const users: User[] = usersResponse.data
+const users: User[] = usersResponse.data.filter((user: User) => {
+  return user.role.name === 'SUPPORT_CLIENT'
+})
 
 // DATAS
 const usersFields: FlapiTableField[] = [

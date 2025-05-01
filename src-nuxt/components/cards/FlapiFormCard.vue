@@ -5,7 +5,7 @@
     @submit="emit('confirm')"
   >
     <div class="h-full w-full p-4">
-      <slot></slot>
+      <slot />
     </div>
     <div class="flex w-full flex-row justify-end gap-4 rounded-b-lg bg-gray-300 p-4">
       <FlapiButton size="sm" :disabled="!meta.valid || props.buttonLoading" :load="props.buttonLoading" type="submit">
@@ -20,9 +20,9 @@
 <script lang="ts"></script>
 
 <script lang="ts" setup>
-import { Form } from 'vee-validate'
 import { defineProps } from 'vue'
 import type { PropType } from 'vue'
+import { Form } from 'vee-validate'
 
 /**
  * Type definitions for the FlapiFormCard component props

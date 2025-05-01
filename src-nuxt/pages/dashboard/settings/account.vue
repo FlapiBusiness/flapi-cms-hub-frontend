@@ -1,17 +1,15 @@
 <template>
   <div class="flex min-h-screen flex-col items-center justify-center bg-gray-700">
     <div v-if="authenticatedUser" class="grid w-full max-w-7xl gap-4">
-      <p class="text-2xl font-semibold text-light-400">Photo de profil</p>
+      <p class="text-xl font-semibold text-light-400">Photo de profil</p>
       <FlapiCardDownloadPicture picture="https://picsum.photos/136/136" />
-      <p class="text-2xl font-semibold text-light-400">
+      <p class="text-xl font-semibold text-light-400">
         Informations de <span class="text-primary-400">{{ authenticatedUser.firstname }}</span>
         <span>&nbsp;</span>
         <span class="text-primary-400">{{ authenticatedUser.lastname }}</span>
       </p>
       <FlapiFormCard :buttonLoading="buttonLoading" @confirm="updateUser">
-        <div class="h-96">
-          <UpdateUserForm :user="userPayload" @update:user="userPayload = $event" />
-        </div>
+        <UpdateUserForm :user="userPayload" @update:user="userPayload = $event" />
       </FlapiFormCard>
     </div>
   </div>
