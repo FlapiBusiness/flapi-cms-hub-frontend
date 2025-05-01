@@ -22,7 +22,10 @@
 
     <!-- Table -->
     <div class="w-full max-w-[93vw]">
-      <ApplicationEventLogsView :load="!applicationEventLogsIsLoaded" :applicationEventLogs="applicationEventLogs" />
+      <ApplicationEventLogsView
+        :load="!applicationEventLogsIsLoaded"
+        :applicationEventLogs="applicationEventLogsFiltered"
+      />
     </div>
   </div>
 </template>
@@ -33,6 +36,7 @@ import type { Ref } from 'vue'
 import { ApplicationeventlogsApi } from '~~/src-core/api'
 import type { ApplicationEventLog } from '~~/src-core/api'
 import type { AxiosResponse } from 'axios'
+import { ApplicationEventLogActionTypeEnum } from '~~/src-core/api'
 import { useApplicationEventLogStore } from '~/stores/applicationEventLogStore'
 import ApplicationEventLogsView from '~/components/views/ApplicationEventLogsView.vue'
 
@@ -57,4 +61,13 @@ onMounted(async () => {
   applicationEventLogsAlreadyLoaded.value = true
   console.log('isLoaded', applicationEventLogsIsLoaded.value)
 })
+const applicationEventLogsFiltered: ApplicationEventLog[] = applicationEventLogs.value.filter(
+  (applicationEventLog: ApplicationEventLog) => {
+    return (
+      applicationEventLog.action_type === ApplicationEventLogActionTypeEnum.Signin ||
+      applicationEventLog.action_type === ApplicationEventLogActionTypeEnum.Signout.toString() ||
+      applicationEventLog.action_type === ApplicationEventLogActionTypeEnum.Signup
+    )
+  },
+)
 </script>
