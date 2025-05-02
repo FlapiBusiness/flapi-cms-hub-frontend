@@ -11,7 +11,13 @@
 
     <div class="flex flex-row gap-4 text-sm text-light-700">
       <span class="font-semibold text-white">Statut :</span> <b class="ml-0.5">{{ props.statusMessage }}</b>
-      <FlapiBadge v-if="props.statusType" backgroundColor="#D6D0FB" :close="false" size="md" textColor="#2711BB">
+      <FlapiBadge
+        v-if="props.statusType"
+        :backgroundColor="badgeBackgroundColor"
+        :close="false"
+        size="md"
+        :textColor="badgeTextColor"
+      >
         {{ props.statusType }}
       </FlapiBadge>
     </div>
@@ -19,9 +25,9 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from 'vue'
-import type { PropType } from 'vue'
-import type { ProjectSetupStatusEnum } from '~~/src-core/api'
+import { defineProps, computed } from 'vue'
+import type { PropType, ComputedRef } from 'vue'
+import { ProjectSetupStatusEnum } from '~~/src-core/api'
 /**
  * Type definitions for the FlapiProjectSetupCard component props
  * @type {FlapiProjectSetupCardProps}
@@ -31,7 +37,7 @@ import type { ProjectSetupStatusEnum } from '~~/src-core/api'
 export type FlapiProjectSetupCardProps = {
   progress: number
   statusMessage: string
-  statusType?: string
+  statusType?: ProjectSetupStatusEnum
 }
 
 /**
@@ -51,5 +57,13 @@ const props: FlapiProjectSetupCardProps = defineProps({
   statusType: {
     type: String as PropType<ProjectSetupStatusEnum>,
   },
+})
+
+const badgeBackgroundColor: ComputedRef<string> = computed(() => {
+  return props.statusType === ProjectSetupStatusEnum.Completed ? '#CCFFEB' : '#FFEECC'
+})
+
+const badgeTextColor: ComputedRef<string> = computed(() => {
+  return props.statusType === ProjectSetupStatusEnum.Completed ? '#00CC7A' : '#CC8900'
 })
 </script>

@@ -14,7 +14,7 @@
     />
     <FlapiProjectLiveDeploymentCard
       v-if="activeProject && isProjectSetupDone"
-      :applicationUrl="activeProject.domain_name"
+      :applicationUrl="applicationUrl"
       :isOnline="true"
     />
   </div>
@@ -74,5 +74,9 @@ const progress: ComputedRef<number> = computed(() => {
 
 const isProjectSetupDone: ComputedRef<boolean> = computed(() => {
   return activeSetup.value?.step === ProjectSetupStepEnum.SetupDone
+})
+
+const applicationUrl: ComputedRef<string> = computed(() => {
+  return `https://dev.${activeProject?.application_name.toLowerCase().replace(/ /g, '-')}.flapi.org`
 })
 </script>
