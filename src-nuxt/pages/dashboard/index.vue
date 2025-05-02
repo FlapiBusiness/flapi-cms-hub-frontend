@@ -39,7 +39,7 @@ const activeProject: Project | null = useProjectStore().activeProject
 /**
  * Get the initial progress based on the current step
  * @param {ProjectSetupStepEnum} step - The current step of the project setup
- * @returns {number} - The initial progress value
+ * @returns {number} - The initial progress values
  */
 const getProgressFromStep: (step: ProjectSetupStepEnum) => number = (step: ProjectSetupStepEnum): number => {
   switch (step) {
