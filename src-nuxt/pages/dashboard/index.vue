@@ -77,6 +77,6 @@ const isProjectSetupDone: ComputedRef<boolean> = computed(() => {
 })
 
 const applicationUrl: ComputedRef<string> = computed(() => {
-  return `https://dev.${activeProject?.application_name.toLowerCase().replace(/ /g, '-')}.flapi.org`
+  return `https://dev.${activeProject?.application_name.toLowerCase().replace(/ /g, '-')}.flapi.org/dashboard`
 })
 </script>

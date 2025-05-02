@@ -18,7 +18,7 @@ export default defineNuxtRouteMiddleware(async (to: RouteLocationNormalized, _fr
   /**
    * Routes à exclure de la vérification de connexion
    */
-  const excludeRoutes: string[] = ['/signup', '/callback']
+  const excludeRoutes: string[] = ['/signin', '/signup', '/callback']
   if (excludeRoutes.includes(to.path)) {
     return
   }

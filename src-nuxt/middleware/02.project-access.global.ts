@@ -10,7 +10,7 @@ export default defineNuxtRouteMiddleware(async (to: RouteLocationNormalized, _fr
   const BASE_URL_KEYCLOAK_LOGIN: string = import.meta.env.VITE_BASE_URL_KEYCLOAK_LOGIN
   const setupProjectRoute: string = '/dashboard/setup/project'
   const projectsRoute: string = '/dashboard/projects'
-  const excludeRoutes: string[] = ['/signup', '/callback', setupProjectRoute, projectsRoute]
+  const excludeRoutes: string[] = ['/signin', '/signup', '/callback', setupProjectRoute, projectsRoute]
 
   if (excludeRoutes.includes(to.path)) {
     return
