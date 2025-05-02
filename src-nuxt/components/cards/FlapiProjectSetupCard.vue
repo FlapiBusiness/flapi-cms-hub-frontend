@@ -9,14 +9,19 @@
       <FlapiProgressBar :progress="props.progress" :height="6" class="mb-4" />
     </div>
 
-    <div class="text-sm text-light-700">
+    <div class="flex flex-row gap-4 text-sm text-light-700">
       <span class="font-semibold text-white">Statut :</span> <b class="ml-0.5">{{ props.statusMessage }}</b>
+      <FlapiBadge v-if="props.statusType" backgroundColor="#D6D0FB" :close="false" size="md" textColor="#2711BB">
+        {{ props.statusType }}
+      </FlapiBadge>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { defineProps } from 'vue'
+import type { PropType } from 'vue'
+import type { ProjectSetupStatusEnum } from '~~/src-core/api'
 /**
  * Type definitions for the FlapiProjectSetupCard component props
  * @type {FlapiProjectSetupCardProps}
@@ -26,6 +31,7 @@ import { defineProps } from 'vue'
 export type FlapiProjectSetupCardProps = {
   progress: number
   statusMessage: string
+  statusType?: string
 }
 
 /**
@@ -41,6 +47,9 @@ const props: FlapiProjectSetupCardProps = defineProps({
   statusMessage: {
     type: String,
     required: true,
+  },
+  statusType: {
+    type: String as PropType<ProjectSetupStatusEnum>,
   },
 })
 </script>

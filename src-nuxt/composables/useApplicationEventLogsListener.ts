@@ -1,6 +1,6 @@
 import NatsClientService from '~~/src-core/services/NatsClientService'
 import { useApplicationEventLogStore } from '~/stores/applicationEventLogStore'
-import type { NatsMessage } from '~~/src-core/services/NatsClientService'
+import type { ApplicationEventLog } from '~~/src-core/api'
 
 /**
  * Initializes the Nats List for the application event logs
@@ -9,8 +9,8 @@ import type { NatsMessage } from '~~/src-core/services/NatsClientService'
  */
 export const useApplicationEventLogsListener: () => Promise<void> = async (): Promise<void> => {
   console.log('🔊 Initialization of the NATS List for Application Logs...')
-  await NatsClientService.subscribe('new-logs', (natsMessage: NatsMessage) => {
+  await NatsClientService.subscribe('new-logs', (natsMessage: Record<string, unknown>): void => {
     console.log('📥 Nouveau log reçu via NATS:', natsMessage)
-    useApplicationEventLogStore().addApplicationEventLog(natsMessage.payload)
+    useApplicationEventLogStore().addApplicationEventLog(natsMessage.payload as ApplicationEventLog)
   })
 }

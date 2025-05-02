@@ -13,11 +13,9 @@ import { useUserApplicationEventLogsListener } from '~/composables/useUserApplic
 import { useProjectSetupListener } from '~/composables/useProjectSetupListener'
 
 onMounted(async () => {
-  const results = await Promise.allSettled([
-    useProjectSetupListener(),
-    useApplicationEventLogsListener(),
-    useUserApplicationEventLogsListener(),
-  ])
+  useProjectSetupListener()
+
+  const results = await Promise.allSettled([useApplicationEventLogsListener(), useUserApplicationEventLogsListener()])
 
   results.forEach((result, index) => {
     if (result.status === 'rejected') {

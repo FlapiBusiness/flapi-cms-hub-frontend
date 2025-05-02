@@ -1,23 +1,5 @@
 import { connect, JSONCodec } from 'nats.ws'
 import type { NatsConnection, Subscription, Codec } from 'nats.ws'
-import type { ApplicationEventLog } from '~~/src-core/api'
-
-/**
- * Types of messages that can be received
- * @enum {string}
- */
-export type NatsEventType = 'CREATE' | 'UPDATE' | 'DELETE' | 'SIGNIN' | 'LOGOUT' | 'SIGNUP' | 'INVITE'
-
-/**
- * Complete structure of the message received via Nats
- * @interface NatsMessage
- * @property {NatsEventType} type - Type of the event
- * @property {ApplicationEventLog} payload - Payload of the event
- */
-export interface NatsMessage {
-  type: NatsEventType
-  payload: ApplicationEventLog
-}
 
 /**
  * Class Nats Côté Nuxt.js to listen to messages in real time
@@ -39,16 +21,16 @@ export default class NatsClientService {
   /**
    * Listen to a subject and trigger a callback with each message
    * @param {string} subject - Subject to listen
-   * @param {(message: NatsMessage) => void} callback - Function called to each message received
+   * @param {(message: Record<string, unknown>) => void} callback - Function called to each message received
    */
-  public static async subscribe(subject: string, callback: (message: NatsMessage) => void): Promise<void> {
+  public static async subscribe(subject: string, callback: (message: Record<string, unknown>) => void): Promise<void> {
     const conn: NatsConnection = await this.connect()
     const sub: Subscription = conn.subscribe(subject)
-    const codec: Codec<NatsMessage> = JSONCodec<NatsMessage>()
+    const codec: Codec<Record<string, unknown>> = JSONCodec<Record<string, unknown>>()
 
     for await (const msg of sub) {
       try {
-        const decoded: NatsMessage = codec.decode(msg.data)
+        const decoded: Record<string, unknown> = codec.decode(msg.data)
         callback(decoded)
       } catch (error) {
         console.error('Error when decoding the Nats message:', error)

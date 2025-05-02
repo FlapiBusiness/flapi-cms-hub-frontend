@@ -8,8 +8,9 @@
 
     <FlapiProjectSetupCard
       v-if="!isProjectSetupDone"
-      :statusMessage="activeProjectSetup.statusMessage"
-      :progress="activeProjectSetup.progress"
+      :statusMessage="activeSetup?.message || 'Déploiement de votre application en cours...'"
+      :progress="progress"
+      :statusType="activeSetup?.status || ProjectSetupStatusEnum.InProgress"
     />
     <FlapiProjectLiveDeploymentCard
       v-if="activeProject && isProjectSetupDone"
@@ -19,31 +20,59 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
-import type { ComputedRef, Ref } from 'vue'
+import { computed } from 'vue'
+import type { ComputedRef } from 'vue'
 import FlapiCardWelcomeUser from '@/components/cards/FlapiCardWelcomeUser.vue'
 import type { User, Project } from '~~/src-core/api'
-import { ProjectSetupStepEnum } from '~~/src-core/api'
+import { ProjectSetupStatusEnum, ProjectSetupStepEnum } from '~~/src-core/api'
 import { useAuthStore } from '~/stores/authStore'
 import { useProjectStore } from '~/stores/projectStore'
+import { useProjectSetupStore } from '~/stores/projectSetupStore'
 import FlapiProjectSetupCard from '~/components/cards/FlapiProjectSetupCard.vue'
 import FlapiProjectLiveDeploymentCard from '~/components/cards/FlapiProjectLiveDeploymentCard.vue'
+import type { ProjectSetup } from '~~/src-core/api'
 
 // STORES
 const authenticatedUser: User | null = useAuthStore().authenticatedUser
 const activeProject: Project | null = useProjectStore().activeProject
 
-// COMPUTED
-const isProjectSetupDone: ComputedRef<boolean> = computed(() => {
-  return activeProject?.project_setup?.step === ProjectSetupStepEnum.SetupDone
+/**
+ * Get the initial progress based on the current step
+ * @param {ProjectSetupStepEnum} step - The current step of the project setup
+ * @returns {number} - The initial progress value
+ */
+const getProgressFromStep: (step: ProjectSetupStepEnum) => number = (step: ProjectSetupStepEnum): number => {
+  switch (step) {
+    case ProjectSetupStepEnum.SetupStarted:
+      return 5
+    case ProjectSetupStepEnum.VerifySubdomains:
+      return 15
+    case ProjectSetupStepEnum.CreateSubdomains:
+      return 25
+    case ProjectSetupStepEnum.CreateDatabase:
+      return 35
+    case ProjectSetupStepEnum.CreateRepositories:
+      return 60
+    case ProjectSetupStepEnum.Deployment:
+      return 80
+    case ProjectSetupStepEnum.SetupDone:
+      return 100
+    case ProjectSetupStepEnum.SetupFailed:
+      return 0
+    default:
+      return 0
+  }
+}
+
+const activeSetup: ComputedRef<ProjectSetup | null> = computed(() =>
+  activeProject?.project_setup ? activeProject.project_setup : useProjectSetupStore().activeProjectSetup,
+)
+
+const progress: ComputedRef<number> = computed(() => {
+  return activeSetup.value ? getProgressFromStep(activeSetup.value.step) : 0
 })
 
-// REFS
-const activeProjectSetup: Ref<{
-  statusMessage: string
-  progress: number
-}> = ref({
-  statusMessage: activeProject?.project_setup?.message || 'Initial Deployment in progress',
-  progress: 50,
+const isProjectSetupDone: ComputedRef<boolean> = computed(() => {
+  return activeSetup.value?.step === ProjectSetupStepEnum.SetupDone
 })
 </script>
