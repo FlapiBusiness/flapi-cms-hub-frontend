@@ -1,21 +1,28 @@
-import { connect, JSONCodec } from 'nats.ws'
+import { connect, JSONCodec, nkeyAuthenticator } from 'nats.ws'
 import type { NatsConnection, Subscription, Codec } from 'nats.ws'
 
 /**
  * Class Nats Côté Nuxt.js to listen to messages in real time
  */
 export default class NatsClientService {
-  private static connection: NatsConnection | null = null
+  private static nc: NatsConnection | null = null
 
   /**
    * Connection to the Nats server
    * @returns {Promise<NatsConnection>} - Nats connection
    */
   public static async connect(): Promise<NatsConnection> {
-    if (this.connection) return this.connection
+    if (this.nc) return this.nc
 
-    this.connection = await connect({ servers: 'ws://localhost:9222' })
-    return this.connection
+    const serversOptions: string[] = [import.meta.env.VITE_NATS_SERVER]
+    const seed: Uint8Array = new TextEncoder().encode(import.meta.env.VITE_NATS_NKEY_PRIVATE_KEY)
+
+    this.nc = await connect({
+      servers: serversOptions,
+      authenticator: nkeyAuthenticator(seed),
+    })
+
+    return this.nc
   }
 
   /**
