@@ -22,6 +22,8 @@ export default class NatsClientService {
       authenticator: nkeyAuthenticator(seed),
     })
 
+    console.info('Connected to Nats server:', import.meta.env.VITE_NATS_SERVER)
+
     return this.nc
   }
 
