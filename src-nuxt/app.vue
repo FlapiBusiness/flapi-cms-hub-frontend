@@ -25,7 +25,7 @@ onMounted(async () => {
 })
 
 // Umami - Analytic users
-if (import.meta.env.VITE_NODE_ENV === 'development') {
+/*if (import.meta.env.VITE_NODE_ENV === 'development') {
   const script: HTMLScriptElement = document.createElement('script')
   script.src = 'https://umami.flapi.org/script.js'
   script.setAttribute('data-website-id', '1ce6bf45-2ee2-479d-adc4-637508d51d05')
@@ -43,5 +43,5 @@ if (import.meta.env.VITE_NODE_ENV === 'development') {
   script.setAttribute('data-website-id', 'b0c7f8d1-2e3f-4a5b-9c6d-7e8f9a0b1c2d')
   script.async = true
   document.body.appendChild(script)
-}
+}*/
 </script>
