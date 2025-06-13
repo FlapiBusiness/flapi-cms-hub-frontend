@@ -37,6 +37,7 @@ export const useProjectSetupStore: ReturnType<
      * @returns {void}
      */
     setActiveProjectSetup(activeProjectSetup: ProjectSetup | null): void {
+      console.log('set setActiveProjectSetup,', activeProjectSetup)
       if (activeProjectSetup === null) {
         this.removeActiveProjectSetup()
       } else {
