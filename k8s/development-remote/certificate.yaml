@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: dev-hub-flapi-frontend-cert
+  namespace: dev-hub-flapi-frontend
+spec:
+  secretName: dev-hub-flapi-frontend-tls
+  dnsNames:
+    - dev.hub.flapi.org
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer

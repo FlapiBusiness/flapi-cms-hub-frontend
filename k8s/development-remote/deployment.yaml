@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-hub-flapi-frontend-deployment
+  namespace: dev-hub-flapi-frontend
+  labels:
+    app: dev-hub-flapi-frontend
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: dev-hub-flapi-frontend
+  template:
+    metadata:
+      labels:
+        app: dev-hub-flapi-frontend
+    spec:
+      containers:
+        - name: dev-hub-flapi-frontend
+          image: corentin35/hub-flapi-frontend:develop-${TAG_VERSION}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: PORT
+              value: '80'
+          resources:
+            requests:
+              cpu: '300m'
+              memory: '400Mi'
+            limits:
+              cpu: '600m'
+              memory: '800Mi'
+      imagePullSecrets:
+        - name: regcred
