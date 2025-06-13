@@ -77,7 +77,7 @@
     "link-designsystem": "npm link @flapi/cms-designsystem"
   },
   "dependencies": {
-    "@flapi/cms-designsystem": "^1.4.0",
+    "@flapi/cms-designsystem": "^1.5.0",
     "@pinia/nuxt": "^0.11.1",
     "@tuyau/client": "^0.2.8",
     "@vee-validate/i18n": "^4.15.1",
