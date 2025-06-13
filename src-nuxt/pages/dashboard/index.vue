@@ -64,8 +64,8 @@ const getProgressFromStep: (step: ProjectSetupStepEnum) => number = (step: Proje
   }
 }
 
-const activeSetup: ComputedRef<ProjectSetup | null> = computed(() =>
-  activeProject?.project_setup ? activeProject.project_setup : useProjectSetupStore().activeProjectSetup,
+const activeSetup: ComputedRef<ProjectSetup | null> = computed(
+  () => useProjectSetupStore().activeProjectSetup || activeProject?.project_setup || null,
 )
 
 const progress: ComputedRef<number> = computed(() => {
