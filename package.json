@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "web:run:dev": "cross-env NUXT_HOST=0.0.0.0 nuxi dev --dotenv .env.development --no-clear --clipboard --port=1460",
+    "web:run:dev": "nuxi dev --dotenv .env.development --no-clear --clipboard --port=1460",
     "web:run:dev:desk": "nuxi dev --dotenv .env.development --no-clear --clipboard --port=1460",
     "web:run:dev-remote": "nuxi dev --dotenv .env.development-remote --no-clear --clipboard --port=1460",
     "web:run:staging": "cross-env NUXT_HOST=0.0.0.0 nuxi dev --dotenv .env.staging --no-clear --clipboard --port=1460",
