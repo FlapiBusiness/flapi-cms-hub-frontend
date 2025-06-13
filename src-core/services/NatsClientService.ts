@@ -1,4 +1,4 @@
-import type { NatsError } from 'nats'
+import type { NatsError } from 'nats.ws'
 import { connect, JSONCodec, nkeyAuthenticator } from 'nats.ws'
 import type { NatsConnection, Subscription, Codec } from 'nats.ws'
 
