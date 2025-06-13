@@ -1,3 +1,4 @@
+import type { NatsError } from 'nats'
 import { connect, JSONCodec, nkeyAuthenticator } from 'nats.ws'
 import type { NatsConnection, Subscription, Codec } from 'nats.ws'
 
@@ -18,16 +19,26 @@ export default class NatsClientService {
       const serversOptions: string[] = [import.meta.env.VITE_NATS_SERVER]
       const seed: Uint8Array = new TextEncoder().encode(import.meta.env.VITE_NATS_NKEY_PRIVATE_KEY)
 
+      console.info('Tentative de connexion à :', serversOptions)
+
       this.nc = await connect({
         servers: serversOptions,
         authenticator: nkeyAuthenticator(seed),
+        debug: true, // Active les logs détaillés de nats.ws
       })
 
-      console.info('Connected to Nats server:', import.meta.env.VITE_NATS_SERVER)
+      console.info('Connecté à Nats server:', import.meta.env.VITE_NATS_SERVER)
 
       return this.nc
     } catch (error) {
-      console.error('Error connecting to Nats server:', error)
+      const natsError: NatsError = error as NatsError
+      console.error('Erreur de connexion à Nats :', {
+        message: natsError.message,
+        code: natsError.code,
+        name: natsError.name,
+        stack: natsError.stack,
+        servers: import.meta.env.VITE_NATS_SERVER,
+      })
       throw error
     }
   }
