@@ -12,19 +12,24 @@ export default class NatsClientService {
    * @returns {Promise<NatsConnection>} - Nats connection
    */
   public static async connect(): Promise<NatsConnection> {
-    if (this.nc) return this.nc
+    try {
+      if (this.nc) return this.nc
 
-    const serversOptions: string[] = [import.meta.env.VITE_NATS_SERVER]
-    const seed: Uint8Array = new TextEncoder().encode(import.meta.env.VITE_NATS_NKEY_PRIVATE_KEY)
+      const serversOptions: string[] = [import.meta.env.VITE_NATS_SERVER]
+      const seed: Uint8Array = new TextEncoder().encode(import.meta.env.VITE_NATS_NKEY_PRIVATE_KEY)
 
-    this.nc = await connect({
-      servers: serversOptions,
-      authenticator: nkeyAuthenticator(seed),
-    })
+      this.nc = await connect({
+        servers: serversOptions,
+        authenticator: nkeyAuthenticator(seed),
+      })
 
-    console.info('Connected to Nats server:', import.meta.env.VITE_NATS_SERVER)
+      console.info('Connected to Nats server:', import.meta.env.VITE_NATS_SERVER)
 
-    return this.nc
+      return this.nc
+    } catch (error) {
+      console.error('Error connecting to Nats server:', error)
+      throw error
+    }
   }
 
   /**
