@@ -1,5 +1,5 @@
 # Set version latest LTS
-FROM node:22.11.0
+FROM node:24.5.0
 
 WORKDIR /app
 
